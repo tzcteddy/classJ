@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .box{
+            margin: 20px auto;
+            padding: 20px;
+            width: 320px;
+            border: 1px dashed lawngreen;
+        }
+        .box .add{
+            display: block;
+            width: 100px;
+            height: 30px;
+            background:linear-gradient(45deg,lightskyblue,dodgerblue,lightskyblue);
+            color: #fff;
+            font-size: 18px;
+            line-height: 30px;
+            text-align: center;
+            letter-spacing:1px;
+            font-weight: bold;
+        }
+        .head{
+            margin-top: 8px;
+            width: 320px;
+            height: 30px;
+            background: green;
+            font-size: 0px;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+        .head span,.list li span{
+            display: inline-block;
+            width: 80px;
+            font-size: 16px;
+        }
+        .list li{
+            width: 320px;
+            height: 30px;
+            background: burlywood;
+            color: #fff;
+            line-height: 30px;
+            text-align: center;
+            font-size: 0;
+        }
+        .list li:nth-child(odd){
+            background: powderblue;
+        }
+        .list li a{
+            color: #fff;
+        }
+        .list li a:hover{
+            color: red;
+        }
+        .list li:hover{
+            background: palegreen;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <a href="detail.html" class="add">添加新用户</a>
+    <div class="head">
+        <span>编号</span>
+        <span>姓名</span>
+        <span>年龄</span>
+        <span>操作</span>
+    </div>
+    <ul class="list" id="list">
+        <li>
+            <span>1</span>
+            <span>华北</span>
+            <span>20</span>
+            <span><a href="">修改</a>|<a href="">删除</a></span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/ajax.js"></script>
+<script src="js/index.js"></script>

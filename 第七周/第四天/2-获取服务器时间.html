@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<script>
+    /*
+     * 获取服务器的时间,我们不需要再响应主体中获取,在响应头的信息中,有一个叫做Date的属性,它存储的值就是服务器的时间
+     */
+    var xhr = new XMLHttpRequest();
+    xhr.open('head', 'temp.xml?_=' + Math.random());//->为什么选择HEAD请求方式?因为当前的需求,我们只想获取到服务器时间,这样的话只需要把响应头信息获取到即可,主体内容不需要获取了,使用HEAD就是只获取头信息,加大请求的效率
+    xhr.onreadystatechange = function () {
+        if (xhr.status !== 200) return;
+        if (xhr.readyState === 2) {//->我们只需要响应头信息返回就可以获取到服务器的时间,如果等到4的时候,虽然也可以获取到,但是间隔的时间更长了,导致时间差也会变大(真实时间和服务器获取的时间差值)
+            var time = xhr.getResponseHeader('Date');//->获取到的时间是格林尼治时间(GMT),我们还需要把这个时间变为北京时间(GMT+0800)
+            time = new Date(time);
+            console.log(time);
+        }
+    };
+    xhr.send(null);
+</script>
+</body>
+</html>

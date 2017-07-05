@@ -1,0 +1,14 @@
+1 QQmusic用zepto完成
+2 事件基础
+    MouseEvent : arguments[0]/e
+    e = e || window.event;
+    e.clientX :
+    e.clientY :
+    e.pageX : 不兼容如何处理
+    e.pageY :
+    e.type : 'click'
+    e.target : 事件源   e.srcElement
+    e.preventDefault()   e.returnValue = false    => return false;
+    e.stopPropagation()  e.cancelBubble = true;
+
+3 事件委托 事件冒泡

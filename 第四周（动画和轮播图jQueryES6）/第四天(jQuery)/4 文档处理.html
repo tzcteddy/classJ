@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文档处理</title>
+
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+
+    // 创建元素 :  $('<div></div>')
+
+    // 子元素.appendTo(父元素)
+
+    var $body = $('body'); // 在变量前添加$符号，用来区分原生。对于这种以$符号开头的变量我们可以直接使用jq方法
+
+    // 父元素.append(子元素)
+    $body.append($('<p></p>'));
+
+    $('<div></div>')
+            .appendTo($('body'))
+            .css({
+                width : 100,
+                height : 100,
+                background : 'red'
+            });
+
+    // 父元素.prepend(子元素)  添加开头
+
+    // 子元素.prependTo(父元素)
+
+    // after  在后面添加，添加一个弟弟元素
+    $('div').after('<img>');
+
+    // before 添加一个哥哥元素
+
+    // insertBefore  前面插入
+    // insertAfter   后面插入
+
+    // wrap 添加包裹
+    $('div').wrap('<h2></h2>'); //给div添加了包裹元素，放到h2里
+    // unwrap 移除包裹
+    $('div').unwrap(); //移除包裹
+
+
+    // empty() 清空元素里面的所有
+
+    // clone()  克隆节点
+
+    // remove()  移除节点
+    $('div').remove();
+
+    // replaceWidth(标签/dom)
+    $('img').replaceWith('<span></span>');
+
+
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var name = 'zf';
+    var reg = /name/;
+    var str = 'zfpx';
+    console.log(reg.test(str)); // false
+    var str = 'name';
+    console.log(reg.test(str)); // true
+
+
+    var reg = /this/; // window??? => 字面量的方式不能是用变量
+    // =>  变量？？
+
+    var reg1 = new RegExp('name');     /name/;
+
+    console.log(reg1);
+    //console.log(reg1.test('name'));
+
+    var reg2 = new RegExp('zfpx');    /zfpx/;
+    var a = 'zfpx';
+    var reg3 = new RegExp(a);      /zfpx/;
+
+    // => 如果正则中使用到变量，那么只能使用实例的创建方式
+
+    var ary = ['a','b','c'];
+    for(var i = 0; i<ary.length; i++){
+        var reg4 = new RegExp(ary[i]+i);
+        console.log(reg4); //    /a0/   /b1/    /c2/
+    }
+
+
+    /*
+    *   i :  ignoreCase 忽略大小写
+    *   m :  multiLine  多行匹配   不常用
+    *   g :  global   全局全文匹配
+    *
+    * */
+    var reg5 = /a/i;  // 字面量的方式修饰符位置
+    var reg5 = new RegExp('a','i'); //实例方式的第二个参数就是修饰符 i m g
+    console.log(reg5.test('A'));
+
+
+    var reg6 = /\d/;
+    var reg6 = new RegExp('\\d');
+    var reg7 = /\w/;
+    var reg7 = new RegExp('\\w');
+    console.log(reg6.test('6'));
+
+
+    /*
+    *   什么使用使用实例:
+    *       1 需要变量来实现正则
+    *       2 实例创建方式i m g 是第二个参数
+    *       3 new RegExp('\\w','i') => /\w/i
+    *       4 第一参数可以使用变量和字符串拼接
+    * */
+
+    '';  " ";  "     ";
+
+    var reg = /^\s*$/;
+
+
+
+
+
+
+
+
+</script>

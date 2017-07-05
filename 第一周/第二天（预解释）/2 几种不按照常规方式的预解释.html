@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    // 1 变量提声阶段只看等号左边，即使等号右是函数，那这个函数名也不会提前声明
+    //console.log(fn);
+    // console.log(fx);
+    var fn = function fx() {
+    } // 这个fx名字不会声明，一般不写。
+
+
+    // 2 变量提声不理会条件 => 在不同浏览器中不绝对
+    console.log(num); //undefined 说明放在条件内的num被声明了
+    if (5 == 6) {
+        var num = 10;
+    }
+
+    // in 是判断属性是否属于一个对象
+    console.log(person); // undefined
+
+    //if('name' in person){}
+    var person = {
+        name: 'tianxi', // 属性名就是字符串
+        age: 30
+    };
+    console.log(person); // undefined
+    console.log('age' in person);
+    console.log('className' in document.body);
+    console.log('setInterval' in window);
+
+
+    // 3 自执行函数的函数名不会被提前声明 => 自运行函数一般不写函数名
+    // 无论是赋值还是return，只要等号右面或者return后是函数的执行，那么要先执行函数,然后把函数执行的结果再进行操作
+    //console.log(sum);
+    var res = (function sum() {
+        return (function () {
+            console.log('abc');
+            return function () {
+                console.log('xyz');
+            }
+        })();
+    })();
+    console.log(res);
+
+
+    // 4 当函数和变量重名，那么在变量提声阶段以最后一个函数为准，当代码执行到变量赋值的那一行。以变量的值为准
+
+    fx(); // 2
+    function fx() { // 函数名也是变量
+        console.log(1);
+    }
+    fx(); // 2
+    var fx = 'haha'; // 只声明不赋值 => 声明在函数赋值阶段就已经做过了
+
+    //fx(); // Error
+    function fx() {
+        console.log(2);
+    }
+    //fx(); // 2
+
+
+    // 5  return下面代码虽然不被执行，但是在变量提升阶段是可以执行
+    function foo(){
+        console.log(a); // undefined
+        console.log(fxx); //
+        return function (){}
+        function fxx(){'a'};
+        var a;
+    }
+    var res = foo();
+
+
+    /*
+    *  1 预解释不理会等号右面
+    *  2 预解释不理会条件
+    *  3 自运行函数不会被预解释
+    *  4 函数和变量重名
+    *  5 return下面的函数和变量是可以被预解释的
+    * */
+
+
+
+
+
+
+
+</script>

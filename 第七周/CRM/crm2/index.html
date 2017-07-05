@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{margin: 0;padding: 0}
+    a{text-decoration: none;}
+    ul{list-style: none}
+    .box{
+        margin: 20px auto;
+        padding: 20px;
+        width: 320px;
+        border: 1px dashed lawngreen;
+    }
+    .add{
+        display: block;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        background: darkgreen;
+        font-size: 18px;
+        color: #fff;
+        text-align: center;
+    }
+    .head, .list li{
+        margin-top: 6px;
+        width: 320px;
+        height: 30px;
+        background: green;
+        text-align: center;
+        line-height: 30px;
+        color: #fff;
+        font-size: 0;
+    }
+    .head span,.list li span{
+        display: inline-block;
+        width: 80px;
+        height: 30px;
+        font-size: 16px;
+    }
+    .list li{
+      margin-top: 0;
+        background: lightskyblue;
+    }
+    .list li:nth-child(odd){
+        background: lightsalmon;
+    }
+    .list li:hover{
+        background: #fff;
+        color: #000;
+    }
+
+
+</style>
+<body>
+<div class="box">
+    <a class="add" href="detail.html">添加新用户</a>
+    <div class="head">
+        <span>编号</span><span>姓名</span><span>年龄</span><span>操作</span>
+    </div>
+    <ul class="list" id="list">
+        <li><span>1</span><span>w</span><span>2</span><span><a href="">修改</a>|<a href="">删除</a></span></li>
+    </ul>
+</div>
+</body>
+</html>
+<script src="js/ajax.js"></script>
+<script src="js/index.js"></script>

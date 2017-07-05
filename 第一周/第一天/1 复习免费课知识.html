@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复习免费课知识</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        *{
+            margin:0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="c1" >div1</div><!--school="zhufeng"-->
+    <img src="" alt="">
+    <!--
+        基本
+            number
+                 Number() => 数字/NaN
+                 parseInt() => 取整
+                 parseFloat() => 包含小数部分
+                 isNaN() => true不是一个数/false
+            string
+                 charAt(index) => 通过索引来获取字符（如果索引值超出了范围返回空字符串）
+                 charCodeAt(index) => 返回对应ASCII表的编码
+
+                 substr(n,m) => 从索引n开始截取m个
+                 substring(n,m) => 从索引n开始到索引m-1
+                 slice(n,m) => 支持负数索引
+
+                 toUpperCase() =>
+                 toLowerCase() =>
+
+                 indexOf('a') => 字母a在字符串中出现的索引位置，出现返回对应的索引，否则返回-1
+                  window.navigator.userAgent
+                    chrome : Chrome
+                    ie : MSIE 7/8/9
+                    firefox : Firefox
+                    // 可以利用indexOf和window.navigator.userAgent来判断当前浏览器
+                   window.navigator.userAgent.indexOf('Chrome') !== -1
+                 lastIndexOf('a')
+                 当repalce方法的第二个参数是函数，那么是用这个函数执行结果(return)来替换第一个参数所匹配到的字符
+                 replace(old,function (){
+                     return val;
+                 });
+                 split() => 把字符串按照参数拆分成数组  参数也可以是一个正则
+                 match() // 正则
+                 search() //查找
+                 eval('alert()') => 把字符串当作js表达式运行  去引号
+            boolean
+                Boolean() true/false
+                !
+                !!
+                false : 0 , NaN, "", null, undefined
+                对象  ==  字符串
+                对象 == 对象
+                对象 == 数字
+                对象 == 布尔
+                ...
+            null
+            undefined
+        引用
+            对象{}
+            var obj = {};
+            obj.a = 1;
+            obj['b'] = 2;  // obj.b = 2;
+            var c = 'cc';
+
+            //如果使用变量的方式给对象添加属性，使用obj[变量]的方式
+            obj[c] = 3; // obj.c = 3;  obj.cc = 3;
+
+            delete obj.c;
+
+            数组[]
+                push()
+                unshift()
+                pop()
+                shift()
+                splice(n,m) n : index  m： deleteCount
+                splice(n,0,x) 把所有删除项放到一个新数组返回
+                slice(n,m)  n到m-1
+
+                reverse() => 直接把原有数组倒序
+                sort(function (a,b){return a-b})  => 都是在原有数组上排序
+
+                ary1.concat(ary2) => 返回新数组
+                ary1.concat(5,'a',[6]) => 拼接的参数可以是任意
+                join() => 把数组项拼接成字符串
+
+
+                 indexOf() => 索引/-1
+                 lastIndexOf() => 最后出现的索引/-1
+
+                 ary.forEach(function (item,index){
+
+                 });
+                 map(function (item,index){
+                    return ...
+                 });
+
+            正则/^\w$/
+
+                new Date()
+                new Date('1970/01/01 08:00:00');
+                getFullYear()
+                getMonth()
+                getDate()
+                getDay()
+                getHours()
+                getMinutes()
+                getSeconds()
+                getMilliseconds()
+                getTime() 距离1970年01月01日 8:00 ms
+
+            Math
+                Math.abs();
+                Math.max(1,2,3,'5px')
+                Math.min(4,3,2,1)
+                Math.ceil()
+                Math.floor()
+                Math.round() 注意负数
+                Math.random()
+                n-m随机整数
+                Math.round(Math.random()*(m-n)+n);
+
+                Math.PI 3.1415926 - 3.1415927
+                Math.pow(2,3); => 8  2的3次方
+                Math.sqrt(9) => 3   开平方
+                // 反三角
+
+                document.getElementById('div1') null
+
+                // DOM
+
+                document.getElementsByClassName('c1') []
+                document.getElementsByTagName('div')[0]  [div]
+                document.documentElement
+                document.getElementByName('name') 一般表单元素
+                document.body
+                document.documentElement.clientWidth ||document.body.clientWidth
+                document.documentElement.clientHeight||document.body.clientHeight
+                document.getElementsByTagName('*') // 获取所有标签
+
+                //
+                var p = document.createElement('p') 创建元素
+
+                document.body.appendChild(p); // 把p添加都body的末尾
+                document.body.insertBefore(p,old); // 把p插入到old的前面
+
+                document.body.replaceChild(new,old);
+                document.body.removeChild(p);
+                p.cloneNode(true/false); true: 带着子孙节点一起克隆
+
+
+                // school='zhufeng'
+                body.setAttribute('属性名','属性值') => 改变标签结构
+                body.getAttribute('属性名')
+                body.removeAttribute('属性名')
+
+
+
+
+
+
+
+                // 移动
+                document.querySelector()
+                document.querySelectorAll('#id span')
+            document.body
+            window
+            ...
+
+        数据类型检测
+            typeof 'number' 'string' 'boolean' 'object' 'undefined' 'function'
+
+            instanceof => 检测实例是否属于类
+            constructor
+            Object.prototype.toString.call()
+
+
+        自定义属性和this
+
+    -->
+</body>
+</html>
+<script>
+    var str = 'zhufengpeixun';
+    //str = str.replace('zhu','珠');
+
+    str = str.replace('zhu',function (){
+        console.log(arguments); // [匹配内容，匹配内容索引，原有字符串]
+        return '珠';
+    });
+    console.log(str);
+
+
+    var ary = ['a','b','c'];
+    var res = ary.join('$');
+    var res = ary.join('');
+    console.log(res); // 'abc'
+
+    var ary = [1,2,3,4,5,6];
+    ary.join("+"); // '1+2+3+4+5+6'
+
+
+    var date1 = new Date();
+
+
+    var body = document.body;
+    document.getElementById('div');
+    body.getElementsByTagName('div');
+
+
+    // Math.max
+
+/*
+    var Math = {
+        max : function (){
+            arguments; //[1,2,3]
+            var max = arguments[0];
+            for(var i = 1; i < arguments.length; i++){
+                if(arguments[i] > max){
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+    };
+*/
+    // 只要是引用数据类型就可以添加属性
+    // 自定义属性   this
+
+    var oLis = document.getElementsByTagName('li'); // [li,li,li]  length:3
+    //var i = 0;  [ 0: li, 1 : li, 2 : li , 3 : ]
+    for(var i=0; i<oLis.length; i++){
+        // i = 0 , 1,2
+        oLis[i].onclick = function (){
+            //  can not set Property className of undefined
+            // Cannot set property 'className' of undefined
+            // Cannot set property 'innerHTML' of null
+            //undefined.className = 'cur';
+            //oLis[3].className = 'cur';
+            //oLis[i].className = 'cur';
+            this; // 只有真正事件发生的那一刻这个this的值才能确定
+        }
+    }
+
+    div1.onclick = fn;
+
+    function fn(){
+        this; // div1
+    }
+    var obj = {};
+    console.log(obj.aaaa); // undefined
+
+
+
+    i; // 3
+
+    function sum(){}
+    sum.a = 1;
+    console.dir(sum);
+
+
+    var div1 = document.getElementById('div1');
+    div1.a = 1;
+    div1.a = function (){}
+    /*var div1 = {
+       xxxclick : function (){}
+    };*/
+
+
+
+    div1.xxxclick = function (){
+        console.log('xxxclick');
+    }
+    div1.onclick = function (){
+        console.log('onclick');
+    }
+    var obj = {
+        aaaa : function (){}
+    }
+
+    div1.onclick = obj.aaaa;
+    div1.onclick = fnn;
+
+    function fnn(){
+        console.log('onclick');
+    }
+    console.dir(div1);
+    console.log(div1.xxxclick); // function (){}
+    console.log(div1.onclick); //
+    div1.xxxclick();
+    div1.onclick();
+
+    console.dir(div1); //
+
+
+
+
+</script>

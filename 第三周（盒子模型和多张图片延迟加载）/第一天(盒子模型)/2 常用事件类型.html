@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 300%;
+        }
+    </style>
+</head>
+<body>
+<audio src=""></audio><!--音频-->
+<video src=""></video><!--视频-->
+<select name="" id="sel">
+    <option value="1">东城</option>
+    <option value="2">西城</option>
+    <option value="3">崇文</option>
+    <option value="4">昌平</option>
+</select>
+<textarea name="" id="" cols="30" rows="10"></textarea>
+<input id="input" type="text" placeholder="请输入">
+</body>
+</html>
+<script>
+    window.onscroll = function (){
+        console.log('scroll');
+    }
+
+
+    var sel = document.getElementById('sel');
+    sel.onchange = function (){
+        console.log(this.value); // this.sel
+        // value就是option的value
+    }
+
+    var input = document.getElementById('input');
+    input.oninput = function (){
+        //console.log(this.value);
+    }
+
+    input.onkeydown = function (){
+        console.log("down");
+    }
+
+    input.onkeyup = function (){
+        console.log("up");
+    }
+    input.onkeypress = function (){
+        console.log("press");
+    }
+
+    window.onresize = function (){
+        console.log("resize");
+    }
+
+
+
+
+    /*
+    *   event :
+    *       onclick
+    *       onmouseover
+    *       onmouseout
+    *       onfocus : 获得焦点
+    *       onblur : 表单失去焦点
+    *       oncanplay : H5事件  资源可以播放
+    *       onchange : selected
+    *       onreadystatechange ： ajax
+    *       ondblclick : 双击    double
+    *       ondrag : 拖拽相关
+    *
+    *       onload : 加载成功
+    *       onerror : 加载失败   timeout
+    *
+    *       oninput :  当输入的时候会不断触发
+    *
+    *       onkeydown : 键盘按下
+    *       onkeypress :  并且在事件函数中，我们能获取到具体的按键
+    *       onkeyup : 键盘按键弹起
+    *
+    *
+    *       onmouseover :
+    *       onmouseout :
+    *       onmouseenter : over
+    *       onmouseleave : out
+    *       onmousemove : 鼠标移动
+    *       onmousewheel : 鼠标滚轮
+    *
+    *       onprogress : 进度条
+    *       onresize :  window.onresize浏览器窗口大小改变
+    *
+    *       onscroll : window.onscroll 滚动条滚动
+    *       onsubmit : 提交
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+
+</script>

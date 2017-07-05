@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    //$callback = [sleep]
+    var $callback = $.Callbacks(); //返回一个对应的回调函数集合 => 返回一个装函数的容器
+    $callback.add(eat);
+    $callback.add(sleep);
+
+
+    function eat(){
+        alert('eat');
+        $callback.remove(eat);
+    }
+    function sleep(){
+        alert('sleep');
+    }
+
+    ;(function (){
+        window.setTimeout(function (){
+            $callback.fire(); // 找到容器并且执行
+        },3000)
+    })();
+
+
+
+//////////////////////////////////////////////////////////////////////////
+    var $callback = $.Callbacks();
+    $callback.add(bindData);
+    $callback.add(sleep);
+    $callback.add(dadoudou);
+
+    function bindData(data){
+        // data => res
+    }
+    // ajax
+    $.ajax({
+        type : 'get',
+        url : 'data.txt',
+        async : false,
+        success : function (res){
+            // 成功之后要做的事
+            // eat
+            // sleep
+            // ...
+            $callback.fire(res);
+        }
+    });
+
+    window.data;
+
+
+
+</script>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lagou</title>
+    <style>
+        html, body, div, img {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wrap img {
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+        }
+
+        .wrap .mask {
+            position: absolute;
+            /*只是遮罩暂时的位置，需要根据鼠标进入的方向来更改盒子位置*/
+            left: 120px;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 179, 138, .9);
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 120px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="wrap">
+    <img src="yingke.jpg">
+    <div class="mask" id="mask">映客直播</div>
+</div>
+<div id="wrap" class="wrap">
+    <img src="yingke.jpg">
+    <div class="mask" id="mask">映客直播</div>
+</div>
+<div id="wrap" class="wrap">
+    <img src="yingke.jpg">
+    <div class="mask" id="mask">映客直播</div>
+</div>
+<div id="wrap" class="wrap">
+    <img src="yingke.jpg">
+    <div class="mask" id="mask">映客直播</div>
+</div>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script src="../event2.js"></script>
+<script>
+    /*
+     *   atan2(y,x) 反三角函数 => 根据y和x的坐标返回对应的弧度值
+     *   1弧度 = 180/PI角度
+     *
+     *
+     * */
+
+    function lagou(wrap){
+        //var wrap = document.getElementById('wrap');
+        var mask = wrap.getElementsByClassName('mask')[0];
+        on(wrap, 'mouseenter', function (e) {
+            // body
+            /*var tar = e.fromElement || e.relatedTarget;
+            if(wrap.contains(tar)){
+                return;
+            }*/
+            // 计算出鼠标刚刚进入盒子那一刻的鼠标坐标
+            var x = e.pageX - wrap.offsetLeft - wrap.offsetWidth / 2;
+            var y = wrap.offsetTop + wrap.offsetHeight / 2 - e.pageY;
+            // 根据坐标来计算出进入方向
+            var direction = getDirection(x, y);
+            // 0: left 1 : bottom 2 : right 3 : top
+            switch (direction) {
+                case 0 : // left
+                    mask.style.left = -120 + 'px';
+                    mask.style.top = 0;
+                    break;
+                case 1 : // bottom
+                    mask.style.left = 0;
+                    mask.style.top = 120 + 'px';
+                    break;
+                case 2 : // right
+                    mask.style.left = 120 + 'px';
+                    mask.style.top = 0;
+                    break;
+                case 3 : // top
+                    mask.style.left = 0;
+                    mask.style.top = -120 + 'px';
+                    break;
+            }
+            $(mask).stop().animate({left: 0, top: 0});
+
+        });
+        // 获取进入方向
+        function getDirection(x, y) {
+            var rad = Math.atan2(y, x); // 根据坐标返回弧度值
+            var deg = 180 / Math.PI * rad;
+            return Math.round((deg + 180) / 90) % 4;
+            // [-180,180]  => +180   [0,360]  => /90  [0,4] => %4
+        }
+
+        on(wrap, 'mouseleave', function (e) {
+            // 鼠标离开的时候
+            var x = e.pageX - wrap.offsetLeft - wrap.offsetWidth / 2;
+            var y = wrap.offsetTop + wrap.offsetHeight / 2 - e.pageY;
+            var direction = getDirection(x, y);
+            switch (direction) {
+                case 0 :
+                    $(mask).stop().animate({
+                        left: -120,
+                        top: 0
+                    });
+                    break;
+                case 1:
+                    $(mask).stop().animate({
+                        left: 0,
+                        top: 120
+                    });
+                    break;
+                case 2:
+                    $(mask).stop().animate({
+                        left: 120,
+                        top: 0
+                    });
+                    break;
+                case 3:
+                    $(mask).stop().animate({
+                        left: 0,
+                        top: -120
+                    });
+                    break;
+            }
+        });
+    }
+
+    var wraps = document.getElementsByClassName('wrap'); // [wrap,wrap,wrap,wrap]
+    for(var i = 0; i < wraps.length; i++){
+        lagou(wraps[i]);
+    }
+
+    // 组件化那么就把html和css全部省略掉
+</script>

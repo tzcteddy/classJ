@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var num = 10; // window.num = 10 => 11
+    var obj = {
+        num : 11,
+        fn : (function (num){ // num相当于在函数体内声明的私有变量
+            // var num = 10 11
+            this.num++; // window.num++
+            num++;
+            return function (){
+                num++;
+                console.log(num);
+            }
+        })(num)
+        // Cannot read property 'num' of undefined
+    };
+    obj.fn(); // 12
+
+    var num = obj.fn; // obj.fn就是给obj的fn属性赋值阶段执行的自运行函数的返回值。也就是return的那个函数。从这开始，全局的num再也不代表11了。代表这个函数了
+    num(); // 13
+    console.log(this.num,obj.num); // window.num => 函数 11
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

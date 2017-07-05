@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: orangered;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    //var div1 = document.querySelector('#div1');
+    //var div1 = document.querySelectorAll('#div1 img');
+    //window.getComputedStyle(div1).left; //'5px'
+    // 第一种匀速运动
+/*
+    var maxLeft = utils.win('clientWidth') - div1.offsetWidth;
+    var timer = window.setInterval(function () {
+        var left = utils.getCss(div1,'left'); // 获取当前的left值
+        if(left + 5 >= maxLeft){ //到达终点
+            // 由于每次累加5像素最后一次可能超出范围，所以在判断的时候先把这个5像素累加。
+            window.clearInterval(timer);
+            utils.setCss(div1,'left',maxLeft); // 有可能还差几像素没有到达终点所以需要人为赋值到终点
+            return;
+        }
+        left += 5;
+        utils.setCss(div1,'left',left);
+    },10);
+*/
+
+
+
+    //第二种匀速运动
+    // 需要准备 : 总时间，花费时间，起始位置，距离(终点-起点)
+    // 对应变量 : duration, time , begin , change(target-begin)
+    // 5min位置 : begin + time(5min)/duration * change; => 每次计算出当前应该生效的left的值
+    // 2min    : ... => 把计算出来的位置赋值给left。
+    function linear(t,b,c,d){
+        return b + t/d * c;
+    }
+    var time = 0; // 花费时间
+    var begin = utils.getCss(div1,'left'); //获取开始的位置
+    var target = utils.win('clientWidth') - div1.offsetWidth; //maxLeft
+    var change = target - begin;
+    var duration = 1000; // ms 规定完成动画时间
+
+    // 给透明度的变化的值准备
+    var beginOpacity = utils.getCss(div1,'opacity'); //获取透明度
+    var targetOpacity = 1;
+    var changeOpacity = targetOpacity - beginOpacity;
+
+    var timer = window.setInterval(function (){
+        time += 10;  // 每次执行定时器都会改变花费时间
+        // 根据花费时间的改变计算出来一个位置
+        if(time >= duration){
+            // 当消费的时间大于规定的时间，那么就清空定时器
+            window.clearInterval(timer);
+            utils.setCss(div1,'left',target); // 有可能还剩一点没到终点
+            utils.setCss(div1,'opacity',targetOpacity); // 有可能还剩一点没到终点
+            return;
+        }
+        var posi = linear(time,begin,change,duration); // 计算出来应该到达的位置
+        var opacity = linear(time,beginOpacity,changeOpacity,duration); // 计算出来应该到达的位置
+        utils.setCss(div1,'left',posi); // 让这个盒子去这个位置
+        utils.setCss(div1,'opacity',opacity); // 让这个盒子去这个位置
+    },10);
+
+
+
+
+
+</script>

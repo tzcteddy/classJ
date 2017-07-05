@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function fn(){
+        var num = 10;
+        // 第一次执行fn里面的num： 11
+
+        return function (){
+            num++;
+            console.log(num);
+        }
+    }
+    var f = fn(); // f占用fn第一次的返回结果 => f占用的第一次没有被释放的那个作用域   xxxfff000
+    var obj = {};
+    // obj.f = xxxfff000;
+    obj.f = f; // 这个f是第一次执行fn返回的函数地址
+    // obj.f = f = xxxfff000
+    f(); // 11
+    fn()(); // 11  第二次执行fn
+    obj.f(); // 12 => f();
+    var f = fn(); // f不再占用第一次执行fn的返回值了。f代表第三次执行fn的返回结果
+    f(); // 11
+    fn()(); // 11 第四次 11
+    // 11 11 12 11 11
+    obj.f(); // 13
+
+
+
+
+
+</script>

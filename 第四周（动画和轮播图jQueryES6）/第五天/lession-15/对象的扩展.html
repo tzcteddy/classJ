@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的扩展</title>
+</head>
+<body>
+<script>
+    //用变量来当做属性名，必须用
+//    var  name;
+//    var obj={
+//        "name":'hwb',
+//        [name]:'这是一个人的名字'
+//    }
+    //对象的扩张写法
+    //当标识符名和值得名字一样的时候我们可以只写一个;
+    var  name1='hwb';
+    var obj1={
+//          "name1":name1
+            name1,
+            hwb(){
+
+            }
+    }
+    //属性值为函数的时候，我们可以把funciton和冒号去掉
+    Tab.prototype={
+        init(){
+
+        },
+        renderDOM:function(){},
+        bindHandler(){},
+//        name1
+    }
+    //Object.assign()把源对象合并到目标对象里面，后面的源对象如果有和前面源对象属性名一样的话，后面的会覆盖前前面的
+    var obj3={a:1,b:2},obj4={a:2,c:6},obj5={c:7,d:7};
+    Object.assign({},obj3,obj4,obj5);
+   // Object.assign(target,source1,source2,....)
+</script>
+</body>
+</html>

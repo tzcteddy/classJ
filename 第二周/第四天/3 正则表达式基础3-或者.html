@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   正则表达式中的或者关系:
+    *           1  x|y|z  x或者y或者z中的一个  使用或者关系的时刻我们可以加小括号来改变优先级
+    *           2  [xyz]  x或者y或者z中的一个
+    *
+    *    var reg = /[-+]/;  // "+"或者"-"中的一个
+         var reg = /[\d\w]/; // \d 或者 \w 中的一个
+         var reg = /[.]/; // "."本身
+         var str = '5';
+
+                3 [^xyz]  除了x或者y或者z  取非
+    *
+    *
+    *           ps:  [xyz]或者关系占一个位
+    *
+    * */
+    //
+    var reg = /1|2/;
+    var str = 'qewrqwerq1wer';
+
+
+    //  |
+    var reg = /^(11|12)$/;  // /^11$/;  /^12$/
+
+    var str = 'adfasdfasdf121asdfasdf12';
+    var str = '12';
+    var str = '11';
+    var str = '112';
+
+    // [xyz]
+    var reg = /[xyz]/;  /x/; /y/; /z/;
+    var str = 'hufenygpeiun';
+    //
+    var reg = /[-+]/;  // "+"或者"-"中的一个
+    var reg = /[\d\w]/; // \d 或者 \w 中的一个
+    var reg = /[.]/; // "."本身
+    var str = '5';
+
+    // [^xyz]
+    var reg = /[^xyz]/; // 只要字符串中有一个字符不是x不是y不是z
+    var str = 'axyzxyzxyz';
+
+    // [a-z]  a到z中的任意一个
+    // [A-Z]
+    console.log(reg.test(str));
+
+
+    // \d \w \s \b \D \W \n . \. \\d  ^ $
+    // + * ? {n} {n,} {n,m}
+    // | [xyz] [^xyz] [+-] [\d\w] [.]
+
+
+
+</script>

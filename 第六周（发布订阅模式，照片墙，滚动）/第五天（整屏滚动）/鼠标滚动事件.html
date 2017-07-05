@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标滚动事件</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            _overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    // chrome  ie
+    /*document.body.onmousewheel = function (e){
+        e = e || window.event; // 事件对象的兼容性
+        console.log(e.wheelDelta); // up : 120   down : -120
+    }*/
+
+    // firefox
+    /*document.body.addEventListener('DOMMouseScroll',function (e){
+        console.log(e.detail); // up : -3    down : 3
+
+    });*/
+
+
+
+    // 专门处理鼠标滚轮事件的兼容性问题
+    function addMouseWheelEvent(ele,fn){
+        if(window.navigator.userAgent.toLowerCase().indexOf('firefox') !== -1){
+            ele.addEventListener('DOMMouseScroll',handler);
+        }else{ // chrome ie
+            ele.onmousewheel = handler;
+        }
+        function handler(e){
+            e = e || window.event;
+            //e.wheelDelta;  up : 120  down : -120
+            //e.detail;   up : -3    down : 3
+            var isDown = null;
+            if(e.wheelDelta){ // chrome ie
+                isDown = e.wheelDelta < 0 ? true : false;
+            }else{ // e.detail
+                isDown = e.detail > 0 ? true : false;
+            }
+            fn.call(ele,isDown,e);
+            // 阻止默认行为
+            e.preventDefault ? e.preventDefault() : e.returnValue = false;
+        }
+    }
+</script>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function Fn() {
+    }
+    Fn.prototype.getX = function () {
+        console.log(this); // ???
+    };
+    var f = new Fn();
+    f.getX();
+    var g = new Fn();
+    g.getX();
+
+    //去重
+
+
+    Array.prototype.unique = function () {
+        console.log(this); // a
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var cur = this[i];
+            if (obj[cur] == cur) {
+                this[i] = this[this.length - 1];
+                this.length--;
+                //this.splice(i,1);
+                i--;
+            }
+            obj[cur] = cur;
+        }
+        return this; // 当代码执行之后需要返回去重之后的原有数组
+    };
+
+    var ary = [1, 2, 3, 4, 5, 4, 3, 2];
+    ary.unique(); // [1,2,3,4,5]
+    console.log(ary);
+
+    var ary1 = [1, 2, 34, 5, 6, 7, 7, , 4, 322];
+    ary1.unique();
+
+
+    // 添加到原型上去
+    var ary = [1, 2, 3, 2, 1, [], [], []];
+    for (var i = 0; i < ary.length - 1; i++) {
+        // 每次循环拿出一个数组项和后面的其他项去比较。 最后一项没有后面的项目了
+        // i = 0 ???? 我们要做的就是用这个i=0的这一项和它后面的所有项目去比较
+        //  把1拿出来，循环和后面的2,3,2,1比较
+        for (var j = i + 1; j < ary.length; j++) {
+            if (ary[i] === ary[j]) {
+                ary.splice(j, 1);
+                j--;
+            }
+        }
+    }
+    console.log(ary);
+
+
+    // slice能不能简单模拟下？？？ => 能不能把这个写成函数
+    var ary = [1, 2, 3, 4, 5]; // [3,4]
+
+    ary.slice(2, 4); //
+
+    var res = []; // [3,4]
+    for (var i = 2; i < 4; i++) {
+        res.push(ary[i]);
+    }
+    console.log(res); // [3,4]
+
+
+</script>

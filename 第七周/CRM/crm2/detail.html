@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+    .box{
+        padding: 20px;
+        margin: 20px auto;
+        width: 200px;
+        border: 1px dashed lawngreen;
+    }
+    .box div:nth-child(1),.box div:nth-child(2){
+        margin: 0 auto;
+        width: 200px;
+        height: 40px;
+    }
+    .submit{
+        margin: 20px auto;
+        width: 100px;
+        height: 30px;
+        background: forestgreen;
+        font-size: 18px;
+        color: #fff;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+    }
+    #userAge,#userName{
+        outline: none;
+        width: 150px;
+    }
+    span{
+        display: block;
+    }
+</style>
+<body>
+<div class="box">
+    <div><span>name</span><input id="userName" type="text"></div>
+    <div><span>age</span><input id="userAge" type="text"></div>
+    <div class="submit" id="submit">提交</div>
+</div>
+</body>
+</html>
+<script src="js/ajax.js"></script>
+<script src="js/detail.js"></script>

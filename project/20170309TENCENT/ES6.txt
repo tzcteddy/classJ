@@ -1,0 +1,108 @@
+ES6
+1、箭头函数中没有上下文(THIS)，它里面的THIS继承的是所在父级作用域的THIS
+
+2、LET可以形成块级作用域
+  for(let i=0;i<10;i++){
+
+  }
+  console.log(i);//->使用VAR定义就是10 使用LET定义结果就是报错:i is not defined，也就是使用LET循环是一个块级作用域,I是作用域中私有的
+
+  LET不能在同一个作用域中定义相同的变量
+  let a=12;
+  let a=13; //->报错
+
+  LET不能进行预解释
+
+=======================================================
+
+ISCROLL
+http://wiki.jikexueyuan.com/project/iscroll-5/  ISCROLL第五代版本的API文档
+
+1、外层容器有固定的高度,里层内容的高度超出外层容器的高度,这样才可以实现滚动
+
+2、局部滚动的原理：
+    控制内容区域UL在盒子MEBU中的位置在改变
+    ->控制UL的transform:translateY的值在变化 (默认)
+    ->让UL相对于MENU定位,控制UL的TOP
+    ->...
+
+    new IScroll('.menu',{
+        useTransform:false
+    });
+
+3、IScroll的原理是控制MENU区域下的第一个子元素，让其在容器的区域内实现滚动，所以我们需要把所有的内容都放在第一个子元素内
+
+4、当我们让其显示滚动条的时候，它会向当前容器中默认追加一个新的元素，新元素设置了position: absolute; 如果想让滚动条在这个容器中，我们需要给容器设置 position: relative;
+  new IScroll('.menu',{
+     scrollbars:true
+  });
+
+  <div class="iScrollVerticalScrollbar iScrollLoneScrollbar" style="position: absolute; z-index: 9999; width: 7px; bottom: 2px; top: 2px; right: 1px; overflow: hidden; pointer-events: none; transform: translateZ(0px); transition-duration: 500ms; opacity: 0;">
+        <div class="iScrollIndicator" style="box-sizing: border-box; position: absolute; border: 1px solid rgba(255, 255, 255, 0.901961); border-radius: 3px; width: 100%; transition-duration: 0ms; display: block; height: 8px; left: 0px; top: 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); background: rgba(0, 0, 0, 0.498039);"></div>
+  </div>
+
+  知道了滚动条的样式类名，我们可以修改默认的样式
+
+5、滚动条的高度以及滚动一次的距离都是根据 盒子的高度 以及 内容的高度 综合计算出来的，当任意一个高度发生改变，都需要重新的计算这些值
+
+   盒子高度改变的话，ISCROLL会自动重新计算，因为它监听了“容器.onresize”事件，在这个事件中重新的计算了相关的值
+
+   但是内容高度发生改变的时候，需要我们特殊处理，我们自己把相关值重新的计算
+   var example=new IScroll();
+   example.refresh() 执行这个方法就是在重新进行处理
+
+new IScroll('.menu', {
+    /*scrollX: true,
+     scrollY: true, 设置滚动的方式是横向还是竖向滚动*/
+    scrollbars: true,//->显示滚动条
+    /*fadeScrollbars: true,*///->开启滚动条的显示隐藏(操作的时候显示,离开区域或者不发生滚动操作的时候隐藏)
+    mouseWheel: true,//->开始鼠标滚轮操作
+    bounce: false //->去除到达边界的反弹效果(反弹效果是模拟苹果手机的)
+    /*useTransform: false*/
+});
+
+/*自定义ISCROLL滚动条的样式*/
+$('.iScrollIndicator').css({
+    opacity: 0.2,
+});
+
+=============================================
+JQ
+1、find、children、filter 三大筛选方法
+
+============================================
+职业规划
+
+1、每一次项目结束后，都要认认真真的做总结
+  ->技术知识点的总结：项目中使用了哪些技术，技术的优势和弊端，遇到了哪些问题，我是如何去解决的，下一次在使用的时候应该注意哪些事项，我们使用什么样的设计模式才能保证代码的可维护性高...
+
+  ->配合沟通总结：本次和设计师沟通了哪些，和后台沟通了哪些，哪些是没有沟通到位导致出问题的，下一次应该如何的去避免...
+
+
+2、一个合格的程序猿或者说一个合格的开发者
+
+  ->职业态度：一个项目交给你，你是否把它当做是自己的，还仅仅是写点代码，如果是当成自己的，那么你会细心细心再细心，自己会把项目体验做的很完善 =>免测产品
+
+  ->职业能力：在项目中不断培养自己
+
+  =>你用心去做100个项目，比你会什么新的框架强100倍
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

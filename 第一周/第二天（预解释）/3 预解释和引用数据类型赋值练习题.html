@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    console.log(ary); // undefined
+    var ary = [1,2]; // 内存,把1,2存入内存中，把内存地址返回给ary => xxxfff000
+    function fn(ary){ // ary : xxxfff000; => 私有形参ary和全局ary共用同一个xxxfff000
+        console.log(ary); // 如果自己有，别别和别人借。[1,2]
+        ary.push(3); // 把全局ary和私有ary共用的那个数组添加了一项
+
+        ary = ary.slice(0); // slice方法执行完之后留下的是一个和ary完全相同的一个(新)数组 => [1,2,3]
+        //ary = ary.reverse();
+        //ary = [1,2,3];
+        ary.push(4); // [1,2,3,4]
+        console.log(ary); // [1,2,3,4]
+    }
+    fn(ary); // xxxfff000
+    console.log(ary); // [1,2,3]
+
+
+
+
+
+
+    // 形参相当于声明在函数体(内)的私有变量
+    // 全局变量: 相对于私有变量而言全局变量是公共的。=> 没有任何函数包含的变量
+    // 形参和私有变量重名，声明私有变量的var关键字就可以忽略，但是赋值操作仍然可以。
+    var biaobiao = 19000; // 全局变量
+    function reduce(){
+        console.log(biaobiao); // 19000
+        biaobiao = 20000; // 那么全局的19000被修改成20000
+    }
+    reduce();
+
+    function sum(num1,num2){
+        console.log(biaobiao); // 19000
+        var num1 = 300; // 私有变量
+        var num2 = 400;
+        console.log(num1,num2);
+    }
+    sum(100,200);
+
+
+
+
+
+    //var qinhong;
+    //window.qinhong = 18000;
+    //window.qinhong = 18000;
+
+    function mul(){
+        // console.log(qinhong); // undefined
+        //var qinhong;
+        qinhong = 18000; // 如果存在私有变量(在函数体内声明的、形参),那么就把这个值赋值给私有变量。否则不存在私有变量，到上一级去查找。如果还没有那么就直接赋值给window当作一个属性 => window.qinhong = 18000
+    }
+
+    /*window.*/mul();
+    console.log(qinhong); //所有window的属性都可以认为是全局变量
+
+
+
+
+
+    var xyz = 9999;
+    console.log(xyz);
+    console.log(/*window.*/xyz);
+
+
+
+
+
+
+
+</script>

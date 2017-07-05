@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>callback</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    var n = 0;
+    $('<div></div>')
+            .appendTo($('body'))
+            .css({
+                width : 100,
+                height : 100,
+                background : 'pink'
+            })
+            .on('click',function(){
+                n++;
+                console.log(n);
+                if(n == 5){
+                    //$(this).remove();
+                    $(this).off('click');
+                }
+            });
+
+
+
+    // 相当于创建了一个回调函数集合
+    var $callback = $.Callbacks();
+    $callback.add(function (){
+        console.log(1);
+    });
+    $callback.add(fn2);
+    function fn2(){
+        console.log(2);
+    }
+    $callback.add(function (){
+        console.log(3);
+    });
+    $callback.remove(fn2);
+
+
+    window.setTimeout(function (){
+        $callback.fire(); // 让我们的代码看起来
+    },5000);
+
+
+
+
+
+
+
+</script>

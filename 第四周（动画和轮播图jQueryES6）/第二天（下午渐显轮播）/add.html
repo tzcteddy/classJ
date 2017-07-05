@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="searchBox">
+    <input type="text">
+</div>
+<ul class="listBox">
+    <li class="list"></li>
+</ul>
+</body>
+</html>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/event2.js"></script>
+<script>
+    var searchBox=document.getElementsByClassName("searchBox")[0];
+    var input=searchBox.getElementsByTagName("input")[0];
+    var words=null;
+    on(input,"keyup",fn);
+    function fn(e) {
+        let wd=e.target.value;
+        $.ajax({
+            url:"https://www.baidu.com/su",
+            type:"get",
+            dataType:"jsonp",
+            data:{wd},
+            jsonp:"cb",//用于服务器端通过此参数名返回的方法名
+        }).then((result) => {
+            words=result.s;
+            if(words){
+                var strLi="";
+                for(var i=0;i<words.length;i++){
+                    strLi+="<li>"+words[i]+"</li>"
+                }
+                $(".listBox").html(strLi)
+                }
+        })
+    }
+    $(".listBox").on("click",function (e) {
+        var e=e||window.event;
+        var tag=e.target||e.srcElement;
+        input.value=tag.innerText;
+
+    })
+
+
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+</html>
+<script>
+    var num = 2; // window.num = 2; 3  4
+    // num = 3 => 给obj.fn属性赋值执行的自运行函数中this.num++
+    // num = 3 => 4 。 f() => this.num++ => window.num++
+    var obj = {
+        num: 3, // 4
+        // num : 4 ; obj.fn() => this.num++ => obj.num++
+        fn: (function (num) {
+            // var num = 2;
+            // num = 3 ; num++的过程中
+            // num = 4 ; 在f()执行的过程中  num++
+            // num = 5 ;  在obj.fn()执行的过程中 num++
+            this.num++; // this => 自运行函数中的this是window
+            // window.num++
+            num++; // 先在当前作用域查找形参和私有变量,这行代码只在给obj.fn属性赋值的时刻执行一次。
+            return function b() {
+                this.num++;
+                // f() thhis => window   window.num++
+                // obj.fn() this => obj  obj.num++
+                num++; //
+                console.log(num);
+            }
+        })(/*this.*/num)
+    };
+    // 给obj.fn赋值结束之后，全局的num从2修改成3。私有变量num从2也被修改成为3. => 由于obj.fn属性占用自运行函数的返回值。那么符合作用域不释放的条件。=> 这个自运行函数中的私有变量num=3这个值被保存下来了。以后obj.fn属性值自运行函数的返回值函数b
+    var f = obj.fn; // 把obj.fn的值(其实就是return那个b函数)的引用地址，赋值给全局变量f一份。=> 全局变量f和obj.fn共用一个函数地址
+    // f和obj.fn执行的是同一个函数。只不过执行过程中的函数中的this不同
+    f();  // this => window       4
+    obj.fn(); // this => obj      5
+    console.log(window.num, obj.num);  // 4   4
+
+    //var num = NaN
+    var obj = {num: 2}; // 3
+
+    obj.fn = (function (){
+        var num;
+        num++; // num = num + 1;
+        // num = NaN;
+        //this.num--; // window.num = NaN;
+
+        this.num--; // window.num = window.num - 1
+        return function (){
+            console.log(this); // obj , body
+            this.num++; // obj.num++; body.num = body.num + 1
+            num++;
+            console.log(num);
+        }
+    })();
+
+
+    obj.fn(); // NaN
+    document.body.xx = obj.fn;
+    document.body.xx();
+    console.log(window.num,obj.num);
+
+</script>

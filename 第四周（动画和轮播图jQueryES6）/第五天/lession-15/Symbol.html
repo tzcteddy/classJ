@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // Symbol() ES6新增的一种数据类型，作用是产生一个独一无二的值，我们可以用typeof来检测数据类型
+    var name1=Symbol();
+    var name2=Symbol();
+   // typeof name1 //sybol
+   //  name1 == name2 false
+    var name4='name3';
+    var obj={
+        [name1]:'hwb',
+            name4,
+        [name4]:'hwhh'
+    }
+
+
+</script>
+</body>
+</html>

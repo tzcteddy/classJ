@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>flexbox</title>
+   <!-- meta:vp tab-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        nav{
+            /*2009 ~2014  box - flexbox -flex*/
+            display:box;
+            display:-webkit-box;
+            display:-moz-box;
+
+            display:-ms-flexbox;  // IE 10
+
+            display:flex;
+            display:-webkit-flex;
+
+/*            【新浪4套】
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+
+            【凤凰】
+            display: -webkit-box;
+
+            【网易】
+            display: -webkit-box;
+            */
+        }
+        nav a{
+           -webkit-box-flex:1;
+            -webkit-flex:1;
+            -mz-flex:1;
+           flex:1;
+            background:red;
+            height:50px;
+            line-height:50px;
+            text-align:center;
+            color:#fff;
+
+            /*占的比例 1/5*/
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+    <a href="#">新闻</a>
+</nav>
+
+<style type="text/css">
+    p{
+        /*width  overflow:hidden  white-space: nowrap;  text-overflow: ellipsis;*/
+        width:300px;
+        line-height:30px;
+        height:30px;
+        overflow:hidden;
+        border:1px solid red;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+    }
+</style>
+<p>文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+</body>
+</html>

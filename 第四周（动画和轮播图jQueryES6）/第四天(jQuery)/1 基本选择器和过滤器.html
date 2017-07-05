@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div1" name="tian" school="zhufeng" real="abc">
+        <ul class="ul">
+            <li id="li1">1珠峰</li>
+            <li id="li2">2</li>
+            <li class="li3">3</li>
+            <li id="li4">
+                <i class="span"></i>
+            </li>
+            <li class="li5">
+                <span class="span"></span>
+            </li>
+        </ul>
+        <p></p>
+        <span></span>
+    </div>
+    <form action="">
+        <input type="text" name="anamnaa" >
+        <input type="text" name="bnanb" >
+        <input type="radio" value='1' checked>
+        <input type="checkbox" disabled>
+        <input type="file">
+        <input type="hidden"><!--隐藏表单提交一些默认自带的参数-->
+        <input typeof="submit">
+    </form>
+
+
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    var div1 = document.getElementById('div1'); // 原生dom对象
+    $(div1); //把原生对象转化成jq对象就直接用 $()就可以
+    $('#div1').get(0); // => 把jquery对象转化成原生对象
+    $('#div1 li');
+    $('#div1 li:first');
+    $('#div1 .ul li')
+    $('#div1 .ul li:last');
+    $('#div1 .ul li:eq(3)');
+    $('#div1 .ul li:odd');
+    $('#div1 .ul li:even');
+    $('#div1 .ul li:gt(3)');
+    $('#div1 .ul li:lt(3)');
+    $('#div1 .ul li:not(:eq(3))');
+    $('#div1 .ul li:not(:checked)');
+    $('#div1,p,span');
+    // 内容过滤器
+    console.log($('#div1 li:contains(珠峰)')); // contains(文本)
+    console.log($('#div1 li:empty')); //空文本
+    console.log($('#div1 li:has(.span)')); // has(选择器) 包含这个选择器的
+    // 可见性  :hidden  :visible
+
+    // 属性过滤器
+    console.log($('form input[type=text][name=haha]')) // 属性值已经指定
+    console.log($('form input[type]')) // 包含这个type属性就可以
+    console.log($('form input[name^=n]')); // name的属性值以n开头
+    console.log($('form input[name$=n]')); // name的属性值以n结尾
+    console.log($('form input[name*=n]')); // 只要属性值包含n就可以
+    console.log($('form input[name!=haha]')); // 属性值不等于haha的
+    console.log($('div[name=tian]')); // 是任何元素都可以
+    console.log($('div[real=abc]')); // 自定义属性
+
+    // 表单过滤器
+    console.log($('input:text'));
+    console.log($('input:radio'));
+    console.log($('input:checkbox'));
+    console.log($('input:checked')); // 选中的
+    console.log($('input:disabled')); // 置灰
+    console.log($('input:enabled')); // 可以用的
+    console.log($('option:selected')); // 选中的
+
+
+
+
+
+
+
+
+</script>

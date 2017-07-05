@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的触发顺序</title>
+    <style>
+        #outer{
+            width: 300px;
+            height: 300px;
+            background: yellow;
+            padding: 100px;
+        }
+        #inner{
+            width: 300px;
+            height: 300px;
+            background: lime;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+</body>
+</html>
+<script>
+    // 事件触发顺序 ：  先捕获 => 目标 => 冒泡
+    // 标准浏览器addEventListener的第三个参数false:冒泡 true: 捕获。 我们一般使用冒泡  useCapture
+    var body = document.body;
+    var outer = document.getElementById('outer');
+    var inner = document.getElementById('inner');
+
+    body.addEventListener('click',function (){
+        console.log('body');
+    },true); // 在冒泡的阶段发生
+
+    outer.addEventListener('click',function (){
+        console.log('outer');
+    },true); // 在捕获的阶段被触发
+    outer.addEventListener('click',function (){
+        console.log('outer');
+    },false);
+    inner.addEventListener('click',function (){
+        console.log('inner');
+    },false);
+
+    // outer.attachEvent('onclick',fn)
+
+</script>

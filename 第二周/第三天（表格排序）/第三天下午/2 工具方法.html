@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>1</li>
+            <li id="li2">2</li>
+
+        </ul>
+    </div>
+    // toArray  jsonParse  getRandom children isPlanObject
+</body>
+</html>
+<script>
+    function toArray(){
+        // ...
+    }
+    function jsonParse(){
+        // ...
+    }
+
+    //var res = getRandom(3,8);
+    //getRandom(3,'a');
+
+    function getRandom(n,m){
+        if(isNaN(n)||isNaN(m)){
+            return Math.random(); // [0,1]
+        }
+        return  Math.round(Math.random()*(m-n)+n);
+    }
+
+//    li2.previousElementSibling;
+//    prev(li2);
+
+    function prev(ele){
+        if(typeof ele.previousElementSibling !== 'undefined'){
+            // undefined li  null
+            return ele.previousElementSibling;
+        }
+        // ie8-
+        var pre = ele.previousSibling; // null不存在   继续查找 : 换行注释    哥哥
+        while (pre && pre.nodeType != 1){
+            pre = pre.previousSibling;
+        }
+        return pre;
+    }
+
+    // children [元素]  childNodes [所有的子节点,注释，文本，换行,元素]
+
+    // 在childNodes里把所有nodeType == 1的挑出来
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

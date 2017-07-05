@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <script src="js/ajax.js"></script>
+</head>
+<body>
+<script>
+    ajax({
+        url: 'temp.json',
+        type: 'post',
+        dataType: 'json',
+        data: {
+            name: 'zhufeng',
+            age: 8
+        },
+        success: function (result) {
+            console.log(result);
+        }
+    });
+</script>
+</body>
+</html>

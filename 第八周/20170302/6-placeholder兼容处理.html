@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        .inpBox {
+            position: relative;
+            margin: 20px auto;
+            width: 300px;
+            height: 30px;
+        }
+
+        .inpBox input, .inpBox span {
+            padding: 0 5px;
+            width: 288px;
+            height: 28px;
+            line-height: 28px;
+            border: 1px solid green;
+        }
+
+        .inpBox span {
+            display: none;
+            position: absolute;
+            top: 1px;
+            left: 6px;
+            z-index: 2;
+
+            padding: 0;
+            border: none;
+            color: #ccc;
+            cursor: text;
+        }
+    </style>
+</head>
+<body>
+<div class="inpBox">
+    <input type="text" id="userName" placeholder="请设置用户名"/>
+    <span id="tipName">请设置用户名</span>
+</div>
+<script>
+    if (window.navigator.userAgent.indexOf('MSIE') >= 0) {
+        //->IE
+        var tipName = document.getElementById('tipName'),
+                userName = document.getElementById('userName');
+        tipName.style.display = 'block';
+        userName.placeholder = null;
+
+        tipName.onclick = function () {
+            userName.focus();
+        };
+        userName.onkeyup = userName.onkeydown = function () {
+            var val = this.value;
+            tipName.style.display = val.length === 0 ? 'block' : 'none';
+        }
+    }
+</script>
+</body>
+</html>

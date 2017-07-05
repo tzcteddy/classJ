@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        .box {
+            margin: 20px auto;
+            padding: 0 5px 5px 0;
+            width: 100px;
+            border: 1px solid green;
+        }
+
+        .box li, .box div {
+            float: left;
+            margin: 5px 0 0 5px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /*.box li:nth-child(3) {
+            background: red;
+        }*/
+
+        /*.box li:nth-child(odd) {
+            background: pink;
+        }
+        .box li:nth-child(even) {
+            background: orange;
+        }*/
+
+        /*.box li:nth-last-child(3) { !*倒数*!
+            background: pink;
+        }*/
+
+        /*.box li:nth-child(3n+1) { !*n是一个>=0的整数*!
+            background: orange;
+        }
+
+        .box li:nth-child(3n+2) {
+            background: yellow;
+        }
+
+        .box li:nth-child(3n) { !*3n+3*!
+            background: pink;
+        }*/
+
+        /*.box li:hover {
+            background: green;
+        }
+
+        .box li:active { !*按下态*!
+            background: red;
+        }*/
+
+        /*除了第10个其余的都是粉色*/
+        /*.box li {
+            background: pink;
+        }
+
+        .box li:nth-child(10) {
+            background: transparent;
+        }*/
+
+        /*.box li:not(:nth-child(10)) { !*括号中放入的是条件：一个新的选择器*!
+            background: pink;
+        }*/
+
+        /*.box div:nth-child(2) { !*它的意思不是子元素中DIV中的第二个，它的意思是所有子元素中的第2个，并且第二个还需要是个DIV才可以 =>div:nth-child(18)*!
+            background: red;
+        }*/
+
+        /*.box div:nth-of-type(2) { !*它是先按照DIV分组，找到这个分组中的第二个，这样的话我们查找起来会更方便; nth-last-of-type...*!
+            background: pink;
+        }*/
+    </style>
+</head>
+<body>
+<!--ul.box>li{$}*16-->
+<ul class="box clear">
+    <li>01</li>
+    <li>02</li>
+    <li>03</li>
+    <li>04</li>
+    <li class="temp">05</li>
+    <li>06</li>
+    <li>07</li>
+    <li>08</li>
+    <li>09</li>
+    <li>10</li>
+    <li class="temp">11</li>
+    <li>12</li>
+    <li>13</li>
+    <li>14</li>
+    <li>15</li>
+    <li>16</li>
+    <div>D1</div>
+    <div>D2</div>
+    <div>D3</div>
+</ul>
+
+
+</body>
+</html>

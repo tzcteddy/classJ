@@ -1,0 +1,36 @@
+1 \d
+  \w [a-zA-Z0-9_]
+  \s
+  \b
+  \D [^\d]
+  \W
+  \
+  .
+  \n
+  ^
+  $
+
+2 ?
+  +
+  *
+  {5}
+  {5,}
+  {5,7}
+
+3  |
+   [xyz]
+   [^xyz]
+   [+-]
+   [.]
+   [\d\w]
+   [a-z]
+
+4  i m g
+5  字面量  实例 区别
+6  test
+7  exec => ??? null
+8  match => exec模拟match
+9  lastIndex =>
+10 非空验证   /^\s*$/  onfocus  onblur
+11 有效数字
+12 邮箱

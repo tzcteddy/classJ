@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件和拖拽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: lime;
+            position: absolute;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: lightskyblue;
+            position: absolute;
+            top: 150px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>
+<script>
+    // 耦合 => 解耦
+    var div1 = document.getElementById('div1');
+    var div2 = document.getElementById('div2');
+    on(div1, 'mousedown', down); //
+    on(div2, 'mousedown', down); //
+
+    // 事件的绑定 => 把对应的函数添加到自定义属性数组中
+    // 事件的触发 => 在对应的事件发生时刻执行对应数组中的方法
+
+    on(div1, 'selfdragstart', dragstart); // 订阅
+    function dragstart() {
+        this.innerHTML = '拖拽开始';
+    }
+    on(div1, 'selfdragging', dragging);
+    function dragging() {
+        this.innerHTML = '拖拽中';
+    }
+    on(div1, 'selfdragend', dragend);
+    function dragend() {
+        this.innerHTML = '拖拽结束';
+    }
+    on(div2, 'selfdragend', end); // div2.selfdragend = [end]
+    function end() {
+        this.style.background = 'red';
+    }
+
+
+    function down(e) {
+        this.l = e.pageX - this.offsetLeft;
+        this.t = e.pageY - this.offsetTop;
+        if (this.setCapture) { // ie
+            this.setCapture();
+            on(this, 'mousemove', move);
+            on(this, 'mouseup', up);
+        } else {
+            var that = this; // div1
+
+            that.MOVE = function (e) {
+                move.call(that, e);
+            };
+
+            //that.MOVE = processThis(move,that);
+
+            that.UP = processThis(up,that);
+
+//            that.UP = function (e) {
+//                up.call(that, e);
+//            }
+            on(document, 'mousemove', that.MOVE);
+            on(document, 'mouseup', that.UP);
+        }
+        // 拖拽开始 => 当这个down方法执行的时候，就触发了dragstart事件 => 应该执行对应绑定dragstart这个事件的方法了
+        // 无论哪个元素绑定了拖拽开始的事件，那么都在此刻执行 => 对应放在dragstart事件的函数在这被执行就行了
+        //this.innerHTML = '拖拽开始';
+        // 找到div1.selfdragstart数组里对应的函数，然后一一执行
+        fire.call(this, 'selfdragstart', e);  // 发布事件
+        // 通知所有绑定selfdragstart事件的函数在此刻执行
+    }
+    function move(e) {
+        var left = e.pageX - this.l;
+        var top = e.pageY - this.t;
+        this.style.left = left + 'px';
+        this.style.top = top + 'px';
+        e.preventDefault();
+        // 拖拽中 => 所有绑定拖拽中事件dragging的函数全部在此刻触发(执行)
+        //this.innerHTML = '拖拽中';
+        fire.call(this, 'selfdragging', e); // 通知所有绑定拖拽中事件的元素在此刻执行
+    }
+
+    function up(e) {
+        if (this.releaseCapture) {
+            this.releaseCapture();
+            off(this, 'mousemove', move);
+            off(this, 'mouseup', up);
+        } else {
+            off(document, 'mousemove', this.MOVE);
+            off(document, 'mouseup', this.UP);
+        }
+        // 拖拽结束 => 所有绑定拖拽结束dragend事件都在此刻执行
+        // this.innerHTML = '拖拽结束';
+        fire.call(this, 'selfdragend', e);
+    }
+
+    function on(ele, type, fn) {
+        // selfdragstart
+        // div1.selfdragstart
+        if (/^self/.test(type)) {
+            // 条件成立说明是来处理自定义事件
+            if (!ele[type]) {
+                ele[type] = [];
+            }
+            var a = ele[type];
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] === fn) {
+                    return;
+                }
+            }
+            ele[type].push(fn); // div1.selfdragstart = [start]
+            return; // 自定义事件的处理逻辑到此结束
+        }
+        // 下面都是用来处理系统事件，上面代码处理自定义事件
+        if (ele.addEventListener) {
+            ele.addEventListener(type, fn);
+        } else {
+            // ele.click
+            if (!ele['AAA' + type]) {
+                ele['AAA' + type] = [];
+                ele.attachEvent('on' + type, function () {
+                    run.call(ele);
+                });
+            }
+            var a = ele['AAA' + type];
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] === fn) {
+                    return;
+                }
+            }
+            a.push(fn);
+        }
+    }
+    // fire方法负责执行自定义事件对应数组中的函数 div1.selfdragstart
+    function fire(type, e) {
+        // this
+        var a = this[type]; // ele['selfdragstart']
+        if (a && a.length) {
+            for (var i = 0; i < a.length; i++) {
+                // 把索引对应div1.selfdragstart = [start,fn]的函数执行
+                if (typeof a[i] == 'function') {
+                    a[i].call(this, e); // end.call(this,e)
+                } else {
+                    a.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+    }
+    function run(e) {
+        e = window.event;
+        e.pageX = e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);
+        e.pageY = e.clientY + (document.documentElement.scrollTop || document.body.scrollTop);
+        e.preventDefault = function () {
+            e.returnValue = false;
+        }
+        e.stopPropagation = function () {
+            e.cancelBubble = true;
+        }
+        var a = this['AAA' + e.type];
+        if (a && a.length) {
+            for (var i = 0; i < a.length; i++) {
+                if (typeof a[i] == 'function') {
+                    a[i].call(this, e);
+                } else { // null
+                    a.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+    }
+    function off(ele, type, fn) {
+        if (/^self/.test(type)) {
+            var a = ele[type];
+            if (a && a.length) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === fn) {
+                        a[i] = null;
+                        break;
+                    }
+                }
+            }
+            return;
+        }
+        // 处理原生事件  click ..... mousedown
+        if (ele.removeEventListener) {
+            ele.removeEventListener(type, fn);
+        } else {
+            var a = ele['AAA' + type];
+            if (a && a.length) {
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] === fn) {
+                        a[i] = null;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    function processThis(move,that){
+        return function (e){
+            move.call(that,e);
+        }
+    }
+
+
+
+</script>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>utils工具</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+        #div1.bg{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="c1c8 c1-c2  c8  c3 c4 c9 c8">
+        <ul>
+
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li id="li4"></li>
+            <li></li>
+        </ul>
+
+
+    </div>  'c9'
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1');
+//    div1.classList.add('c2');
+//    div1.classList.remove('c2');
+//    div1.classList.toggle('c2');
+    // 判断一个元素是否存在一个类  hasOwnProperty isNaN
+
+    function hasClass(ele,className){  // 判断div1是否存在c1这个类
+        // 只要className中存在
+        // c1就说明div1有这个class => 正则
+        var reg = new RegExp('(^| +)'+className+'( +|$)');  // /(^| +)c1( +|$)/
+        return reg.test(ele.className);  // "c1c2 c3 c4"
+    }
+
+    //hasClass(div1,'c1');
+
+    addClass(div1,  'c8   c9'); //给div1添加一个c8
+
+    function addClass(ele,className){
+        // 去首尾空格，并且拆分成数组
+        var classNameAry = className.replace(/(^ +| +$)/g,'').split(/ +/);
+        // ['c8','c9' ,'c10'] 循环判断数组中的类是否出现过
+        for(var i = 0; i < classNameAry.length; i++){
+            var curClass = classNameAry[i]; // 'c8','c9'...
+            // 分别判断curClass是否在ele.className中是否出现过
+            if(!hasClass(ele,curClass)){
+                // 如果没有出现过那么就在原有className的基础上累加' '+curClass
+                ele.className += ' ' + curClass;
+            }
+        }
+    }
+
+
+    //''.replace();
+    //'  ads  '.trim();
+    String.prototype.trim = function (){
+        // var reg = /(^ +| +$)/g;
+        // this; // ' abs '
+        return this.replace(/(^ +| +$)/g,'');
+    }
+
+    removeClass(div1,'c8  c9');
+    function removeClass(ele,className){
+        var classNameAry = className.replace(/(^ +| +$)/g,'').split(/ +/);
+        // ['c8','c9']
+        for(var i = 0; i < classNameAry.length; i++){
+            var curClass = classNameAry[i]; //'c8','c9'
+            // "g"把所有符合条件的类全部匹配上
+            var reg = new RegExp("(^| +)" + curClass + "( +|$)","g");
+            // replace方法都不是在原有字符串替换，需要把替换好的新字符串重新赋值给className
+            ele.className = ele.className.replace(reg,' ');
+        }
+    }
+    // 如果存在就删除，如果不存在就添加
+    function toggleClass(ele,className){
+        if(hasClass(ele,className)){
+            removeClass(ele,className)
+        }else{
+            addClass(ele,className)
+        }
+    }
+
+    function prev(ele){
+
+        var prev = ele.previousSibling; // comment text  element
+        while ( prev && prev.nodeType != 1){
+            prev = prev.previousSibling;
+        }
+        return prev;
+    }
+
+    function prevAll(ele){
+        var ary = [];
+        var pre = prev(ele); // 先获取到上一个元素哥哥
+        while (pre){
+            ary.push(pre); // 如果上一个元素哥哥存在那么就添加到空数组
+            pre = prev(pre);
+        }
+        return ary;
+    }
+
+    function nextAll(ele){
+        // 自己完成。。。。
+
+
+
+    }
+    //获取所有的兄弟节点
+    function siblings(ele){
+        return prevAll(ele).concat(nextAll(ele));
+    }
+
+    function sibling(ele){
+        // 哥哥和弟弟,相邻两个
+        var ary = [];
+        var pre = prev(ele); // null
+        var nex = next(ele); // null
+        // if(pre){ ary.push(pre) }
+        pre && ary.push(pre);
+        nex && ary.push(nex);
+        return ary;
+    }
+    // 索引
+    // index(li4); // 3
+    function index(ele){
+        return prevAll(ele).length;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

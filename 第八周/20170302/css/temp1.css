@@ -1,0 +1,92 @@
+/*
+ 真实项目中我们都会自己总结一套默认的初始化样式的CSS，以后不管做什么项目，我们都把这个CSS导入进来，清除浏览器的一些默认样式
+ *{
+    margin:0;
+    padding:0;
+ }
+ ul,ol{
+   list-style:none;
+ }
+ ...
+
+ normalize.css
+   FaceBook、bootStrap等著名的公司以及流行的组件框架，清除CSS默认样式这部分都采用的是这个CSS
+   ->不是把所有标签的MARGIN等都清除，只是清除有影响的
+   ->既包含了PC端应该清除的，也有移动端需要清除的
+
+ reset.min.css
+   我们自己基于normalize.css二次封装的一个清除默认样式库，大家也可以基于这个再次修改
+*/
+
+html, body {
+    background: #F4F4F4;
+}
+
+.article {
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 760px;
+    background: #FFF;
+}
+
+.article .header {
+    border-bottom: 1px dashed #555;
+}
+
+.article .header h1, .article .header h2 {
+    line-height: 50px;
+    text-align: center;
+}
+
+.article .header h1 {
+    font-size: 20px;
+    color: #000;
+}
+
+.article .header h2 {
+    font-size: 18px;
+    color: orange;
+}
+
+.article h3 {
+    line-height: 35px;
+    font-size: 16px;
+    color: green;
+}
+
+.article p {
+    line-height: 35px;
+    font-size: 14px;
+    text-indent: 10px; /*设置首行缩进*/
+}
+
+.article strong {
+    color: orange;
+}
+
+.article .figure {
+    margin-right: 10px;
+    float: left; /*设置文字环绕图片*/
+    width: 300px;
+}
+
+.article .figure img {
+    width: 100%;
+}
+
+.article .figure .figcaption {
+    font-size: 12px;
+    color: #AAA;
+    font-style: italic;
+    line-height: 25px;
+}
+
+.article .aside {
+    margin-left: 10px;
+    float: right;
+    width: 200px;
+}
+
+.article .aside img {
+    width: 100%;
+}

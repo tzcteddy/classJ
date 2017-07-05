@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>筛选</title>
+</head>
+<body>
+<ul id="ul1" class="ul1">
+    <ul class="">
+        <li data-min="00" data-sec="52">1</li>
+        <li class="li2" data-min="00" data-sec="55">2</li>
+        <li class="li3">3<span class="span"></span></li>
+        <li>4<span class="span"></span></li>
+        <li>5</li>
+    </ul>
+</ul>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // $('ul li:first');
+    // $('ul li').first();
+
+    // hasClass => 判断元素是否包含这个类
+    var res = $('ul').hasClass('ul2'); //判断这个ul是否包含ul1这个类
+    console.log(res);
+
+    // children() 获取的子元素
+
+    // siblings() 获取所有兄弟元素
+
+    // next()  弟弟
+
+    // nextAll() 弟弟们
+
+    // prev()
+
+    // prevAll()
+
+    // parent() 父元素
+
+    //* find() => 从当前这个范围内获取子孙后代中符合选择器的
+    var $ul1 = $('.ul1');
+    $ul1.find('.span'); // 查找
+    $('.span',$ul1);
+    $ul1.find('.li2');
+
+    //* filter()  过滤  data-min = '00' data-sec='55' => 过滤属性
+    var min = "00";
+    var sec = "52";
+    var res = $ul1.find('li').filter('[data-min=' + min+ '][data-sec='+ sec +']');
+    console.log(res);
+
+    //* closest(选择器) =>
+    $('li2').closest('.ul1'); // 获取从当前元素开始向上查找距离最近的.ul1的
+
+
+
+
+</script>

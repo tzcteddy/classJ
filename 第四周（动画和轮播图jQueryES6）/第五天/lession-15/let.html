@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+</head>
+<body>
+    <script>
+        //let 声明变量的操作符,不存在变量提升,不能重复声明，它会产生一个块级作用域(ES6新出现的作用域)
+        var arr=[];
+        for(var i=0;i<10;i++){
+            arr[i]=function(){
+                console.log(i);
+            }
+        }
+        arr[6]();
+        var ary=[];
+        for(let j=0;j<10;j++){
+            ary[j]=function () {
+                console.log(j);
+            }
+        }
+        {
+            let num1= 1;
+        }
+        ary[6]();
+    </script>
+</body>
+</html>

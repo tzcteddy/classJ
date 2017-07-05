@@ -1,0 +1,654 @@
+{
+  "code": 0,
+  "data": {
+    "today": "2017-03-11",
+    "data": [
+      {
+        "date": "2016-09-17",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"/*服务器端为了防止传递回来的中文乱码,会把中文进行编译(UNICODE),客户端的浏览器能够自主解析这个值,我们直接使用绑定即可*/
+      },
+      {
+        "date": "2016-09-18",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-09-19",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-09-20",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-09-21",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2016-09-22",
+        "number": "5",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2016-09-23",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2016-09-24",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-09-25",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-09-26",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-09-27",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-10-01",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-10-02",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-10-03",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-10-15",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-10-16",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-10-17",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-10-18",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-10-22",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-10-23",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-10-24",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-10-27",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2016-10-29",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-10-30",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-10-31",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-11-01",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-11-05",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-11-06",
+        "number": "5",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-11-07",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-11-19",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-11-20",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-11-21",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-11-22",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-11-26",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-11-27",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-11-28",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-11-29",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-11-30",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2016-12-01",
+        "number": "5",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2016-12-02",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2016-12-03",
+        "number": "2",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-12-04",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-12-05",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-12-06",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-12-10",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-12-11",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-12-12",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-12-13",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-12-17",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2016-12-18",
+        "number": "3",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2016-12-19",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2016-12-20",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2016-12-21",
+        "number": "4",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2016-12-22",
+        "number": "5",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2016-12-23",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-01-04",
+        "number": "4",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-01-05",
+        "number": "2",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-01-06",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-01-07",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-01-08",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-01-09",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-01-10",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-01-11",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-01-12",
+        "number": "3",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-01-13",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-01-14",
+        "number": "2",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-01-15",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-01-16",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-01-17",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-01-19",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-01-20",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-01-21",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-01-22",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-01-23",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-01-26",
+        "number": "2",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-01-27",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-01-28",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-01-29",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-01-30",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-01-31",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-02-02",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-02-03",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-02-04",
+        "number": "2",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-02-05",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-02-06",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-02-07",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-02-08",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-02-09",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-02-11",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-02-12",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-02-13",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-02-14",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-02-18",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-02-19",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-02-20",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-02-21",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-02-23",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-02-25",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-02-26",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-02-27",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-03-01",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-03-02",
+        "number": "5",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-03-03",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e94"
+      },
+      {
+        "date": "2017-03-04",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-03-05",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-03-06",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-03-07",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-03-09",
+        "number": "1",
+        "weekday": "\u661f\u671f\u56db"
+      },
+      {
+        "date": "2017-03-11",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-03-12",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-03-13",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-03-14",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-03-18",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-03-19",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-03-20",
+        "number": "3",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-04-01",
+        "number": "3",
+        "weekday": "\u661f\u671f\u516d"
+      },
+      {
+        "date": "2017-04-02",
+        "number": "4",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-04-03",
+        "number": "2",
+        "weekday": "\u661f\u671f\u4e00"
+      },
+      {
+        "date": "2017-04-04",
+        "number": "1",
+        "weekday": "\u661f\u671f\u4e8c"
+      },
+      {
+        "date": "2017-04-05",
+        "number": "10",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-04-09",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-04-16",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-04-23",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-04-26",
+        "number": "10",
+        "weekday": "\u661f\u671f\u4e09"
+      },
+      {
+        "date": "2017-04-30",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-05-07",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-05-14",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-05-21",
+        "number": "10",
+        "weekday": "\u661f\u671f\u65e5"
+      },
+      {
+        "date": "2017-05-28",
+        "number": "1",
+        "weekday": "\u661f\u671f\u65e5"
+      }
+    ]
+  },
+  "version": "eac37e2a2b43a0b975c6e34257caf4b4"
+}

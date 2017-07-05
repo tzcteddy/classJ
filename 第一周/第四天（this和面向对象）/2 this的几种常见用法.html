@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script>
+    // this用法
+    this; //全局作用域下的this是window
+
+    // 1 =>  当事件触发的时候，绑定函数中的this就是绑定事件的那个主体。 => 把事件绑定给哪个元素，那么事件触发的时候，函数中的this就是那个元素。
+    var div1 = document.getElementById('div1');
+    function fn(a){
+        div1[a] = function (){
+            console.log(this);  // div1
+        }
+    }
+    fn('onclick');
+
+
+
+
+    // 2 => 函数执行时候的this，就看调用这个函数的那个主体。其实就是看(函数执行)时候"."前面是谁this就是谁。
+    // ps : （函数中）的this在定义的时候是不确定，只要执行的时候才能确定
+
+
+    function foo(){
+        console.log(this);
+    }
+
+    /*window.*/foo(); // this => window
+
+    var obj = {
+        name : 'zf',
+        foo : foo
+    };
+
+    obj.foo(); // this => obj
+
+
+    var person = {
+        name : 'rose',
+        a : function (){
+            console.log(this);
+            foo() // window
+        }
+    }
+    person.a(); // person
+
+
+    // 3 => 自执行函数中的this是window
+
+    ;(function aaa(){
+        console.log(this);
+    })();
+
+
+    function xxx(){
+        console.log(this);
+        ;(function (){
+            console.log(this);
+        })();
+    }
+    document.body.xxx = xxx;
+    document.body.xxx();
+
+
+    // 4 => 构造函数中的this是当前实例
+    // 5 => call、apply、bind可以强制改变this
+
+    // 6 => 定时器函数中的this是window
+
+    var panda = {
+        eat : function (){
+            console.log(this);
+        }
+    };
+    //panda.eat(); // this => panda
+    var fff = panda.eat; // panda
+    ///fff(); //
+
+    window.setInterval(panda.eat,1000); // panda.eat函数中的this是window
+
+
+    /*
+    *   this的用法:
+    *       1 绑定事件函数中的this就是元素
+    *       2 函数执行时刻函数中的this就是"."前面那一个
+    *       3 自执行函数中的this是window
+    *       4 定时器中的this是widow
+    *       5 构造函数中的this是实例
+    *       6 call、apply、bind可以修改this
+    * */
+
+
+
+
+
+
+
+
+</script>

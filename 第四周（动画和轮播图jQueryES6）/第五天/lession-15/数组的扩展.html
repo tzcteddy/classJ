@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的扩展</title>
+</head>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<body>
+    <script>
+        var lis=document.getElementsByTagName('li');
+        //1. 判断有木有暴露__proto__属性
+        //2.循环把类数组里面的值push得数组里面
+        function likeToArray(likeAry){
+             var arr=[];
+             try{
+                    arr=[].slice.call(likeAry);
+             }catch (e){
+                for(var i=0;i<likeAry.length;i++){
+                    arr.push(likeAry[i])
+                }
+             }
+             return arr;
+        }
+        var hwb=Array.from(lis);
+        console.log(hwb);
+        //find findIndex 这俩个方法 find找出当前数组里面第一个符合条件的值  findIndex 找出当前数组里面第一个符合条件值得索引
+        [1,2,3,4].find(function(item){
+            return item>3;
+        });
+//        [].find((item)=>item>3)
+        function animate(cb){
+
+        }
+        animate(changeBg)
+        var changeBg=()=>{
+
+        }
+    </script>
+</body>
+</html>

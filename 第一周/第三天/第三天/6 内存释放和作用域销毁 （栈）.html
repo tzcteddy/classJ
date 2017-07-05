@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div1" style="width: 100px; height: 100px; background: red;"></div>
+</body>
+</html>
+<script>
+    // 只要有变量或者对象的属性占用就不能被释放
+
+    /*
+    *    栈内存作用域释放条件 ：
+    *
+    *   函数在执行的时候，函数中的一部分(一般是引用数据类型)被函数外的变量或者对象的属性所占用，那么这个函数执行时刻产生的那个作用域不被释放,那么就会到导致这个作用域内的私有变量都被保存下来了。
+    *
+    *
+    *   fn在执行的时候，fn中的一部分(return后面的函数)被fn外的全局变量f所占用，那么fn执行时刻产生的那个作用域不被释放。导致fn中的私有变量num=300也被保存下来了
+    *
+    * */
+
+    // 第一种情况
+//    function fn(num){
+//        // 如果没有return那么fn没有执行结果，根本不涉及到被外界占用的问题
+//        // 如果return存在，那么还要关注return的值是不是引用数据类型
+//        //var num = 300;
+//        return function (){
+//            console.log(num);
+//        }
+//    }
+//    var f = fn(300); // 这一行代码就是fn执行所产生那个作用域不被释放条件
+//    /*document.body.aaa = fn(200);*/ // 这是fn的第二次执行，那么形成了第二个私有作用域
+//    var g = fn(200); // 这个g保存的第二次运行fn的结果。如果g在执行的时刻获取不到的变量，那么就去第二次执行fn产生的作用域去查找。
+//    f(); // 300 f的出生地，定义的地方永远是(第一次)执行fn所产生的作用域
+//    f(); //  300
+//    var h = fn(100);
+//    f(); // 300
+//    g(); // 200
+//    f(); // 300
+//    g(); // 200
+//    h(); // 100
+
+
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    // 第二种 => 也可以理解为是第一种情况的另外一种写法
+
+    // 绑定事件中，如果函数fnn不把fnn内的ff返回，那么div1.onclick在fnn外就没有办法占用这个ff了。=> 那么只能让div1.onclick去fnn函数体内去占用ff。这样仍然符合作用域不被释放的条件
+
+    var div1 = document.getElementById('div1'); // 特殊的dom对象
+
+    function fnn(){
+        var num = 100; // 101 102 ...
+        function ff(){
+            num += 1;
+            console.log(num);
+        }
+        div1.onclick = ff;
+        //return ff;
+    }
+
+    //div1.onclick = fnn(); // div1.onclick = f;
+
+
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    // 第三种 暂时不释放
+    function afterClass(){
+        var str = '放学';
+        return function (){
+            console.log(str);
+        }
+    }
+
+    // var res = afterClass(); // 不释放
+    afterClass()(); // 可以打印出放学说明，暂时这个str还存在。=> afterClass执行之后形成作用域还没有释放。
+
+
+
+
+
+
+
+
+
+
+</script>

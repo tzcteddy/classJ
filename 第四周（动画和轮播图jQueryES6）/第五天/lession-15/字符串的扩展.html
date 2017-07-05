@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div>-->
+    <!--<ul>-->
+        <!--<li class="hwb">年龄:</li>-->
+        <!--<li>姓名:</li>-->
+        <!--<li>3</li>-->
+        <!--<li>4</li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li class="hwb">W</li>-->
+        <!--<li>E</li>-->
+        <!--<li class="hwb">R</li>-->
+        <!--<li>T</li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li>Y</li>-->
+        <!--<li class="hwb">D</li>-->
+        <!--<li>V</li>-->
+        <!--<li class="hwb">1</li>-->
+    <!--</ul>-->
+<!--</div>-->
+<script>
+//includes 用来判断目标字符串在源字符串中存不存在 ，返回的是true或者false
+    var person1='hwbfadfdasfdsfdsafdsaf';
+//    person1.includes('hw')//返回的是true或者false
+    //模板字符串  规则:用反引号包括起来 ``    "我是一个好人" 拼接变量以前使用 ++  现在用模板字符串${name}
+   var name7='hwb',age=18;
+//    var person1=`我的姓名是${name7},我的年龄是${age}`;
+var str=`<div>
+<ul>
+<li class="hwb">年龄:${age}</li>
+<li>姓名:${name7}</li>
+<li>3</li>
+<li>4</li>
+</ul>
+<ul>
+<li class="hwb">W</li>
+    <li>E</li>
+    <li class="hwb">R</li>
+    <li>T</li>
+    </ul>
+    <ul>
+    <li>Y</li>
+    <li class="hwb">D</li>
+    <li>V</li>
+    <li class="hwb">1</li>
+    </ul>
+    </div>`;
+//document.body.innerHTML=str;
+    var str1='';
+    str1+='<div>';
+    str1+='<ul class="hwb">';
+    str1+='<li class="age">年龄:'+age;
+    str1+="</li>";
+    str1+='</ul>';
+    str1+='</div>';
+document.body.innerHTML=str1;
+</script>
+</body>
+</html>

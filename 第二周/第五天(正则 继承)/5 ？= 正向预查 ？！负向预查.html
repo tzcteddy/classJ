@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var str = 'windows 98/xp/7/8/9/10'; //
+
+    /*
+    *   ?= : 只能是什么 肯定
+    *   ?! : 不能是什么 否定
+    *
+    *   ps : 不占宽度
+    *   zero-width-lookahead  zero-width-lookbehind
+    *
+    * */
+
+    var reg = /\d(?=a)/g;
+    var str = '6aadf7asdf';
+    //console.log(reg.exec(str)); // ['6']
+    //console.log(reg.exec(str)); // ['6']
+
+    var reg = /\d(?!a)/g;
+    var str = "7a8b9c0a";
+    //console.log(reg.exec(str)); //
+    //console.log(reg.exec(str)); //
+
+
+
+
+    // 千分符
+    // 第一种方式
+    var str = '112345678'; // "876543211" => "876,543,211"
+    var reg = /\d{3}(?!$)/g;
+    str = str.split("").reverse().join("").replace(reg,function (){
+        arguments; // ['876',index: input: ]
+        return   arguments[0] + ',';
+    }).split("").reverse().join("");
+    console.log(str);
+
+
+
+
+
+
+    // 第二种
+    var str = '12345678';
+    //         01234567
+    for(var i = 0; i < str.length; i++){
+            i; // 0 1 2 3 4 5 6 7  索引
+        str[i];// 1 2 3 4 5 6 7 8  字符
+
+        // 当i = 0 的时候，我能不能获取到最后的8 ???
+        //                 索引  字符   i
+        str.length-1-i; // 7      8    i=0
+        str.length-1-i; // 6      7    i=1
+        str.length-1-i; // 5      6    i=2
+
+        str.length-1-i; // 4      5    i=3    特殊
+
+        str.length-1-i; // 3      4    i=4
+        str.length-1-i; // 2      3    i=5
+
+        str.length-1-i; // 1      2    i=6    特殊
+
+        str.length-1-i; // 0      1    i=7
+    }
+
+
+
+    var str = '12345678'; // 1 4 7
+    var reg = /\d(?!$)/g;
+    str = str.replace(reg,function (item,index){
+        // '1 2, 34 5, 678';   item
+        //  7 6  53 3  210     str.length-1-index
+        //  0 1  23 4  567     index
+
+        //   把index的值为1和4的情况下挑出来
+
+        //   把str.length-1-index的值为6和3的挑出来
+
+//        if(index % 3 == 1){
+//            return item + ',';
+//        }
+//        return item;
+
+        if( (str.length-1-index) % 3 == 0){
+            return item + ',';
+        }else{
+            return item;
+        }
+
+    });
+    console.log(str);
+
+    //  第三种
+    var str = '12345678';
+    var reg = /(\d{1,2})(?=(\d{3})+$)/g;
+    str = str.replace(reg,function (){
+        console.log(arguments[1]);
+        return arguments[1] + ',';
+    });
+    //str = str.replace(reg,"$1,")
+    console.log(str);
+
+
+</script>

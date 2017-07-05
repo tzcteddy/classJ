@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: lime;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+
+    //$('#div1').on('click',fn1);
+
+    //div1.on(/*div1,*/'click',fn1);
+    //HTMLDivElement => HTMLElement => Element => node =>EventTarget => Object
+    on(div1,'click',fn1);
+    on(div1,'click',fn2);
+    on(div1,'click',fn3);
+    on(div1,'click',fn4);
+    on(div1,'click',fn5);
+    on(div1,'click',fn6);
+
+    function fn1(e) {
+        console.log(1);
+        //console.log(this === div1);
+    }
+    function fn2(e){
+        console.log(2);
+        //console.log(e.pageX);
+    }
+    function fn3() {
+        console.log(3);
+        off(div1,'click',fn1);
+        off(div1,'click',fn2);
+    }
+    function fn4() {
+        console.log(4);
+    }
+    function fn5(){
+        console.log(5);
+    }
+    function fn6(){
+        console.log(6);
+    }
+</script>

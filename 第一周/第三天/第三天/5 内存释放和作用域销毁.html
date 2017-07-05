@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内存释放和作用域销毁</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 堆 : 存值       栈 ： 运行代码
+
+    // 内存释放条件 :  如果没有被引用那么就释放(浏览器会主动去做)
+    var person = {
+        name : 'liukaijie',
+        age : 18
+    };
+    var people = person; //把person所代表的对象的内存地址又赋值给people。 => person和people共同占用对象的内存地址
+
+    person = null; // 让person这个全局变量不在占用对象的内存地址，那么对象对象的内存地址就没有任何变量或者属性所占用。浏览器会主动销毁
+    people = null;
+
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    // 1
+    var obj = {     // obj = xxxfff000
+        name : 'tianxi',
+        age :  30
+    };
+    // 第2次占用
+    var obj1 = {};
+    obj1.xxx = obj;   // obj1.xxx = obj = xxxfff000;
+
+    // 第3次占用
+    var obj2 = obj1.xxx;   // obj2 = ojb1.xxx = obj = xxxfff000;
+
+
+    //
+    var div1 = document.getElementById('div1'); //div1 也是一个对象。dom对象
+    div1.xxx = obj2; // => 一个特殊的对象，甚至一个特殊对象的特殊属性也可以占用。 => div1.onclick
+
+
+    // 对象是一个堆内存地址 => 所有的引用数据类型都是内存地址
+
+    function fn(){} // 也是内存地址
+
+    div1.onclick = fn; // 也符合堆内存不释放条件。 => 绑定事件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

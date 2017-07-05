@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量提声</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 变量提前声明 => 预解释
+
+    console.log(num); // 没有报错 => 说明这个num已经被声明过 => undefined
+    console.log(obj); // 没有报错 => 说明这个obj已经被声明过 => undefined
+    console.log(fn); // 没有报错 => 说明这个fn已经被声明过 => 函数本身
+
+    // 区别 ： 使用var关键字声明过的，在代码执行之前（预解释）阶段的值是undefined,但是使用function关键字声明的函数，在代码执行之前（预解释）阶段的值就已经是函数了. => var只声明没有赋值，function既声明又赋值。var浏览器会默认赋值undefined
+
+    var num = 12; // 当代码执行到这一行才把12这个值赋值给num
+    var obj = {
+        // 先去开辟一个内存,把属性名和属性值存到这个内存中，再把内存地址返回给obj => 引用数据类型就是一个地址
+        name : 'zhufneg'
+    };
+
+    function fn(){
+        // 开辟内存，把函数体的内容存到这个内存中，最后把内存地址返回给函数名
+    }
+//    console.log(num); // 12
+//    console.log(obj); // {name : 'zhufeng' }
+//    console.log(fn); // 函数
+
+
+
+
+
+
+
+
+
+</script>

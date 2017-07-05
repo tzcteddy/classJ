@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // split => 当和正则一起使用的时候。把符合正则部分全部拆分。
+    var str = 'a-b-c%d';
+    var res = str.split('$');// ["a","b","c"]
+    var res = str.split("");// ["a", "$", "b", "$", "c"]
+    var res = str.split(/-|%/);
+    //console.log(res);
+
+    // replace  王道
+
+
+    // str.match(reg) <=>  reg.exec(str)
+    /*
+    *   match和exec的区别 :
+    *       1 如果不存在g捕获结果一样
+    *       2 如果存在g那么: match一次性把所有符合要求的全部捕获到，而exec需要捕获多次。
+    * */
+
+    var res = null;
+    var reg = /\d+/;
+    var str = 'z1f2p3x';
+
+
+    res = reg.exec(str);
+    res = str.match(reg);
+    console.log(res);
+
+
+
+
+</script>

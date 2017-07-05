@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <style>
+        .swiper-container,.swiper-wrapper{
+            width: 100%;
+            height: 150px;
+        }
+
+        .swiper-slide{
+            line-height: 150px;
+            text-align: center;
+            font-size: 40px;
+        }
+       .bg1{
+           background: red;
+       }
+        .bg2{
+            background: blue;
+        }
+        .bg3{
+            background: green;
+        }
+        .bg4{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<!--swiper-container,当前滑动的容器-->
+<div class="swiper-container">
+    <!--swiper-wrapper放入需要滑动的页面或者图片-->
+    <div class="swiper-wrapper">
+        <!--swiper-slide每一个滑动块-->
+        <div class="swiper-slide bg1">1</div>
+        <div class="swiper-slide bg2">2</div>
+        <div class="swiper-slide bg3">3</div>
+        <div class="swiper-slide bg4">4</div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+</body>
+</html>
+<script src="js/swiper.min.js"></script>
+<script>
+    new Swiper(".swiper-container",{
+        loop:true,
+        autoplay:1000,
+       /*direction:"vertical",*/
+        pagination:"swiper-pagination"
+    })
+</script>

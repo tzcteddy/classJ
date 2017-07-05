@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--META:VP-->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--BASE-->
+    <title>个人简历项目</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="icon" href="img/icon.png">
+    <!--IMPORT　CSS-->
+    <link rel="stylesheet" href="css/index.min.css">
+
+    <script>
+        ;
+        (function () {
+            var winW = document.documentElement.clientWidth,
+                    desW = 640;
+            if (winW < desW) {
+                document.documentElement.style.fontSize = winW / desW * 100 + "px"
+            }
+        })();
+    </script>
+</head>
+<body>
+<main class="mainBox">
+    <section class="loading">
+        <div class="header">
+            <h1>珠峰培训</h1>
+            <h2>八年专注，有口皆碑</h2>
+        </div>
+        <div class="progress"><span></span></div>
+    </section>
+    <section class="phone">
+        <header class="header">
+
+        </header>
+        <div class="time">00:56</div>
+        <div class="listen"><span class="move"></span><span class="touch"></span></div>
+        <div class="detail"><span></span></div>
+    </section>
+    <section class="message">
+        <ul class="list">
+            <li class="student">
+                哎毕业了，工作还遥遥无期，好愁啊！
+                <em></em>
+                <img src="img/zf_messageStudent.png" alt="">
+            </li>
+            <li class="teacher">
+                你复习了吗，主动给公司打电话了吗？
+                <em></em>
+                <img src="img/zf_messageLogo.png" alt="">
+            </li>
+            <li class="teacher">
+                一定要自己主动出击，早起的鸟有虫吃
+                <em></em>
+                <img src="img/zf_messageLogo.png" alt="">
+            </li>
+            <li class="student">
+                感觉现在啥也不会啊?
+                <em></em>
+                <img src="img/zf_messageStudent.png" alt="">
+            </li>
+            <li class="teacher">
+                其实你们不是啥也不会，知识缺乏系统的实战和练习
+                <em></em>
+                <img src="img/zf_messageLogo.png" alt="">
+            </li>
+            <li class="teacher">
+                B模块的js课程，依托JQ的体系去复习基础知识和核心知识，例如：JQ是基于面相对象开发的，我们这样就可以复习原型的东西
+                <em></em>
+                <img src="img/zf_messageLogo.png" alt="">
+            </li>
+        </ul>
+        <div class="keyBoard">
+            <span class="text"></span>
+            <div class="submit"></div>
+        </div>
+    </section>
+    <section class="cube">
+        <ul class="cubeBox">
+            <li><img src="img/zf_cube1.png" alt="课程大纲"></li>
+            <li><img src="img/zf_cube2.png" alt="讲师介绍"></li>
+            <li><img src="img/zf_cube3.png" alt="风采展示"></li>
+            <li><img src="img/zf_cube4.png" alt="就业信息"></li>
+            <li><img src="img/zf_cube5.png" alt="课程体系"></li>
+            <li><img src="img/zf_cube6.png" alt="联系我们"></li>
+        </ul>
+        <div class="tip"></div>
+    </section>
+    <!--swiper-->
+    <section class="swiper-container">
+        <div class="return"></div>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide page1">
+                <dl class="course">
+                    <dt>课程大纲</dt>
+                    <dd><em>01</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>02</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>03</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>04</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>05</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>06</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>07</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>08</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>09</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>10</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                    <dd><em>11</em><a href="javascript:;">勿忘初心，方得始终</a></dd>
+                </dl>
+            </div>
+            <div class="swiper-slide page2">
+                <h2>课程体系</h2>
+                <div class="imgBox">
+                    <img src="img/zf_course.png" alt="前端">
+                    <img src="img/zf_course1.png" alt="JS">
+                    <img src="img/zf_course2.png" alt="Angular">
+                    <img src="img/zf_course3.png" alt="NODE">
+                    <img src="img/zf_course4.png" alt="d">
+                    <img src="img/zf_course5.png" alt="d">
+                    <img src="img/zf_course6.png" alt="d"></div>
+            </div>
+            <div class="swiper-slide page3"></div>
+            <div class="swiper-slide page4"></div>
+            <div class="swiper-slide page5"></div>
+            <div class="swiper-slide page6"></div>
+        </div>
+    </section>
+</main>
+<!--AUDIO-->
+<section style="display: none;">
+    <audio src="audio/bell.mp3" id="phoneBell" preload="none" loop></audio>
+    <audio src="audio/say.mp3" id="phoneSay" preload="none"></audio>
+    <audio src="audio/music.mp3" id="messageMusic" preload="none" loop></audio>
+</section>
+<script src="js/zepto.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/makisu.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
+

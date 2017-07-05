@@ -1,0 +1,269 @@
+1、安装需要使用的第三方模块
+
+bower：从gitHub上下载资源文件，一般应用于客户端想要调取某一个类库或者框架等
+  安装bower到全局：npm install bower -g
+
+  bower init =>在本地项目中生成一个bower.json文件
+
+  bower install xxx --save-dev
+            --save 保存到发布产品时候的依赖清单中(产品上线需要)
+            --save-dev 保存到开发产品时候的依赖清单中(上线可能不需要，但是开发中需要)
+
+使用bower下载安装，需要保证在DOS命令中集成了git命令，因为bower是基于git下载的，如何保证git命令能够集成到DOS中，我们需要配置环境变量：
+
+---------------
+npm init -y   =>package.json
+
+npm install xxx --save-dev (--save) 安装到本地项目中
+
+如果需要使用命令的话，我们还需要配置“命令”操作(package.json)
+
+---------------------------------------------------------
+LESS / SASS ...
+
+=>CSS预编译语言，CSS不是编程语言，它只是标记语言，在CSS中没有变量、函数、判断、继承、作用域等等这些概念；LESS/SASS等就是按照新的语法(面向对象编程的语法)去写样式，但是写好的样式代码，浏览器不能识别，还需要把他们编译成正常的CSS代码才可以
+
+=>lessc css/index.less css/index.min.css -x 这个命令就是把某一个LESS代码编译为正常能识别的CSS代码，并且进行压缩
+  <head>
+    <link rel='stylesheet' href='css/index.min.css'/>
+  </head>
+
+  [产品上线]
+
+
+=>在开发的时候，我们可以引入一个less.min.js文件，这样我们开发的时候导入less文件，这个js可以帮我们随时编译成CSS
+  <head>
+    <link rel='stylesheet/less' href='css/index.less'/>
+    <script src='js/less.min.js'></script><!--这个JS首先找到所有导入的LESS文件，然后进行编译，把他们编译成CSS，然后让浏览器渲染的是CSS-->
+  </head>
+
+  [产品开发]
+
+
+====================================================
+1、CSS3中的3D变形  =>transform
+
+ 1)给当前需要3D变形的元素所在区域(舞台)设置景深：人眼距离舞台的距离，不设置的话默认是紧挨着舞台，这样什么都看不见了(一叶障目)
+
+   .cube{
+      perspective: 2000px; //->2000的意思是人眼距离屏幕的距离是2000PX，我们一般设定的值1000/1500/2000...
+   }
+
+ 2)给当前元素设置3D变形属性
+   .cubeBox{
+      -webkit-transform-style: preserve-3d;
+      transform-style: preserve-3d;
+   }
+
+   我们有些时候也要很据效果需求，给当前元素设置变形的基准点，默认：
+   .cubeBox{
+      -webkit-transform-origin: center center 0;
+      transform-origin: center center 0;
+
+      => X / Y / Z 轴中间
+   }
+
+ 3)个正方体盒子中的每一个面移动端具体的位置即可,最后组成一个3D的立体盒子
+
+==================================================
+PC端的事件：
+click(点击)、dblclick(双击)、mouseover(mouseenter)、mouseout(mouseleave)、mousemove、mousedown、mouseup、mousewheel(鼠标滚轮滚动事件)、keydown、keypress、keyup、load、resize、error、unload、beforeunload、blur、focus、change、select、scroll、canplay、readstatechange、timeout、abort... DOMContentLoaded
+
+window.onload(页面打开,并且资源文件加载完成)
+window.onerror(页面打开,但是资源文件加载失败)
+window.onunload(页面关闭)
+window.onbeforeunload(页面关闭之前)
+
+移动端的事件：
+click(单击->300MS验证时间:从第一次点击结束后开始计时,在300MS内如果没有触发第二次点击，则为单击，触发则为双击或者多击) =>移动端click事件的300MS延迟
+mouse系列的在移动端基本上支持,但是我们没有相关的媒介触发,所以我们也不用
+key系列的在移动端不支持,因为移动端的键盘大部分都是虚拟键盘,我们统一使用 input 事件来代替传统键盘事件
+剩下的PC事件,移动端基本上也都支持的
+
+移动端专属的事件:
+  touch事件模型(单手指操作)：touchstart、touchmove、touchend、touchcancel
+  gesture事件模型(多手指操作)：gesturestart、gesturechange、gestureend、gesturecancel
+  手机内部硬件感应事件：GPS、陀螺仪(重力感应器)...
+
+----
+移动端的操作大部分都需要使用touch事件来模拟,这样比较的麻烦,我们需要研究一些已经使用TOUCH事件封装好的类库：
+->fastclick.js  =>解决了移动端使用click事件的300MS延迟问题，原来项目中使用的是click，那么我们引入这个JS可以解决300MS延迟
+
+->Zepto：移动端小型的JQ,用法和实现的原理都是仿照JQ来的,但是比JQ更适合移动端开发
+  =>体积小:ZP不支持IE,专门为移动端(webkit内核开发的)；ZP只实现了JQ中的部分常用方法，JQ的方法比ZP多很多；
+
+  =>ZP的JS动画中支持CSS3的变形效果,JQ是不支持的
+  $('#box').animate({
+    rotate:'360deg' //->scale、translate...
+  },1000,'linear',function(){});
+
+  =>移动端事件基本上都是TOUCH/GESTURE,JQ中没有现成使用这些事件封装好的方法,而ZP中有：tap、singleTap、doubleTap、longTap、swipe、swipeLeft、swipeRight、swipeDown、swipeUp...
+  $('#box').swipeLeft(function(){}); //->当这个元素向左滑动的时候执行回调函数
+
+->百度云TOUCH手势事件库(touch-0.2.14.min.js)，目前已经停止维护更新
+->hammer.js
+--------------------------------------------------
+面试题：
+window.onload和JQ中的document.ready的区别?  或者  document.onload和document.ready的区别?
+
+//->JQ：当前页面的HTML结构加载完成就会触发执行，可以在同一个页面中使用多次
+$(document).ready(function(){});
+$(function(){});->上面的简写,没有任何的区别
+原理：JQ就是利用原生JS的DOM2级事件绑定，采用的是DOMContentLoaded事件(事件本身就是DOM结构加载完成就会触发执行的)，在IE低版本中，监听的是onreadystate事件，在readyState==='complete' 时候证明DOM结构加载完成
+
+//->JS：当前页面所有资源文件(HTML结构、文字、图片等)都加载完成才会触发执行
+//本次采用的是DOM0事件,在同一个页面中只能出现一次(出现多次,后面的会把前面的覆盖掉)
+window.onload=function(){}
+//本次采用的是DOM2事件,在同一个页面中可以出现多次
+window.addEventListener('load',function(){},false);
+----------------------------------------------------
+
+
+==========================================================
+项目总结：
+ HTML5
+   header、section、main...
+   audio
+     play()
+     pause()
+     loop
+     preload
+     currentTime
+     duration
+     oncanplay=function...
+     ...
+
+ CSS3
+   transition
+   animation
+   transform:scale、rotate、translate...
+   transform-style:preserve-3d;
+   background-size
+   box-sizing
+   border-radius
+   background:linear-gradient
+   ...
+
+ LESS
+   变量
+   函数
+   层级嵌套
+      .box{
+         .temp{} -> .box .temp
+
+         &.temp{} -> .box.temp
+      }
+   作用域和作用域链
+   darken
+   lighten
+   ...
+
+   如何解析LESS
+      [上线]
+      npm init -y  ->package.json
+      npm install less --save-dev
+      package.json的scripts配置脚本："less":"lessc xxx/xxx.less xxx/xxx.min.css -x"
+      npm run less
+
+      [开发]
+      <link rel='stylesheet/less' href='xxx/xxx.less'/>
+      <script src='js/less.min.js'><script/>
+
+ 响应式布局
+   REM
+     html{font-size:100px}
+     按照设计稿640的尺寸严格来布局,只是把所有量出来的PX换算成REM(除以100)
+     <script>
+        if(当前屏幕的宽度<640){
+           让当前屏幕的宽度/640*100，计算出最新的字体大小，重新的给HTML赋值，此时之前所有以REM为单位的值都会跟着整体缩小或者放大
+        }
+        大于等于640的时候，让整个页面MAIN区域最大640，最大尺寸也是设计稿的尺寸即可，不需要在调整REM换算比例了
+     </script>
+
+   因为我们的项目是必须保证每一个区域都是一屏幕(不能超也不能少的)，所以每一个区域中的元素基本上都是定位来设定样式的
+
+ TOUCH事件
+   click在PC和移动端的区别
+   如何自己使用TOUCH模拟出点击事件
+   以及使用TOUCH能够实现滑动的效果处理(魔方旋转)
+   fastclick.js
+   zepto.js => 对比和JQ的区别
+   ...
+
+ Swiper应用
+ Makisu应用
+
+ 业务逻辑JS
+   如何使用单例模式实现模块化开发
+   模块之间如何相互设计调用
+
+   如何在JS中操控CSS3动画
+     webkitTransitionEnd事件
+     ...
+
+   ZP或者JQ的常规应用
+   项目需求点实现的思想
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

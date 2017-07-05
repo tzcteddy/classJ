@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+
+    xhr.open('get/post','data.txt',false/true);
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            xhr.responseText;
+        }
+    }
+
+
+    // ajax是工具类方法 => 定义在$的函数本身上
+    animate({
+        ele : div1
+        callback : function (){
+
+        }
+    });
+
+    $.ajax({
+        type : 'get', // post
+        url : 'data.txt?_='+Math.random(),
+        // cache : false, // 缓存
+        async : false, // true 异步
+        dataType : 'json',  // 指定数据类型
+        success : function (data){ //成功获取处理函数
+            // data只是一个形参，可以任意变化
+        },
+        error : function (){}
+    });
+
+</script>

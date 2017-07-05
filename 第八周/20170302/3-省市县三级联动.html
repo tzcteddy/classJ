@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<select name="area" id="province">
+    <option value="请选择">请选择</option>
+</select>
+<select name="area" id="city">
+    <option value="请选择">请选择</option>
+</select>
+<select name="area" id="county">
+    <option value="请选择">请选择</option>
+</select>
+
+<script src="js/ajax.js"></script>
+<script>
+    var areaReader = (function () {
+        var province = document.getElementById('province'),
+                city = document.getElementById('city'),
+                county = document.getElementById('county');
+        var resultData = null;
+
+        //->绑数据
+        function bindData(curEle, data) {
+            curEle.options.length = 0;//->绑定之前清空所有
+
+            var frag = document.createDocumentFragment();
+            for (var i = 0, len = data.length; i < len; i++) {
+                var dataItem = data[i];
+                var option = document.createElement('option');
+                option.value = dataItem.name;
+                option.innerHTML = dataItem.name;
+                frag.appendChild(option);
+            }
+            curEle.appendChild(frag);
+            frag = null;
+        }
+
+        //->绑定事件
+        function bindEvent() {
+
+            province.onchange = function () {
+                var index = province.selectedIndex,//->获取选中的索引
+                        val = province.options[index].value;//->通过索引获取当前选中项的VALUE值
+                for (var i = 0, len = resultData.length; i < len; i++) {
+                    var resultItem = resultData[i];
+                    if (resultItem.name === val) {
+                        resultItem.sub ? bindData(city, resultItem.sub) : null;
+                        break;
+                    }
+                }
+            };
+
+            city.onchange = function () {
+                var cityVal = this.options[this.selectedIndex].value;
+                var provinceVal = province.options[province.selectedIndex].value;
+
+                //->在所有数据中找到选中的省
+                for (var i = 0; i < resultData.length; i++) {
+                    var resultItem = resultData[i];
+                    if (resultItem.name === provinceVal) {
+                        var sub = resultItem.sub;
+                        //->在当前省中找到选中的市
+                        for (var k = 0; k < sub.length; k++) {
+                            var subItem = sub[k];
+                            if (subItem.name === cityVal) {
+                                //->绑定县的数据
+                                subItem.sub ? bindData(county, subItem.sub) : null;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            };
+        }
+
+        return {
+            init: function () {
+                //->获取数据
+                ajax({
+                    url: 'json/data.json',
+                    success: function (result) {
+                        resultData = result;
+
+                        //->给省绑定数据
+                        bindData(province, result);
+
+                        //->给下拉框绑定点击事件
+                        bindEvent();
+                    }
+                });
+            }
+        }
+    })();
+    areaReader.init();
+</script>
+</body>
+</html>

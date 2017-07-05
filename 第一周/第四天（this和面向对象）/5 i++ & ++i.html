@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    /*
+    *  i++ 先运算后累加
+    *  ++i  先累加后运算
+    *  ps：如果单独没有和其他的值做运算都是自身累加1.
+    * */
+    var i = 0;
+    console.log( 2 + i++); // 2 先去和2累加并且打印，然后再把i自身累加1
+
+    var i = 0;
+    console.log(2 + ++i); // 3 先把i自身累加1，然后再去和2运算并且打印
+
+    var i = 0; // 1 2 3 4 5
+    console.log(2 + ++i /*3*/+ i++/*4*/ + ++i /*7*/ + i++ /*10*/+ ++i/*15*/);
+    console.log(i); // 5
+
+
+
+
+
+
+
+</script>

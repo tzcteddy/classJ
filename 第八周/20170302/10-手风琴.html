@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        .menu {
+            margin: 10px auto;
+            width: 300px;
+        }
+
+        .menu h2 a {
+            display: block;
+            padding-left: 10px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            color: #000;
+            background: -webkit-linear-gradient(left, lightblue, linen, lightcyan);
+        }
+
+        .menu ul {
+            overflow: hidden;
+            display: none;
+            margin-left: 20px;
+        }
+
+        .menu ul li {
+            line-height: 30px;
+        }
+
+        .menu div:target ul { /*目标伪类选择器：当前页面的HASH值和对应ID也是HASH值的元素之间的关系，使用:target只的是正好是当前要操作的目标，我们是让目标中的UL展示出来了  =>重点是HASH值*/
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <div id="clothes">
+        <h2><a href="#clothes">衣服</a></h2>
+        <ul>
+            <li>衬衣</li>
+            <li>裤子</li>
+            <li>毛衣</li>
+            <li>内衣</li>
+        </ul>
+    </div>
+
+    <div id="electronic">
+        <h2><a href="#electronic">电子</a></h2>
+        <ul>
+            <li>手机</li>
+            <li>平板</li>
+            <li>电脑</li>
+            <li>手电筒</li>
+        </ul>
+    </div>
+
+    <div id="food">
+        <h2><a href="#food">食物</a></h2>
+        <ul>
+            <li>鱼香肉丝</li>
+            <li>馒头</li>
+            <li>老婆饼</li>
+            <li>夫妻肺片</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

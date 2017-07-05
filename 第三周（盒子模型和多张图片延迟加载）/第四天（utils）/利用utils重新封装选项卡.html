@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        .tab{
+            margin: 5px 0;
+        }
+        .tab ul {
+            margin: 0 auto;
+            list-style: none;
+            width: 300px;
+            height: 30px;
+        }
+
+        .tab li {
+            float: left;
+            width: 100px;
+            background: pink;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .tab div {
+            display: none;
+            margin: 0 auto;
+            width: 300px;
+            line-height: 300px;
+            background: pink;
+        }
+
+        .tab div.cur {
+            display: block;
+            background: palegoldenrod;
+        }
+
+        .tab li.cur {
+            background: palegoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <!--tab1-->
+    <div id="tab1" class="tab">   lis[0].className = 'cur';
+        <ul>
+            <li class="cur">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div >1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <!--tab2-->
+    <div id="tab2" class="tab">
+        <ul>
+            <li >1</li>
+            <li >2</li>
+            <li>3</li>
+        </ul>
+        <div >1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <!--tab3-->
+    <div id="tab3" class="tab">
+        <ul>
+            <li >1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <div >1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+</html>
+<script src="../teacher-utils.js"></script>
+<script>
+    var tabs = utils.getElesByClass('tab')/*[0]*/;
+    for(var i=0; i<tabs.length; i++){
+        // 可以针对不同tab绑定不同的事件类型
+        if(i == 1){
+            tab(tabs[i],{eventType:'click'});
+            continue;
+        }
+        tab(tabs[i],/*'mouseover',*/{defaultSelect : i});
+    }
+
+    //var ary = ['mouseover',0]; // ary[0] => 0
+    //var obj = {/*eventtype : 'mouseover',*/ defaultSelect : 0}; //  obj.defaultSelect
+
+
+    function tab(tab,obj){ // 0 1 2 ... 0
+        //evetnType defaultSelect
+        //{eventType:'click'}
+        var eventType = obj.eventType || 'mouseover';
+        //var tab = utils.getElesByClass('tab')[0];
+        var defaultSelect = obj.defaultSelect || 0;
+        var lis = tab.getElementsByTagName('li');
+        utils.addClass(lis[defaultSelect],'cur');
+        var divs = utils.children(tab,'div');
+        utils.addClass(divs[defaultSelect],'cur');
+        for(var i = 0; i < lis.length; i++){
+            lis[i]['on'+eventType] = function (){
+                var siblings = utils.siblings(this); // 除了当前滑过的这个li的其他li
+                for(var j = 0; j <  siblings.length; j++){
+                    // 把其他的li的cur类样式移除
+                    utils.removeClass(siblings[j],'cur');
+                }
+                utils.addClass(this,'cur'); // 当前滑过这个li添加cur
+                // 以上的代码处理头部
+                var divs = utils.nextAll(this.parentNode); // 通过this来获取所有的div
+                var index = utils.index(this); // 获取当前正在滑过的li的索引
+                for(var j=0; j < divs.length; j++ ){
+                    // 索引值和index相同的添加cur，否则移除cur
+                    j == index ? utils.addClass(divs[j],'cur') : utils.removeClass(divs[j],'cur');
+                }
+            }
+        }
+    }
+    /*
+    *   1 封装函数需要默认参数 context = context || document;
+    *   2 事件也可以作为参数传进来
+    *   3 多个参数存在默认值还有顺序问题，直接传一个对象
+    *   4 通过this来处理的 => 事件触发this比较可靠
+    *   utils大家自己恶补一下
+    *
+    * */
+
+</script>

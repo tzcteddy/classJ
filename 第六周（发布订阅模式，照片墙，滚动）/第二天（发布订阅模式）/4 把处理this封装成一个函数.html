@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // ??? => 我要把fn函数中的this处理成that
+    processThis(move,div1);
+
+    function processThis(fn,that){ // context
+        return function (e){
+            fn.call(that,e);
+        }
+    }
+
+</script>

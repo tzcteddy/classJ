@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分组和分组的引用</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+
+
+    var regemail = /^\w+@[0-9a-zA-Z]{2,20}(\.[a-z]{2,3}){1,2}$/;
+    var str = "252100760@qq.com";
+    var result = regemail.exec(str);
+    console.log(result); // [252100760@qq.com,index: input:]
+    //console.log(regemail.test(str));
+
+    // 211224 1986 03 19 8210
+    //var reg = /\d{17}(\d|x)/i;
+    var reg = /(\d{6})(\d{8})\d{3}(?:\d|x)/g;
+    var str = '211224198603198210';
+    // console.log(reg.exec(str));
+    console.log(str.match(reg));
+
+    /*
+    * exec 捕获结果 :
+    *       如果正则中存在分组，那么exec方法的捕获结果会发生改变.在数组中的第二项开始是第一个分组捕获到的内容。依次类推。。。
+    *
+    * match 捕获结果 :
+    *      如果使用match方法，那么在捕获的过程中存在g情况下，就获取不到分组
+    * ps : 如果有分组并且还想获取分组的内容，就使用exec ,如果不获取分组一次性捕获到所有结果使用match
+    * */
+
+//    match : ['2016','2017','2018']
+//
+//    exec :  2016  16  index  input
+//    exec :  2017  17  index  input
+//    exec :  2018  18  index  input
+//
+
+    // 18800019819
+    var reg = /(\d)\1(?:\d)\1(\w)\2\3/;
+    var str = '5575a7a'; //
+    console.log(reg.test(str));
+
+    /*
+    *   分组和分组的引用 :
+    *       在正则中用()包起来的部分都会形成一个分组，这个分组在捕获的时刻还会参与捕获。把分组捕获到的内容从第二项开始依次排列。
+    *       并且这个分组还可以在正则中引用 \1 \2 \n ...分组引用
+    *
+    *       在分组括号开始前面 "?:"就会取消这个分组。只匹配不捕获
+    * */
+
+
+
+
+
+
+
+
+
+
+</script>

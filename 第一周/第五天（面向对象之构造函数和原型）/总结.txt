@@ -1,0 +1,29 @@
+1 构造函数
+    function
+    构造函数中的this
+    默认实例返回动作
+2 原型
+   Human.prototype => {  constructor : Human, __proto__   }
+   实例天生自带__proto__ 自己所属类的原型
+   原型方法中的this =》 实例
+   查找原型链。。。
+
+   作业
+
+   把数组去重添加到Array.prototype上
+
+   function Fn(){
+      this.x = 10;
+   }
+   Fn.prototype.getX = function (){
+       console.log(this.x + this.y);
+   }
+   Fn.prototype.y = 20;
+   var f = new Fn();
+   f.getX();
+   Fn.prototype.getX();
+   Fn.prototype.getX == f.__proto__.getX;
+   console.log(f.constructor);
+   console.log(f.constructor.constructor); // ?
+
+

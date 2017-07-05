@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElesByClass</title>
+</head>
+<body>
+    <div id="div1" class="c1 c2 c3"></div>
+    <div id="div2" class="c1 c2">
+        <span class="c2 c3"></span>   'c1 c2 c3 c4'
+        <p class="c1 c2"></p>
+        <i class="c3"></i>
+        <b class="c3 c4 c2 c1"></b>
+    </div>
+</body>
+</html>
+<script>
+    document.getElementsByClassName('c1 c2'); // 同时包含c1和c2这两个类的元素
+    div2.getElementsByClassName('c1'); // []
+
+//    getElesByClass(/*document,*/'c1 c2');
+//    getElesByClass(div2,'c1 c2');
+//
+//    getElesByClass('c1 c2'/*,document*/);
+    getElesByClass('c1 c2',div2);
+
+    function getElesByClass(className,context){
+        context = context || document; // context至少能保证一个值，默认值
+        if(context.getElementsByClassName){
+            // 标准浏览器
+            return context.getElementsByClassName(className);
+        }
+        // for IE8-
+        var tags = context.getElementsByTagName('*'); // 获取context范围内所有的标签元素
+        // 循环过滤这些tags,把同时包含className的标签过滤出来
+        // 'c1 c2' => ['c1','c2']
+        var ary = [];
+        var classNameAry = className.replace(/(^ +| +$)/g,'').split(/ +/);
+        // tags : [span: c1,   p: c1 c2,     i: c3,   b: c3 c4 c2 c1]
+        for(var i = 0 ; i < tags.length; i++){
+            var curTag = tags[i]; // i = 0 => span : c1
+            var tagIsOk = true; // 假设这个标签符合条件
+            for(var j = 0; j < classNameAry.length; j++){ // [c1,c2]
+                var curClass = classNameAry[j]; // c1,c2
+                // 判断curTag的className是否符合curClass的这个正则
+                var reg = new RegExp("(^| +)" + curClass + "( +|$)");
+                if(!reg.test(curTag.className)){
+                    tagIsOk = false;
+                    break; // 只要有一个class不存在就没有必要比较其他的
+                }
+            }
+            if(tagIsOk){
+                ary.push(curTag);
+            }
+        }
+        return ary;
+    }
+</script>

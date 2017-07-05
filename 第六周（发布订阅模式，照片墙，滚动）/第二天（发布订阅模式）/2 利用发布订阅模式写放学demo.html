@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放学</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 冯春笋 放学之后  =》 吃饭  睡觉   打豆豆
+
+    //on(feng,'afterschool',eat);
+    //on(feng,'afterschool',sleep);
+    //on(feng,'afterschool',dadoudou);
+
+    // on之后就一直在监听afterschool这个事件
+
+    //on(caofengmei,'afterschool',code);
+    //on(caofengmei,'afterschool',study);
+
+    // on方法负责存储
+    // 把eat和sleep和dadoudou存在feng的自定义属性上
+    // 把code和study存在caofengmei的自定义属性上
+
+    // fire => 找到并且执行
+    // =》 当afterschool发生的时候，去自己的对应afterschoo的属性上去执行数组内对应的函数(eat,sleep,dadoudou)
+
+    // feng.afterschool = [eat,sleep,dadoudou];
+
+    function Person(){}
+    var feng = new Person();
+
+    // 订阅事件
+    on(feng,'afterschool',eat);
+    on(feng,'afterschool',sleep);
+    on(feng,'afterschool',dadoudou);
+
+    function eat(){ console.log('eat') }
+    function sleep(){ console.log('sleep') }
+    function dadoudou(){  console.log('dadoudou') }
+
+
+    function on(person,eventType,fn){
+        if(!person[eventType]){
+            person[eventType] = [];
+        }
+        var a = person[eventType];
+        a.push(fn);
+    }
+
+    function fire(person,eventType){
+        var a = person[eventType];
+        if(a){
+            for(var i = 0; i < a.length; i++){
+                a[i]();
+            }
+        }
+    }
+
+    // 自运行函数
+    ;(function afterschool(){
+        window.setTimeout(function (){
+            alert('放学啦'); // 放学afterschool这个事件就被触发了
+            // 发布
+            fire(feng,'afterschool'); // 通知feng对应的放学的绑定函数执行
+        },5000)
+    })();
+
+
+
+
+
+
+
+</script>

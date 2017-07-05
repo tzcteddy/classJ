@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+
+    var div1 = document.getElementById('div1');
+    // time begin change duration
+    var time = 0;
+    var duration = 1000;
+    // left
+    //var begin = utils.getCss(div1,'left'); // 开始的时刻生效样式
+    //var target = 500;
+    // opacity width top height ...
+    //var beginOpacity = utils.getCss(div1,'opacity');
+    //var targetOpacity = 0;
+    // 如果需要多个维度一起同时动画，需要准备多个begin的值 , 多个target => 把所有begin放一起，target也放一起.
+
+    var target = {
+        left : 500,
+        opacity : 0.2,
+        width : 200,
+        height : 200,
+        top : 300
+    };
+    var begin = {}; // begin.left
+    var change = {};
+    for(var key in target){
+        begin[key] = utils.getCss(div1,key);
+        // begin['left'] = utils.getCss(div1,'left');
+        change[key] = target[key] - begin[key];
+    }
+
+//    var begin = {
+//        left : utils.getCss(div1,'left'),
+//        opacity : utils.getCss(div1,'opacity'),
+//        width : utils.getCss(div1,'width')
+//        // heigth
+//        // top
+//    };
+//    var change = {
+//        left : target.left - begin.left,
+//        opacity : target.opacity - begin.opacity,
+//        width : target.width - begin.width,
+//    }
+    var timer = window.setInterval(function (){
+        time += 10; //每次运动多远 => 两个维度都要变化
+        if(time >= duration){
+            window.clearInterval(timer); // 到达终点
+            for(var key in target){ // 主动赋值到终点
+                utils.setCss(div1,key,target[key]);
+            }
+            return;
+        }
+        for(var key in change){
+            // key; left,opacity,width
+            var val = linear(time,begin[key],change[key],duration);
+            utils.setCss(div1,key,val);
+        }
+        // 1
+        //var valLeft = linear(time,begin['left'],change['left'],duration); // left
+        //utils.setCss(div1,'left',valLeft);
+        // 2
+        //var valOpc = linear(time,begin['opacity'],change['opacity'],duration);
+        //utils.setCss(div1,'opacity',valOpc);
+        // 3
+        //var valWid = linear(time,begin['width'],change['width'],duration); //
+        //utils.setCss(div1,'width',valWid);
+    },10); // 多久动一次
+    function linear(t,b,c,d){
+        return b + t/d*c;
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>

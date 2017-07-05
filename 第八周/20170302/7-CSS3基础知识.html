@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        .box {
+            /*position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;*/
+
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+
+            width: 200px;
+            height: 200px;
+            /*background: green;*/
+
+            /*border-radius: 10px;*/
+            /*border-radius: 10px 100px;*/
+            /*border-radius: 50%;*/
+            border-radius: 20px 50%;
+
+            /*
+              box-shadow:
+                inset/不写:不写是外阴影,inset是内阴影
+                X轴偏移值
+                Y轴偏移值
+                阴影模糊度
+                阴影的扩展半径
+                阴影的颜色
+            */
+            /*box-shadow: 5px 5px 20px 0 #000;*/
+
+            /* box-shadow: 5px 5px 20px 0 #000, 10px 10px 20px 0 red; !*多阴影*!*/
+
+            color: red;
+            text-align: center;
+            line-height: 200px;
+            font-size: 40px;
+
+            text-shadow: 10px 10px 6px orange;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="box">
+    珠峰培训
+</div>-->
+
+<style>
+    .list {
+        margin: 20px auto;
+        width: 300px;
+    }
+
+    .list li {
+        position: relative;
+        padding-left: 20px;
+        /*height: 35px;*/
+        line-height: 35px;
+        border-bottom: 1px dashed #DDD;
+
+        /*
+        文字超出自动裁切
+          ->当前这一行必须有宽度
+          ->以下三个属性缺一不可
+          ->我们只能处理一行文字超出截取
+       */
+        /* text-overflow: ellipsis; !*clip:超出裁切 ellipsis:不仅仅裁切,裁切下去的部分使用三个省略号代替*!
+         white-space: nowrap; !*强制不折行*!
+         overflow: hidden; !*溢出隐藏*!*/
+
+        text-overflow: ellipsis;
+        display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+        -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+        -webkit-line-clamp: 2; /** 显示的行数 **/
+        overflow: hidden; /** 隐藏超出的内容 **/
+    }
+
+    .list li em {
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 15px;
+        height: 15px;
+        line-height: 15px;
+        text-align: center;
+        background: rosybrown;
+        font-size: 10px;
+    }
+</style>
+<ol class="list">
+    <li title="热烈庆祝珠峰培训成立八周年，在此佳节之日，长江代表15期的花花草草们打算发一个100元的大红包"><em>1</em>热烈庆祝珠峰培训成立八周年，在此佳节之日，长江代表15期的花花草草们打算发一个100元的大红包
+    </li>
+</ol>
+</body>
+</html>

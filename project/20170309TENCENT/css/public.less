@@ -1,0 +1,31 @@
+@c-white: #FFF;
+@c-border: #EEE;
+@c-blue: #346AFF;
+@c-blue-lighten: #EFF3FF;
+@c-text: #555;
+@c-gray: #999;
+@con-width: 1040px;
+
+.fullPage {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.arrow(@v) {
+  display: block;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border: @v solid transparent;
+}
+
+.transitionFn(@property:all,@duration:1s,@timing-function:linear,@delay:0s) {
+  -webkit-transition: @arguments;
+  transition: @arguments;
+}
+
+.animationFn(@name,@duration:1s,@timing-function:ease,@delay:0s,@iteration-count:1,@fill-mode:both) {
+  -webkit-animation: @arguments;
+  animation: @arguments;
+}

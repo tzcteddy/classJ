@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+
+    function Foo() {
+        getName = function () {
+            alert(1)
+        };
+        return this;
+    }
+
+    Foo.getName = function () {
+        alert(2)
+    };
+
+
+    Foo.prototype.getName = function () {
+        alert(3)
+    };
+
+    var getName = function () {
+        alert(4)
+    };
+
+    function getName() {
+        alert(5)
+    }
+    Foo.getName(); // 2
+    getName(); // 4
+    Foo().getName(); // 执行完前半部分全局的getName已经变成alert(1)这个函数了。
+    // window.getName()  1
+    getName(); // 1
+    var f = new Foo.getName(); // 先去获取Foo.getName然后再new
+    new Foo().getName(); // 3
+    // 2 4 1 1 2 3
+
+
+</script>

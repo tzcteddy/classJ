@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" src="" real="xxx">aa</div>
+    <input type="checkbox" checked="checked">
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // jq强大之处还有链式写法 => 方法执行结束仍然返回这个类的实例
+    // [].slice().splice(0).concat(1).push(5) => 执行结束仍然留下Array类实例
+    $('#div1').css({
+        width : 100,
+        height : 100,
+        background : 'yellow'
+    }).html("<p>a</p>")
+            .addClass('c1')
+            .removeClass('c1')
+            .toggleClass('c1')
+            .attr('real','xxx')
+            .removeAttr('real');
+
+    console.log($('#div1').attr('real')); // 已经移除打印undefined
+
+
+    // html(val) 如果val存在那么就是设置html，否则获取
+
+    // text(val)  => innerText
+
+    // addClass 添加类
+
+    // removeClass 移除类
+
+    // toggleClass 如果有就是移除，没有就添加
+
+    // attr('属性名','属性值') 如果属性值没有传那么是获取，否则设置   => setAttribute
+
+    // prop()  设置或者获取属性的 => 一般用于原生属性，比如src等。但是表单元素比如input等的checked disabled enable selected 等是布尔值属性必须使用prop方法
+
+    $('input').prop('checked',false); // 如果第二参数不写就是来获取当前属性值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

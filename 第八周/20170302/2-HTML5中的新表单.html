@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+</head>
+<body>
+<!--
+ 在传统的PHP网站开发中,我们在ACTION中放入一个处理数据和业务逻辑的页面,我们使用SUBMIT按钮，当点击的时候，会把输入的内容自动获取，拼接成xxx=xxx&xxx=xxx这种模式，直接的传递给处理的页面，在处理的页面中使用PHP语言操作数据库进行业务逻辑处理 =>表单序列化
+<form action="1.html">
+    <input type="submit"/> //->submit按钮有默认行为,如果我们不想使用跳转这样的行为需要阻止它的默认行为，同样的还有reset...
+</form>
+-->
+<!--<form>
+    <input type="submit" value="点我啊" id="submit">
+</form>
+<script>
+    var submit = document.getElementById('submit');
+    submit.onclick = function (e) {
+        e = e || window.event;
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    }
+</script>-->
+
+<!--<input type="text" style="outline: none;去除浏览器选中时候的高亮边框" onblur="失去焦点" onfocus="获取焦点" onchange="内容改变" onclick="点击" onkeydown="键盘按下" onkeyup="键盘抬起" onkeypress="键盘长按" autofocus/>//->autofocus:自动获取光标-->
+
+<!--<input type="password">-->
+<!--
+<input type="radio" name="sex" id="sexMan" value="0" checked/><label for="sexMan">男</label>
+<input type="radio" name="sex" id="sexWoman" value="1"/><label for="sexWoman">女</label>
+<input type="radio" name="sex" id="sexChunge" value="2"/><label for="sexChunge">李宇春</label>
+<input type="submit" id="submit" value="点我啊"/>
+<script>
+    var submit = document.getElementById('submit');
+    submit.onclick = function (e) {
+        e = e || window.event;
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+
+        //->性别的VALUE我们一般使用数字来代表男女，因为数字比汉字占用的内存小，也算是一个性能优化吧
+        var sexList = document.getElementsByName('sex'),
+                sexV = 0;
+        for (var i = 0, len = sexList.length; i < len; i++) {
+            var sexItem = sexList[i];
+            if (sexItem.checked) {
+                sexV = sexItem.value;
+                break;
+            }
+        }
+        console.log(sexV);
+    }
+</script>-->
+
+<!--<input type="button" value="全选" id="checkAll"/>
+<input type="button" value="反选" id="checkConvert"/>
+<input type="checkbox" name="hobby" value="唱歌" id="hobby_music"/><label for="hobby_music">唱歌</label>
+<input type="checkbox" name="hobby" value="跳舞" id="hobby_dance"/><label for="hobby_dance">跳舞</label>
+<input type="checkbox" name="hobby" value="抽烟" id="hobby_smoke"/><label for="hobby_smoke">抽烟</label>
+<input type="checkbox" name="hobby" value="喝酒" id="hobby_drink"/><label for="hobby_drink">喝酒</label>
+<input type="submit" id="submit" value="点我啊!"/>
+<script>
+    var checkAll = document.getElementById('checkAll'),
+            checkConvert = document.getElementById('checkConvert');
+    var hobbyList = document.getElementsByName('hobby'),
+            submit = document.getElementById('submit');
+    checkAll.onclick = function () {
+        for (var i = 0, len = hobbyList.length; i < len; i++) {
+            hobbyList[i].checked = true;
+        }
+    };
+    checkConvert.onclick = function () {
+        for (var i = 0, len = hobbyList.length; i < len; i++) {
+            var bobbyItem = hobbyList[i];
+            //bobbyItem.checked ? bobbyItem.checked = false : bobbyItem.checked = true;
+            bobbyItem.checked = !bobbyItem.checked;
+        }
+    };
+
+    submit.onclick = function () {
+        var ary = [];
+        for (var i = 0, len = hobbyList.length; i < len; i++) {
+            var hobbyItem = hobbyList[i];
+            if (hobbyItem.checked) {
+                ary.push(hobbyItem.value);
+            }
+        }
+        console.log(ary.join('|'));
+    }
+</script>-->
+
+<!--<input type="hidden" value="哈哈哈" id="tempInp"/>
+<input type="submit" id="submit" value="点我啊!"/>
+<script>
+    //->我们在页面中需要获取和存储一些信息，但是这些信息还不想让用户看见，可以使用隐藏的文本框来处理，但是现在一般都不用了
+    var submit = document.getElementById('submit'),
+            tempInp = document.getElementById('tempInp');
+    tempInp.value = 12;
+    submit.onclick = function () {
+        console.log(tempInp.value);
+    }
+</script>-->
+
+<!--<input type="file" id="fileInp"/>
+<img src="" alt="" id="showImg" width="200" height="200" border="0"/>
+<script>
+    var fileInp = document.getElementById('fileInp'),
+            showImg = document.getElementById('showImg');
+    fileInp.onchange = function () {
+        console.log(fileInp.value);//->获取的是一个绝对路径
+        showImg.src = fileInp.value;
+        console.log(fileInp);
+    };
+</script>-->
+
+<!--<textarea name="" id="" style="width: 300px;height: 150px; resize: none;">
+    &lt;!&ndash;resize：none 禁止文本域的手动缩放&ndash;&gt;
+</textarea>-->
+<!--http://ueditor.baidu.com/website/ ueditor百度编辑器(富文本编辑器) 他们的编辑区域不是使用文本域，而是使用contenteditable="true"设置一个非表单元素也能编辑-->
+
+</body>
+</html>
+<!--
+表单专题
+1、传统的表单元素都有哪些?
+  form
+  input：text、radio、checkbox、button、submit、reset、file、password、hidden...
+  select：下拉框,option是下拉框中的选项
+  textarea：文本域
+  label：标记标签,有点类似于span标签
+
+2、HTML5中新增加的表单元素
+  input：search、url、email、tel、number、range、color、date、time...
+  progress：进度条
+  datalist：二级下拉框
+
+=>新增加的表单元素在IE6~8下不兼容，而且没办法处理兼容(HTML5.MIN.JS是不能处理表单这个兼容的)
+-->

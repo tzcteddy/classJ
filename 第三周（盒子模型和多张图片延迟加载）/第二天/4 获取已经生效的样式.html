@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生效样式</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.8;
+            filter: alpha(opacity=60);
+        }
+        #div1:before{
+            content: '我是before';
+            display: block;
+            height: 20px;
+            background: yellowgreen;
+        }
+        #div1:after{
+            content: '我是after';
+            display: block;
+            height: 20px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <span>我是span</span>
+    </div>
+</body>
+</html>
+<script>
+    // 盒子模型属性只能获取一些关于宽高内容等样式，但是其他的已经生效样式比如:opacity(默认1)我们获取不到。而通过ele.style.opacity等这样的方式只能获取行内样式。那么我们需要另外一种方式来获取已经生效的样式
+
+    /*
+    *   获取已经生效的样式:
+    *       window.getComputedStyle(element,"before")   标准
+    *           返回一个所有生效样式的对象
+    *           返回值带单位  字符串 即使是opacity =>  "0.8"
+    *           获取伪类样式在第二个参数添加一个伪类名
+    *
+    *       element.currentStyle    IE8-
+    *           返回值和标准浏览器相同
+    *           不支持伪类样式获取
+    *
+    *       ps : 标准浏览器中ele是getComputedStyle的一个参数。而ie8-currentStyle是ele的一个属性
+    *
+    *
+    * */
+
+
+    var div1 = document.getElementById('div1');
+
+    //var res = window.getComputedStyle(div1,"before");
+    //var res = div1.currentStyle;
+
+    //console.log(res.content); // '100px'
+
+   // window.getComputedStyle(div1).width; // 获取div1的宽度
+    // window.getComputedStyle(div1).opacity; // 获取div1的宽度
+
+    function getCss(ele,attr){
+       var value = null;
+       if(window.getComputedStyle){ // 标准
+       //if("getComputedStyle" in window){
+           // 如果判断直接把要判断的值或者对象放在小括号中一般就是判断是否存在
+           value = window.getComputedStyle(ele)/*{width: 100px, heigth : 200px}*/[attr];
+       }else{ // IE8-
+           if(attr === 'opacity'){
+               // 说明是在ie8-浏览器中获取透明度
+               value =  ele.currentStyle['filter']; // "alpha(opacity=80.5)" / ""
+               var reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/;
+               value = reg.test(value) ?  reg.exec(value)[1]/100 : 1;
+           }else{ // 不是透明度不理会
+               value =  ele.currentStyle[attr];
+           }
+       }
+        // width,height => 100px 200px  数字+单位 => parseFloat() => 100
+        // display,float => "block","right"  => parseFloat => NaN
+        // 如果返回值是 "-100px"  "300.55em" "400rem" "500deg" "0.8"=> 去掉px
+        // 如果返回值是 "block"  "left" ....  => 直接返回就可以了
+        // 在返回之前需要对这个返回值处理下 => 带px等单位的需要parseFloat
+        var reg = /^-?\d+(\.\d+)?(px|em|rem|deg)?$/;
+        if(reg.test(value)){
+            value = parseFloat(value);
+        }
+        return value;
+    }
+
+    //if(ie8-){}else{ }
+    // getCss(div1,"filter")
+
+    getCss(div1,'opacity'); // ie8- 标准 => 0-1
+   // 如果是ie8- => opacity => filter => "alpha(opacity=80)" => 80/100
+
+
+
+    // div1.style.width = 100+'px';
+
+    function setCss(ele,attr,val) {
+        if(attr == 'opacity'){ // 透明度
+            ele.style.opacity = val;
+            ele.style.filter = "alpha(opacity="+ val*100 +")" ;
+            return;
+        }
+        if(attr == 'float'){ // 浮动
+            ele.style.cssFloat = val; // 标准
+            ele.style.styleFloat = val; // ie8-
+            return;
+        }
+        var reg = /^(width|height|left|right|top|bottom|(margin|padding)(Left|Right|Top|Bottom)?)$/;
+        if(reg.test(attr)){
+            if(!isNaN(val)){
+                // 不带单位
+                val += 'px';
+            }
+        }
+        ele.style[attr] = val;
+    }
+    setCss(div1,'opacity',0.5);
+    setCss(div1,'width',100 + 'px');
+    setCss(div1,'height',200 + 'px');
+    setCss(div1,'left',300); // 不带单位的时刻能不能默认给我添加一个px单位
+    setCss(div1,'display',"block"); // 什么样的属性对应的属性值才有单位？？？
+    // width height left right top bottom margin padding marginLeft paddingRight => 如果是这些属性 => 如果没有单位 => 加px
+
+
+
+
+
+
+
+
+
+</script>

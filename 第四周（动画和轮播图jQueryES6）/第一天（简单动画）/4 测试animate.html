@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animate</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script src="animate.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    // 加动画效果
+    animate({
+        ele : div1,
+        target : {
+            left : 500
+        },
+        duration : 2000,
+        callback : function (){
+            animate({
+                ele : this,
+                target : {
+                    top : 500
+                }
+            });
+        }
+    });
+</script>

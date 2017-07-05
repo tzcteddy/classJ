@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    'use strict'; // 以下js代码按照严格模式解析
+    /*
+    *   1 使用call和apply等修改this，null和undefined是本身。非严格模式是window
+    *   2 自执行函数中的this在严格模式下是undefined
+    *   3 当函数执行没有"."那么函数中的this是undefined
+    *   ...
+    *
+    * */
+
+    function sum(){
+        console.log(this);
+    }
+    sum(); // this => window
+    sum.call(document.body); // this => body
+    sum.apply(null); // window
+    sum.apply(undefined); // window
+
+
+    ;(function (){
+        console.log(this); // undefined
+    })();
+
+
+    function fn(){
+        console.log(this);
+    }
+    fn(); // this => window
+
+
+
+
+
+
+
+
+
+</script>

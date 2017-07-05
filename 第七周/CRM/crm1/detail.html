@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+}
+        .box{
+            margin: 20px auto;
+            padding: 20px;
+            width: 200px;
+            border: 1px dashed lawngreen;
+        }
+        .box .submit{
+            margin: 0 auto;
+            width: 100px;
+            height: 30px;
+            background: green;
+            text-align: center;
+            line-height: 30px;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .box div:nth-child(1),.box div:nth-child(2){
+            margin-bottom: 5px;
+            height: 50px;
+            width: 200px;
+        }
+        .box div input{
+            height: 20px;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div><span>姓名</span><input class="userName" type="text"></div>
+    <div><span>年龄</span><input class="userAge" type="text"></div>
+    <div class="submit" id="submit">提交</div>
+</div>
+</body>
+</html>
+<script src="js/ajax.js"></script>
+<script src="js/detail.js"></script>

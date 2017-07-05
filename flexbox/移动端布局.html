@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+1.流式布局(百分比)+媒体查询+px (pc端和移动端公用一套页面结构)
+2.rem(font size of root element)  1rem=16px   1rem=100px(方便计算，减少误差)
+  logo  195px*37px   1.95rem*.37rem
+3.flexbox布局
+pc传统的布局方式:float+position+固定布局
+
+
+
+设计稿： 320~640
+iphone5      320 *2.0   640宽度的设计稿
+iphone6      375 *2.0   750宽度的设计稿
+iphone6 plus 414 *3.0   1242宽度的设计稿
+<!--720  按照安卓手机 小米 -->
+
+
+750  100px
+320   X      50px
+x(html  fontsize) = 320*100/640  = 320/640*100  设备的分辨率/设计稿*100
+
+
+1.一行文本出现省略号..  必备的4个条件
+  width  overflow:hidden  white-space: nowrap;  text-overflow:  ellipsis;
+2.多行文本出现省略号..    必备的4个条件
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    overflow: hidden;
+3.一个元素 在另一个元素水平垂直居中
+  参考地址：http://www.cnblogs.com/coco1s/p/4444383.html
+
+</body>
+</html>

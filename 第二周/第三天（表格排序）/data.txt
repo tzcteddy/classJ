@@ -1,0 +1,9 @@
+[
+    {"country":"俄罗斯","capital":"莫斯科","population":2,"GDP":3.5,"developed":0},
+    {"country":"加拿大","capital":"渥太华","population":1,"GDP":4.5,"developed":1},
+    {"country":"朝鲜","capital":"平壤","population":3,"GDP":0.5,"developed":0},
+    {"country":"马来西亚","capital":"吉隆坡","population":4,"GDP":1.5,"developed":0},
+    {"country":"德国","capital":"柏林","population":2,"GDP":5,"developed":1},
+    {"country":"埃及","capital":"开罗","population":4,"GDP":1,"developed":0},
+    {"country":"中国","capital":"北京","population":14,"GDP":14,"developed":0}
+]

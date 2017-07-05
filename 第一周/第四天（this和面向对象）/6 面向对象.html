@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script>
+    var div1 = document.getElementById('div1');
+    div1.onclick = function (){
+
+    }
+
+    // 单例模式 => 就是一个对象 => 把一个个对立的函数放到一个对象中
+    // 单例模式 => 命名空间 => nameSpace
+    // 单例模式属性函数间的调用可以使用this => 在getX中调用tab直接使用this.tab()
+    var biaobiao = {
+        tab : function (){
+            // 如何在tab里使用getX
+            biaobiao.getX();
+        },
+        getX : function (){
+            this.tab();
+        }
+    };
+    //biaobiao.getX();
+    //biaobiao.tab();
+
+    var chunsun = {
+        tab : function(){
+
+        }
+    }
+    chunsun.tab();
+
+
+    function tab(){
+
+    }
+
+
+    // 2 工厂模式 => 函数封装
+    // 函数封装 ： 把要重复做的代码放到一个函数中，并且把可以变化的值用参数的方式传进来
+
+    function create(a,b){
+        var obj = {};
+        obj.a = a;
+        obj.b = b;
+        return obj;
+    }
+    var res1 = create(1,2); // create执行给我造一个对象
+    var res2 = create(5,6);
+    var res3 = create([],function (){});
+    console.log(res2);
+    console.log(res3);
+
+
+    div1.onclick = fn;
+    div2.onclick = fn;
+    div3.onclick = fx;
+    div3.onclick = fy;
+
+    bindOnclickEvent(div1,'onclick',fn); // 当div1的点击事件触发的时刻执行fn
+
+    function bindOnclickEvent(ele,type,fn){
+        ele[type] = fn;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

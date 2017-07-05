@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+           /*flex 新本版提供的属性
+            justify-content: center;
+            align-items: center;
+
+
+            box box-orient 排列方向*/
+            position:relative;
+            width:500px;
+            height:500px;
+            background:red;
+            display:-webkit-flex;
+            justify-content: center;
+            align-items: center;
+
+
+/*            display:table-cell;
+            /!*tr 行内元素 里面的子元素具有行内元素的特点*!/
+            text-align:center;
+            vertical-align:middle;
+            /!*line-height:*!/*/
+
+        }
+        .box1{
+/*            position:absolute;
+            top:50%;
+            left:50%;
+            margin:-100px 0 0 -100px;*/
+
+/*            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            margin:auto;*/
+
+
+            width:200px;
+            height:200px;
+            background:darkblue;
+            /*display: inline-block;*/
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box1"></div>
+</div>
+</body>
+</html>

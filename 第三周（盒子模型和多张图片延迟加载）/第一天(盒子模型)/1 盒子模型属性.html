@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: #89fa27;
+            margin-left: 100px;
+            padding: 150px;
+        }
+        #middle{
+            border: 10px solid #000;
+            width: 100px;
+            height: 100px;
+            background: lightskyblue;
+            padding: 100px;
+            overflow-y: auto;
+        }
+        #inner{
+            width: 100px;
+            height: 100px;
+            background: lightgoldenrodyellow;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="outer" >
+        <div id="middle"  school="zf" class="c1 c2">
+            <!--<div id="inner"></div>-->
+            特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗特朗普反驳好莱坞女星炮轰：你是希拉里的走狗
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var outer = document.getElementById('outer');
+    var middle = document.getElementById('middle');
+    var inner = document.getElementById('inner');
+    console.dir(middle);
+    middle.className;
+    middle.innerHTML;
+    middle.onclick;
+
+    /*
+    *   contentEditable  编辑内容
+        draggable = true  拖拽
+        middle.classList.add
+        middle.classList.remove
+        middle.classList.toggle
+    *
+    *
+    * */
+
+
+
+    /*
+    *   盒子模型属性:
+    *
+    *       clientWidth : 内容 + 左右padding
+    *       clientHeight : 内容 + 上下padding
+    *       clientLeft :  左边框
+    *       clientTop : 上边框
+    *
+    *       offsetWidth : clientWidth + 左右border
+    *       offsetHeight : clientHeight + 上下border
+    *       右边框 : ??
+    *       下边框 : ??
+    *
+    *       offsetParent : offsetParent是谁，取决于它的祖先元素是否包含定位属性(relative,absolute,fixed)，如果有那么就直接获取。如果没有继续向上一级祖先元素查找。直到body。
+    *       body.offsetParent = null
+    *       document.parentNode = null
+    *       offsetLeft : 要取决于offsetParent. 当前元素的外边框距离offsetParent的内边框的距离
+    *       offsetTop :  当前元素的上外边框距离offsetParent的上内边框的距离
+    *       ps: offsetParent类似于参照物   offsetLeft/offsetTop : 偏移量
+    *       ps : body.offsetLeft = 0  /  body.offsetTop = 0
+    *
+    *
+    *       scrollWidth : 内容超出  左padding + 内容宽度
+    *       scrollHeight : 内容超出 上padding + 内容高度
+    *
+    *       scrollLeft : 滚动条滚动出去的宽度
+    *       scrollTop :  滚动条滚出去的高度
+    *
+    *        ps ：以上盒子模型属性中，只有scrollTop/scrollLeft支持赋值，并且这个值是有范围的。比如最小值是0超出范围不生效
+    *
+    *        浏览器窗口滚动出去的高度
+    *        document.documentElement.scrollTop || document.body.scrollTop
+    *        窗口的宽度
+    *        document.documentElement.clientWidth || document.body.clientWidth
+    *
+    *        win('scrollTop') // 获取浏览器窗口滚出去的高度
+    *        win('clientWidth') // 获取浏览器可视窗口的宽度
+    *
+    *
+    * */
+    win('scrollTop');// 获取浏览器窗口滚出去的高度
+    win('scrollTop',500);// 设置浏览器窗口滚出去的高度为500
+    win('clientHeight');
+    function win(attr,val){
+        if(typeof val !== 'undefined'){
+            document.documentElement[attr] = val;
+            document.body[attr] = val;
+            return;
+        }
+        return document.documentElement[attr] || document.body[attr];
+    }
+
+
+
+
+
+    console.log(middle.clientWidth);
+    console.log(middle.clientHeight);
+    //console.log(middle.clientLeft);
+    //console.log(middle.clientTop);
+
+    //console.log(middle.offsetWidth);
+    //console.log(middle.offsetHeight);
+    //console.log(middle.offsetLeft);
+    //console.log(middle.offsetTop);
+
+    console.log(middle.scrollWidth);
+    console.log(middle.scrollHeight);
+    console.log(middle.scrollLeft);
+    console.log(middle.scrollTop);
+
+
+
+</script>

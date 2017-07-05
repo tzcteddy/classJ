@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery中如何拓展方法</title>
+</head>
+<body>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    function isLOWIE(){
+        return /MSIE (6|7|8)/.test(window.navigator.userAgent);
+    }
+
+    // 如何把一个方法添加到jq中去 => 如何基于jq拓展组件
+    //$.each(); // jQuery本身的方法
+    //$.ajax();
+    //$('p').css() // 这个css方法是定义在jq原型上的方法
+
+    /*
+    *   jq给我们添加方法预留两个接口:
+    *       $.fn.extend({}) => 原型 => css位置
+    *       $.extend({}) => $本身   => ajax位置
+    * */
+    $.extend({
+        isLowIE : isLOWIE // $.isLowIE
+    });
+
+    $.fn.extend({
+        isLowIE : isLOWIE
+    });  // $().isLOWIE
+
+</script>

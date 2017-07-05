@@ -1,0 +1,95 @@
+1、transform CSS3中的变形
+   translate/translate3D/translateX/translateY/translateZ：沿着某一个轴进行位移
+
+   scale([ratio])：缩放，例如：-webkit-transform:scale(1.2) 在原有的基础上放大1.2倍  scaleX/scaleY/scaleZ
+
+   skew([xxx deg])：倾斜角度 skewX/skewY/skewZ
+
+   rotate([xxx deg])：旋转 rotateX/rotateY/rotateZ(等同于rotate)
+
+   matrix：矩阵变形,自己设置矩阵公式,让其按照自己制定的轨迹和方式进行变形
+
+=>transform不是动画，它是给元素设置变形的效果，在不考虑兼容的情况下，我们尽量使用TRANSFORM来实现一个元素的变形和位移(尤其是移动端开发)，因为它开启了设备的硬件加速，性能和体验都是强于传统的CSS样式改变的
+
+=>transform不兼容IE低版本浏览器(IE9及以下)
+
+
+2、CSS3中的动画
+ [transition] 过渡动画：我们设置一个过渡的规则和效果，当元素的样式发生改变的时候，就会按照这个规则来运动
+
+    -webkit-transition: [property] [duration] [time-function] [delay]
+        property：设置元素的哪些样式在改变后执行这个过渡的规则，默认值是ALL，所有的样式改变都会执行这个规则，如果写的是width，代表只有元素的宽度改变才会执行这个规则
+        duration：设置动画运动的总时间
+        time-function：设置动画运动的方式，默认值是linear，除此还有ease、ease-in、ease-out、ease-in-out...
+        delay：设置延迟时间，默认是0s，如果设置是1s，当需要运动的时候会等待1s后在执行
+
+ [animation] 帧动画
+    -webkit-animation：
+       name：动画名称,运动轨迹(帧)的名字
+       duration：运动时间
+       timing-function：运动的方式
+       delay：延迟时间
+       iteration-count：运动次数 infinite无限次运动
+       fill-mode：
+            forwards：当元素按照轨迹运动完成后停留在最后一帧的位置,不设置默认动画完成后,元素立马回到第一帧的位置
+            backwards：如果本次动画有延迟，那么在延迟等到的时间，元素始终处于第一帧的位置，不设置的话是处于当前位置
+            both：同时具备以上两个特点
+
+    设置运动的轨迹(帧)
+    @-webkit-keyframes [name] {
+       from{  => 0%  开始帧位置
+          top:10px;
+       }
+
+       25%{
+          top:-30px;
+       }
+
+       50%{
+          top:50px;
+       }
+
+       ...
+
+       to{ => 100% 结束帧位置
+          top:100px;
+       }
+    }
+
+=>真实项目中我们自己一般不写多少帧轨迹，而是使用强大的 Animate.css 轨迹库来实现我们的需求 https://daneden.github.io/animate.css/
+
+
+总结：
+  能用CSS搞定的不要用JS
+  能用transform实现变形的不用之前的传统样式属性(因为TF开启了硬件加速)
+  动画分为两种：
+     transition
+        ->目标位置和具体的运动轨迹可以不固定,我们可以在JS中动态设置运动的目标位置,只要把元素的样式发生改变，都会执行对应的过渡效果
+        ->只是一个简单的从A到B的过程，不能设置复杂的运动轨迹
+
+     animation
+        ->可以设置复杂的运动轨迹，但是需要提前指定好轨迹公式，不能在JS中动态的修改
+        ->我们可以依托Animate.css中提供的强大轨迹，完成我们的业务需求
+-----------------------------------------
+
+3、CSS3中的盒子模型
+ [box-sizing]
+ [columns]
+ [flex]
+
+CSS样式的书写顺序
+  display
+  position(z-index) / float
+  margin
+  border
+  padding
+  width / height
+  font-xxx
+  background-xxx
+  ...
+
+
+
+
+
+

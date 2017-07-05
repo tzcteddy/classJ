@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <link rel="stylesheet" href="css/reset.min.css"/>
+    <style>
+        html, body {
+            width: 100%;
+            height: 1000%;
+            /*background: url("img/bg.jpg") no-repeat;
+            background-attachment: fixed; !*固定背景图片*!*/
+        }
+
+        .box {
+            margin: 30px auto;
+            padding: 20px;
+            width: 200px;
+            height: 200px;
+            border: 10px solid rgba(0, 0, 0, 0.1);
+
+            /*传统的背景*/
+            /*background-color: pink;
+            background-image: url("img/baby.jpg");
+            background-repeat: no-repeat;
+            background-position: -10px -10px;*/
+            /*background: url("img/baby.jpg") no-repeat;*/
+
+            /*CSS3中的背景样式*/
+            /*background-size: 100% 100%; !*当前盒子有多大，背景图片就有多大，这样设置可能会导致图片变形*!*/
+            /* background-size: 100%; !*让背景图片的宽度和容器的宽度保持一致,高度自适应*!*/
+            /*background-size: cover; !*以最适合的比例，让图片铺满整个屏幕，但是可以保证图片不变形,一般应用于大一点的背景图*!*/
+
+            /*background-origin: border-box; !*设置背景图片平铺的起点：border-box从边框开始设置背景图  padding-box：默认值,从padding开始 content-box:从内容开始*!*/
+
+            /*background-clip: padding-box; !*背景图片裁切 border-box padding-box content-box*!*/
+
+            background: url("img/baby.jpg") no-repeat center center;
+            background-size: cover;
+            background-clip: border-box;
+            background-origin: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box"></div>
+
+
+</body>
+</html>

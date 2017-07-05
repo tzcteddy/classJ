@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animate</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+
+    animate({
+        ele : div1,
+        target : {
+            left : 400
+        },
+        //duration : 2000,
+        callback : function (){
+
+        }
+    });
+
+
+
+
+    function animate(ele,target/*,duration,callback*/,option){ // 回调函数
+        //var div1 = document.getElementById('div1'); // ele
+        var time = 0;
+        var begin = {};
+        var change = {};
+        //var duration = 1000;
+        var duration = option && option.duration || 1000; // duration 可以有默认值
+        var callback = option && option.callback; // 回调函数
+        for(var key in target){
+            begin[key] = utils.getCss(/*div1*/ele,key);
+            change[key] = target[key] - begin[key];
+        }
+        // 负责动画
+        ele.timer && window.clearInterval(ele.timer); // 清空上一次的定时器
+        /*div1*/ele.timer = window.setInterval(function () {
+            time += 10;
+            if(time >= duration){
+                // 到达终点要做的事
+                window.clearInterval(/*div1*/ele.timer);
+                for(var key in target){
+                    utils.setCss(/*div1*/ele,key,target[key]);
+                }
+                // 回调函数
+                if(typeof callback == 'function'){ // 保证callback是一个函数
+                    callback.call(ele); // 回调函数中的this就是运动的那个元素
+                }
+                return;
+            }
+            for(var key in change){
+                var val = begin[key] + time/duration*change[key];
+                utils.setCss(/*div1*/ele,key,val);
+            }
+        },10);
+    }
+
+    function animate(option){ // 回调函数
+        var time = 0;
+        var begin = {};
+        var change = {};
+        var ele = option.ele;
+        var target = option.target;
+        var duration =  option.duration || 1000; // duration 可以有默认值
+        var callback =  option.callback; // 回调函数
+        for(var key in target){
+            begin[key] = utils.getCss(/*div1*/ele,key);
+            change[key] = target[key] - begin[key];
+        }
+        // 负责动画
+        ele.timer && window.clearInterval(ele.timer); // 清空上一次的定时器
+        /*div1*/ele.timer = window.setInterval(function () {
+            time += 10;
+            if(time >= duration){
+                // 到达终点要做的事
+                window.clearInterval(/*div1*/ele.timer);
+                for(var key in target){
+                    utils.setCss(/*div1*/ele,key,target[key]);
+                }
+                // 回调函数
+                if(typeof callback == 'function'){ // 保证callback是一个函数
+                    callback.call(ele); // 回调函数中的this就是运动的那个元素
+                }
+                return;
+            }
+            for(var key in change){
+                var val = begin[key] + time/duration*change[key];
+                utils.setCss(/*div1*/ele,key,val);
+            }
+        },10);
+    }
+
+
+</script>

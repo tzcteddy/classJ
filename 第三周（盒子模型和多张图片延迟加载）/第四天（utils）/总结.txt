@@ -1,0 +1,19 @@
+1 hasClass
+2 addClass
+3 removeClass
+4 toggleClass
+5 getElesByClass
+6 siblings
+7 sibling
+8 prevAll
+9 nextAll
+10 index
+
+/*
+    *   1 封装函数需要默认参数 context = context || document;
+    *   2 事件也可以作为参数传进来
+    *   3 多个参数存在默认值还有顺序问题，直接传一个对象
+    *   4 通过this来处理的 => 事件触发this比较可靠
+    *   utils大家自己恶补一下
+    *
+    * */

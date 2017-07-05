@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    * exec :
+    *    1 捕获结果是一个数组  [捕获结果, index :  开始索引, input : 原有字符串 ]
+    *    2 如果要把全部符合要求的都捕获到，需要全文g
+    *    3 如果没有捕获到结果那么返回null => null就是false了
+    *    ps : reg.lastIndex : 下一次捕获从哪个索引值开始就取决这个属性。还可以重新赋值
+    *    ps : test 和 exec方法都可以改变reg.lastIndex属性 ...其他??????
+    *    ps : lastIndex属性当捕获为null，test为false的时刻，lastIndex的值被重新赋值为0
+    *
+    * */
+    var reg = /\d+/g;
+    var str = 'zf2016px2017haha2018';
+
+    // 第一次
+    console.dir(reg.lastIndex); // 0
+    //reg.lastIndex = 10000;
+    var res = reg.test(str);
+    console.log(res); //  ["2016"]
+
+
+
+    // 第二次 => 添加了一个全文g就开始向后捕获了
+    console.dir(reg.lastIndex); //6
+    var res = reg.test(str);  // ['2017']
+    console.log(res);
+
+
+
+
+    // 第三次
+    console.dir(reg.lastIndex); // 12
+    var res = reg.test(str); // null
+    console.log(res);
+
+    // 第四次
+    console.dir(reg.lastIndex);
+    var res = reg.test(str);
+    console.log(res);
+
+    // 第五次
+    console.dir(reg.lastIndex);
+    var res = reg.test(str);
+    console.log(res);
+
+
+
+
+
+    // 如何写一段代码，一次性把所有符合要求的全部捕获 => 当捕获结果为null的时候
+/*
+    var reg1 = /\d+/g;
+    var str1 = "zf12px34haha56";
+    var a = []; // ['12','34','56']
+    var res = reg1.exec(str1); // res : null(false) / [](true)
+    while (res){
+        // ['12',index : input] => ['34',index : ,input : ] => ['56', index :  input: ] => null
+        a.push(res[0]);
+        res = reg1.exec(str1);
+    }
+    console.log(a); // ['12','34','56']
+*/
+
+
+
+
+
+
+</script>

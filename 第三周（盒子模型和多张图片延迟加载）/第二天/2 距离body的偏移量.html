@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="div1" style="width: 100px; height: 100px; background: red; position: absolute; left: 100px; top: 100px; margin-left: 30px;"></div>
+</body>
+</html>
+
+<script>
+    // 元素定位后的left的值是相对于margin的值来计算的。
+    // 无论offsetParent是谁。我都要获取距离body的偏移量
+    var div1 = document.getElementById('div1');
+    var left = offset(div1).left;
+    //console.log(left);
+    function offset(ele){ // 获取ele这个元素距离body的偏移量
+        var l = 0;
+        var t = 0;
+        l += ele.offsetLeft;
+        t += ele.offsetTop;
+        // 只要存在offsetParent那么就需要把offsetParent的边框和左偏移量offsetLeft累加.
+        var par = ele.offsetParent; // 只要不是body那么这个par都存在.
+        while(par){
+            if(window.navigator.userAgent.indexOf('MSIE 8') === -1){
+                l += par.clientLeft;
+                t += par.clientTop;
+            }
+            l += par.offsetLeft;
+            t += par.offsetTop;
+            par = par.offsetParent;
+        }
+        return {left : l, top : t};
+    }
+
+
+
+</script>

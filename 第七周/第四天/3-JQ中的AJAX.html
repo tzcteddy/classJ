@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠峰培训</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<script>
+    //    $.ajax({
+    //        url: 'temp.json',
+    //        method: 'get',//->type:'get' 和这个属性是一样的功能的,除了写get还可以写post、head、delete、put...
+    //        dataType: 'json',//->预设服务器返回的数据内容的格式json(默认)、text、xml...
+    //        data: null,//->设置请求主体的内容,如果是GET请气,JQ会把这些内容放到请求地址的末尾,通过问号传参的方式传递给服务器,POST请求才是放在请求主体中
+    //        cache: true,//->是否保留GET请求的缓存,TRUE是保留也就是不清除GET缓存,设置成为FALSE是清除缓存(在URL末尾加随机数),此参数对于POST请求无效
+    //        async: true,//->设置同步异步,默认是TRUE代表异步
+    //        //timeout:3000,//->设置请求超时的时间,如果超过3000MS,当前请求自动中断(一般不用)
+    //        success: function (result) {
+    //            //->当数据请求成功后执行的回调函数,result就是从服务器获取的结果
+    //            console.log(result);
+    //        },
+    //        error: function (msg) {
+    //            //->当数据请求失败指定的回调函数,msg就是失败的原因
+    //        }
+    //    });
+    //->思考题：JQ中的参数配置大概在20多个左右,剩下的不常用,大家以小组为单位,回去后自己探索查找剩下的语法和作用
+
+    $.ajax({
+        url: 'temp.json',
+        type: 'get',
+        dataType: 'json',
+        data: {
+            name: 'zhufeng',
+            age: 8
+        },
+        cache: false,
+        success: function (result) {
+
+        }
+    });
+    /*
+     * [data]
+     * GET->放在URL末尾
+     * POST->放在请求主体
+     *
+     * 字符串->写的是什么传递就是什么
+     * 对象->会把对象变成 key1=value1&key2=value2... 传递给服务器
+     */
+
+
+</script>
+</body>
+</html>

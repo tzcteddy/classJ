@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>photo-wall</title>
+    <style>
+        html,body,ul,li,img{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            width: 480px;
+            height: 640px;
+            margin: 5px auto;
+            background: #ccc;
+        }
+        ul li{
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            float: left;
+            background: lightskyblue;
+            cursor: move;
+        }
+        ul li img{
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li><img src="images/1.png" ></li>
+        <li><img src="images/2.png" ></li>
+        <li><img src="images/3.png" ></li>
+        <li><img src="images/4.png" ></li>
+        <li><img src="images/5.png" ></li>
+        <li><img src="images/6.png" ></li>
+        <li><img src="images/7.png" ></li>
+        <li><img src="images/8.png" ></li>
+        <li><img src="images/9.png" ></li>
+        <li><img src="images/10.png" ></li>
+        <li><img src="images/11.png" ></li>
+        <li><img src="images/12.png" ></li>
+    </ul>
+</body>
+</html>
+<script src="js/utils.js"></script>
+<script src="js/event2.js"></script>
+<script src="js/Emitter.js"></script>
+<script src="js/animate.js"></script>
+<script src="js/dragClass.js"></script>
+<script>
+    var ul = document.getElementById('ul');
+    var lis = ul.getElementsByTagName('li');
+    for(var i = lis.length-1; i >= 0; i--){
+        var li = lis[i]; // 这个li就是马上要修改定位的元素
+        // 重新计算li的新的left和top的值
+        var l = li.offsetLeft;
+        // top这个变量别用了
+        var t = li.offsetTop;
+
+        // 记录当前li的left值，为了在碰撞后交换位置的时候获取
+        li.l = l; // 位置交换之后这个l和t还要重新赋值
+        li.t = t;
+        // 每个li上都有两个属性，分别保存着自己的位置
+
+        li.style.margin = 0; // 把这个盒子的margin值去掉，保证定位还在原来的位置上
+        li.style.left = l + 'px';
+        li.style.top = t + 'px';
+        li.style.position = 'absolute';
+        // 上面代码保证定位然后才可以拖拽
+
+        new Drag(li)
+                .on('selfdragstart',changeBg)
+                .on('selfdragstart',increasezIndex)
+                .on('selfdragend',resetBg)
+                .on('selfdragging',hitCheck)
+                .on('selfdragend',changePosi);
+
+    }
+
+    // 当拖拽结束鼠标松开在所有碰撞上的盒子中找一个距离最近的交换位置
+    function changePosi(){
+        var a = this.hitedLi; // 先获取到这个数组保存着所有碰撞的盒子
+        // 从数组中挑距离this最近的
+        if(a && a.length){ // 有碰撞的盒子
+            for(var i = 0; i < a.length; i++){ // 遍历撞上的盒子
+                var hitLi = a[i];
+                var x = this.offsetLeft - hitLi.offsetLeft;
+                var y = this.offsetTop - hitLi.offsetTop;
+                // Math.pow(x,2) x的平方
+                // Math.sqrt(9) => 3 开平方
+                // 把求出来的距离保存在盒子的自定义属性上，一会还要用这个值来排序。
+                hitLi.distance = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+                // a = [li.distance,li,li,li]
+                // 把位置的值也要交换
+                hitLi.style.backgroundColor = 'lightskyblue';
+            }
+            a.sort(function (li1,li2){
+                return li1.distance - li2.distance;
+            });
+            var shortestLi = a[0]; // 距离最短的li
+
+            // 让this和shortestLi交换位置(动画)
+                animate({
+                    ele : this,
+                    target : {
+                        left : shortestLi.l,
+                        top :  shortestLi.t
+                    },
+                    duration : 200,
+
+                });
+                animate({
+                    ele : shortestLi,
+                    target : {
+                        left : this.l,
+                        top : this.t
+                    },
+                    duration : 200
+                });
+            var temp = {};
+            temp.l = this.l;
+            temp.t = this.t;
+            this.l = shortestLi.l;
+            this.t = shortestLi.t;
+            shortestLi.l = temp.l;
+            shortestLi.t = temp.t;
+            temp = null;
+        }else{ // 一个也没有碰撞上，回到原来的位置
+            animate({
+                ele : this,
+                target : {
+                    left : this.l,
+                    top : this.t
+                },
+                duration : 200
+            });
+        }
+    }
+
+
+
+
+    // 在拖拽的过程中检测碰撞上的li
+    function hitCheck(){
+        this.hitedLi = []; // 在拖拽结束的时刻还要在所有碰撞上的li中找出一个距离最近的做位置交换 => 需要把碰撞上的li保存下来，以备交换位置的时候用
+        // 用this和除了自己之外的所有盒子做碰撞检测
+        for(var i = 0; i < lis.length; i++){
+            var li = lis[i];
+            if(li === this){ continue; } //把自己排除
+            if(isHited(li,this)){ // 如果当前li和正在拖拽的this撞上了
+                li.style.backgroundColor = 'orange';
+                this.hitedLi.push(li); // 把装上的盒子保存在自定义属性数组中
+            }else{ // 没有装上的恢复原来的颜色
+                li.style.backgroundColor = 'lightskyblue';
+            }
+        }
+        // console.log(this.hitedLi);
+
+    }
+    // isHited函数就是专门负责监测是否碰撞的
+    function isHited(staticLi,dynamicLi){
+        // 这几个条件都是没有碰撞的条件
+        if( staticLi.offsetLeft + staticLi.offsetWidth < dynamicLi.offsetLeft ||
+            staticLi.offsetTop + staticLi.offsetHeight < dynamicLi.offsetTop ||
+            dynamicLi.offsetLeft + dynamicLi.offsetWidth < staticLi.offsetLeft ||
+            dynamicLi.offsetTop + dynamicLi.offsetHeight < staticLi.offsetTop
+        ){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+
+
+    // 拖拽结束恢复默认的背景色
+    function resetBg(){
+        this.style.backgroundColor = 'lightskyblue';
+    }
+
+    // 开始拖拽改变正在拖拽的这个盒子的背景色
+    function changeBg(){
+        this.style.backgroundColor = 'lime';
+    }
+    // 开始拖拽把层级提高
+    function increasezIndex(){
+        for(var i = 0; i < lis.length; i++){
+            //lis[i].style.zIndex = 0;
+            // 所有lis中和当前正在拖拽的这个相等的层级1其他0
+            lis[i].style.zIndex = lis[i] === this ? 1 : 0;
+        }
+        //this.style.zIndex = 1;
+    }
+
+
+
+
+
+</script>

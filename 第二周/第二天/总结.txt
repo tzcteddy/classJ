@@ -1,0 +1,40 @@
+1 sort {age : 9}  {name : "tianxi"}   li
+
+2 dom映射 回流  重绘  动态添加
+
+    appendChild 不影响已经存在的  回流多次
+    innerHTML 影响   回流一次
+    document.createDocumentFragment(); 文档碎片  临时的dom容器
+
+    如果原来不存在元素使用innerHTML的方式就可以 => ES6 模板  template
+
+3 toArray  try{} catch(e){  e.message   }
+
+        Array.prototype.slice.call(等着被转化的类数组)
+        Array.prototype.slice中的this就是被复制的数组，要是能把这个this修改成类数组。那么就是复制类数组了。
+
+4 表格中的元素的特殊的获取方式
+           table.tHead
+           table.tHead.rows;
+           table.tHead.rows[0];
+           table.tHead.rows[0].cells;
+           table.tBodies;
+           table.tBodies[0];
+           table.tBodies[0].rows;
+
+5 ajax :
+      var xhr = new XMLHttpRequest();
+      xhr.open('get/post','url后端提供',true/false);
+      同步和异步
+      xhr.onreadystatechange = function (){
+          if(xhr.readyState == 4 && xhr.status == 200)
+          // 404
+          // 304
+          // 502
+          // 304
+          ...
+          xhr.responseText; // 获取到的结果
+      }
+      xhr.send(null);
+6 循环嵌套循环
+7 jsonParse   'JSON' in window 处理兼容问题

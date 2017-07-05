@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var num = 2; // window.num = 2 3 4  5 6 7
+    var obj = {num : 1}; // 2
+    obj.fn = (function (){
+        ++num;
+        this.num++;
+        return function (){
+            this.num++;
+            num++;
+            console.log(num); //
+        }
+    })(2,3);
+    var f = obj.fn;
+    f(); // 6
+    obj.fn(); // 7
+    console.log(window.num,obj.num); // 7 2
+    // 6 7 7 2
+
+    // 单例
+    var nameSpace = {
+        a : function (){
+            this.b();
+        },
+        b : function (){}
+    };
+
+    // 工厂 => 封装函数
+    function fn(a,b){
+        var obj = {};
+        obj.a = a;
+        obj.b = b;
+        return obj;
+    }
+    var n = fn(); // n : {a : undefined, b : undefined}
+    n.c = function (){}
+
+    function bindEvent(ele,type,fun){
+        ele[type] = fun;
+    }
+
+    // 1 事件
+    // 2 函数执行  "."
+    // 3 自运行
+    // 4 定时器函数
+    // 5 构造函数
+    // 6 call apply bind
+    div1.onclick = function (){
+        this; // div1
+    }
+
+    div1.onclick = function (){
+        console.log(this);
+    }
+
+    div1.onclick(); // div1
+
+
+
+
+
+
+
+
+
+
+
+</script>

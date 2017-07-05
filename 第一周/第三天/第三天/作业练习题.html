@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    function fn(){
+        var num = 10;
+        return function (){
+            num++;
+            console.log(num);
+        }
+    }
+    var f = fn();
+    f();
+    var obj = {};
+    obj.f = f;
+    obj.f();
+    document.onclick = f;
+    for(var i = 0; i< 2; i++){
+        document.onclick();
+    }
+    f();
+    obj.f();
+
+
+
+</script>

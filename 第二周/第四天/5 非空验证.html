@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="input" type="text">
+</body>
+</html>
+<script>
+    // 利用正则和onblur事件完成简单的一个非空验证   /^\s*$/
+    var input = document.getElementById('input');
+    input.onfocus = function (){ // 获得焦点
+        console.log(this);
+    }
+
+    input.onblur = function (){ // 失去焦点
+        console.log(this.value); // 失去焦点获取到输入框的内容都是字符串
+        // this.value : ""  " "   "      "
+        var reg = /^\s*$/;
+        if(reg.test(this.value)){
+            // 没有输入任何
+            alert('请输入');
+        }
+    }
+</script>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   原型模式:
+    *       1 函数(类)定义之后天生自带一个属性prototype(原型),并属性的值仍然是一个对象。这个对象上也天生自带两个属性，一个是constructor,另外一个是__proto__.其中constructor的值是这个类本身。而__proto__属性的值，永远都指向自己所属类的原型
+    *
+    *       Human.prototype.constructor == Human
+    *
+    *       2 任何一个实例也都天生自带一个__proto__属性，而这个属性的值指向这个实例所属类的原型,这个类的原型Human.prototype相对于每个实例来说都是一个公共区域。那么这个原型上的方法和属性，相对于每个实例也都是公共方法。
+    *       h1.__proto__ == Human.prototype
+    *       ps: 任何一个引用数据类型都自带__proto__属性。并且都指向自己所属类的原型
+    *
+    *       [].__proto__ == Array.prototype
+    *       (function(){}).__proto__ == Function.prototype
+    *
+    *       3 Object是所有引用数据类型的基类，这个类的原型上的方法，所有的引用数据类型都可以调用。
+    *       调用原则 ： 如果存在私有属性那么就使用私有，否则再通过__proto__属性向上一级原型去查找。
+    *
+    *       4 Object.prototype.hasOwnProperty方法是用来判断对象是否包含这个私有属性的。
+    *       h2.hasOwnproperty(你要判断的那个属性) => true/false
+    *
+    *       5 定义在类的原型上的函数方法中的this一般是实例
+    *       eg : h1.eat() => eat定义在Human.prototype上。那么eat方法中的this就是"."前面的h1
+    *
+    *       6 批量设置公有属性，就是用一个对象去覆盖原有的原型。导致constructor丢失。所以需要人为添加
+    *       Human.prototype = {
+    *           constructor : Human
+    *       }
+    *
+    *
+    * */
+
+
+
+
+    function Human(name){
+        this.name = name;
+        //this.eat = function (){}
+    }
+
+
+    //Human.tian = 123;
+    console.dir(Human);
+    // 基类原型上的方法，h1.cry() => 向上查找的过程
+    Object.prototype.cry = function (){
+        console.log('cry');
+    };
+    //Human.prototype.constructor === Human;
+    Human.prototype.eat = function (){ // 这个是添加在原型上的eat
+        console.log('eat');
+        console.log(this.name); // 一般是实例
+    };
+    Human.prototype.cry = function (){};
+    Human.prototype.aaa = function (){};
+
+    Human.prototype = { //用新的对象取代了原来的原型，导致constructor丢失
+        constructor : Human,
+        aaa : function (){},
+        cry : function (){}
+
+    };
+
+    var h1 = new Human('tian');
+    var h2 = new Human('feng');
+
+    //
+    h1/*.__proto__*/.eat(); // h1.name => h1在打印一个name的属性
+
+    // 这个eat是给h2自己添加的。 h2的私有属性
+    h2.eat = function (){
+        console.log('eat');
+    };
+
+
+
+    console.dir(h1);
+    console.dir(h2);
+//    console.log(h1.eat === h2.eat);
+    h1.cry(); // 验证Object的原型上的方法
+    h1.eat == h2.eat; // false
+    h1.eat === h2.__proto__.eat; // true 因为h2跳过私有属性，直接去原型上获取的eat。 h1没有私有eat，默认获取也是原型上eat方法
+
+
+
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    Array.prototype.pop = function (){
+        this; // a : [1,2] => [1]       b : [1,2,3] => [1,2]
+        //this.length--;
+        var lastItem =  this[this.length-1];
+        this.length--;
+        return lastItem;
+    };
+    var a = [1,2];
+    a.pop();
+    var b = [1,2,3];
+    b.pop();
+
+
+    // 去重   => 能不能把去重方法添加到数组的原型上
+    Array.prototype.quchong = function (){
+        // 你们自己补齐！！！作业 => email到qq邮箱
+    };
+    var c = [1,2,3,4,3,2,1];
+    c.quchong(); // => 把c这个数组中所有的重复项删除,返回删除重复项的原有数组
+    var d = [1,2,2,1,1,1,2];
+    d.quchong();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

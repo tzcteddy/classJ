@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        html{
+            font-size:100px;
+            /*1rem=100px;*/
+        }
+        .item{
+/*          display:-moz-box;
+            display:-webkit-box;
+            display:box;
+            display:-ms-flexbox;
+            display:-webkit-flex;
+            display:flex;*/
+            display:-webkit-box;
+            padding:.2rem;
+        }
+        .item .pic{
+            width:1.86rem;
+            height:1.4rem;
+            margin-right:.2rem;
+        }
+        .item .pic img{
+            display:block;
+            width:100%;
+            height:100%;
+        }
+        .item .txt{
+            /*flex 设备的总宽度-图片的宽度  剩下的宽度*/
+            /*box-orient 控制子元素的排列方向 默认 水平  垂直
+              box-pack   控制子元素的对齐方式  justify两端对齐
+              我们需要控制的子元素的直接父级上
+            */
+            -webkit-box-flex:1;
+            -webkit-flex:1;
+            -ms-flex:1;
+            flex:1;
+            display:-webkit-box;
+            -webkit-box-orient:vertical;
+            -webkit-box-pack:justify;
+        }
+        .item .txt .title{
+            font-size:.3rem;
+            display:-webkit-box;
+            /*控制元素的排列方向*/
+            -webkit-box-orient:vertical;
+            /*控制文字的行数*/
+            -webkit-line-clamp:1;
+            overflow: hidden;
+        }
+        .item .txt .des{
+            display:-webkit-box;
+            font-size:.24rem;
+            -webkit-box-pack:justify;
+        }
+    </style>
+</head>
+<body>
+<div class="item">
+    <!--图片-->
+    <div class="pic">
+        <a href="#">
+            <img src="http://cms-bucket.nosdn.127.net/e2800c001c1a49ddb261e3e362ba7c2720170420195223.png?imageView&thumbnail=220y165&quality=45&type=webp&interlace=1&enlarge=1" alt=""/>
+        </a>
+    </div>
+
+    <!--文字-->
+    <div class="txt">
+        <div class="title"><a href="#">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题</a></div>
+        <div class="des">
+            <div class="time">时间</div>
+            <div class="num">评论数</div>
+            <div class="time">时间</div>
+            <div class="num">评论数</div>
+            <div class="time">时间</div>
+            <div class="num">标签</div>
+            <div class="num">评论数</div>
+        </div>
+        <div class="des">
+            <div class="time">时间</div>
+            <div class="num">评论数</div>
+            <div class="time">时间</div>
+            <div class="num">评论数</div>
+            <div class="time">时间</div>
+            <div class="num">标签</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+//    desW 设计稿的宽度
+    ~function(desW){
+        var winW=document.documentElement.clientWidth,
+                ratio=winW/desW;
+        document.documentElement.style.fontSize=ratio*100+'px'
+    }(750);
+</script>
+
+</body>
+</html>

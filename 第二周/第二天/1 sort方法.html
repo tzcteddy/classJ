@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排序方法</title>
+    <style>
+        html, body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .ul {
+            width: 300px;
+            background: #ccc;
+        }
+
+        .ul li {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: red;
+            font-size: 24px;
+            margin: 3px 0;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<ul class="ul">
+    <!--<li>4</li>
+    <li>2</li>
+    <li>1</li>
+    <li>3</li>
+    <li>5</li>-->
+</ul>
+</body>
+</html>
+<script>
+    var ary = [5, 8, 1, 4, 2];
+    ary.sort(function (a, b) {
+        //console.log(a,b); // 数组中的要比较的相邻两项
+        //return 0;
+        //return -1*-1*-1*-1; // 只要return的值在正负数切换，那么这个数组就在正序和倒序之间切换
+        //return 1;
+        //return a-b; 5-8; -3  a-b<0  return的值小于0的时候，如果是升序位置不动
+        //.return a-b; 8-1; 7   a-b>0  return的值大于0的时候，如果是升序交换位置
+        // return的值就是两两比较的时刻是否交换位置的依据
+        return (a - b) * -1 * -1;
+    });
+    //console.log(ary);
+
+
+    var ary = [{age: 5}, {age: 8}, {age: 1}, {age: 4}, {age: 2}];
+    ary.sort(function (a, b) {
+        console.log(a, b); // {age : 5}  {age : 8}
+        return a.age - b.age;
+        return a - b; //a: {age : 5} -  b: {age : 8}
+    });
+    console.log(ary);
+
+    // 字符串排序用  "a".localeCompare('b');
+
+    var ary = [{name: 'c'}, {name: 'b'}, {name: 'a'}, {name: 'e'}, {"name": "d"}];
+    ary.sort(function (x, y) {
+        return x.name.localeCompare(y.name); // 'c'.localeCompare('b')
+        return x.name - y.name; // 'c' - 'b'
+    });
+
+
+    // 对于排序dom集合(类数组) => 需要先把类数组转化成数组
+    // 如何把一个类数组转化成数组
+
+    var ul = document.getElementsByTagName('ul')[0];
+    var lis = ul.getElementsByTagName('li'); // []
+
+    console.log(lis); // [li,li,li,li,li]  li.innerHTML  : 4
+
+    var a = [];
+    for(var i = 0; i < lis.length; i++){
+        a.push(lis[i]);
+    }
+    a; // [li,li,li,li,li]
+
+    Array.prototype.myslice = function (n,m){
+        this; // 你要复制或者截取的那个数组   [1,2,3,4,5,6]  lis : [li,li,li,li,li,li]
+        // n = 2, m = 6  => 把this中的 索引n 到 索引m-1全部获取到
+        // 我们只要把这个函数中的this(就是要复制的那个数组)修改成lis(需要转化成数组的类数组) =>
+        var ary = [];
+        for(var i = n; i <= m-1; i++){
+            ary.push(this[i]);
+        }
+        return ary;
+    }
+
+
+
+
+    // try catch => 就是js中常用处理报错的一种方式。
+    function toArray(likeAry){
+        try{
+            return Array.prototype.slice.call(lis,0); // ie8-不兼容 => ie8中报错
+        }catch(e){
+            // 代码只要运行到这就一定是try中报错了
+            console.log(e.message); // 获取就是try中报的错误
+            var a = [];
+            for(var i = 0; i < likeAry.length; i++){
+                a[a.length] = likeAry[i]; // push
+            }
+            return a;
+        }
+    }
+
+    var lisAry = toArray(lis);
+    console.log(lisAry);
+
+
+    lisAry.sort(function (li1,li2){
+        return li1.innerHTML - li2.innerHTML;
+    });
+
+    console.log(lisAry); // [li : innerHTML 1,li.innerHMTL : 2,li,li,li]
+
+    //
+    var p = document.createElement('p');
+    p.innerHTML = '我是p';
+    document.body.appendChild(p);
+
+    for(var i = 0; i<lisAry.length; i++){
+        ul.appendChild(lisAry[i])
+    }
+
+
+
+</script>

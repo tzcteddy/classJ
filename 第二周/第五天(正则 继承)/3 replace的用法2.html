@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>replace</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   replace :  param(参数)
+    *       1 返回一个新的替换后的字符串
+    *       2 第一个参数是reg，第二个参数是函数
+    *            str.replace(reg,function)
+    *           1) 函数执行的次数取决于正则reg成功匹配多少次
+    *           2) 使用函数每次执行的返回值return来替换正则每次匹配到的内容
+    *           3)  打印arguments类数组:
+    *                   arguments[0] : 每次大正则匹配到的内容
+    *                   arguments[1] :  第1个分组匹配到的内容
+    *                   arguments[n] : 第n个分组匹配到的内容
+    *                   arguments[length-1] : input
+    *                   arguments[length-2] : index
+    *
+    *           4)  str.replace(reg,'$1');
+    *                   当使用"$1"这样的字符串来替换reg的时候，如果正则中存在第一个分组，那么是使用分组的内容来替换。如果不存在就还是"$1"字符串本身
+    *   ps : 任何一个正则只要执行完捕获等操作就已经把第一个分组的内容添加到RegExp.$1...$9的属性上一份。  不兼容
+    *
+    * */
+    var str = 'zf2016px2017ha2018xixi';
+    var reg = /(\d+)/g;
+    str = str.replace(reg,function (){
+        return arguments[1] + ',';
+    });
+    str = str.replace(reg,"$1"+','); //
+
+//    str = str.replace(reg,function ($){
+//        // 函数执行4次
+//        //console.log(arguments); //
+//        ["2016", "2016", 2, "zf2016px2017ha2018xixi2019"]; // 第1次
+//        ["2017", "2017", 8, "zf2016px2017ha2018xixi2019"]; // 第2次
+//        ["2018", "2018", 14, "zf2016px2017ha2018xixi2019"];// 第3次
+//        ["2019", "2019", 22, "zf2016px2017ha2018xixi2019"];// 第4次
+//        return $+','; // $ == arguments[0]
+//        return arguments[1]; //
+//    });
+    console.log(str); //
+
+    console.log(RegExp.$1); //
+
+    // 我们可以把任何一个RegExp的实例捕获到的分组1/2...的内容通过constructor属性添加到RegExp这个类的一个自定义属性$1...$9上
+//    var reg1 = /(\d)/;
+//    var res1 = reg1.exec("3")/*['1','1']*/[1]; // "1"
+//    reg1.__proto__.constructor.$1/*RegExp*/ = res1;
+//    console.log(RegExp.$1); // '1' ??
+
+
+</script>

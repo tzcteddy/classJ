@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom2事件绑定</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
+<script>
+    //var div1 = document.querySelector('#div1'); // ie7-
+    var div1 = document.getElementById('div1'); // ie7-
+
+
+
+    // 使用dom2事件绑定由于可以绑定多个函数，一般我们绑定实名函数，保证移除事件的时刻能找到这个函数
+
+    function fn1() {
+        console.log(this === div1); // ??
+        console.log(1);
+    }
+    function fn2(){
+        console.log(2);
+    }
+    function fn3(){
+        console.log(3);
+    }
+    function fn4(){
+        console.log(4);
+    }
+    function fn5(){
+        console.log(5);
+    }
+    // 标准浏览器
+//    div1.addEventListener('click',fn1,false);
+//    div1.addEventListener('click',fn1,false); // 重复绑定
+//    div1.addEventListener('click',fn2,false);
+//    div1.addEventListener('click',fn3,false);
+//    div1.addEventListener('click',fn4,false);
+//    div1.addEventListener('click',fn5,false);
+
+    //div1.removeEventListener('click',fn2,false);
+
+    // ie8-
+    //div1.attachEvent('onclick',fn1);  // 添加事件监听
+    //div1.attachEvent('onclick',fn1);  // 重复
+ //   div1.attachEvent('onclick',fn2);
+//    div1.attachEvent('onclick',fn3);
+//    div1.attachEvent('onclick',fn4);
+//    div1.attachEvent('onclick',fn5);
+
+    //div1.detachEvent('onclick',fn1); // 移除事件监听
+
+
+    /*
+    *   DOM2事件绑定ie8-中:
+    *       1 this问题  window
+    *       2 事件触发执行函数的顺序问题
+    *       3 重复绑定问题
+    *
+    * */
+
+    function on(ele,type,fn){
+//        if(ele.addEventListener){ // 标准
+//            ele.addEventListener(type,fn);
+//        }else{}
+            //if(!ele.AAAclick){ //如果ele上不存在AAAclick我才在ele上添加一个
+            if(!ele['AAA'+type]){
+                ele['AAA'+type] = [];
+                // 这个run函数同一个元素同一个事件只能绑定一次
+                ele.attachEvent('on'+type,run);// run方法负责运行自定义属性数组中的那些函数fn1...fn5
+            }
+            //ele.AAAclick.push(fn);
+            ele['AAA'+type].push(fn);
+    }
+    function run(e){
+        //事件触发 ie8-
+        e =  window.event; //
+        e.target = e.srcElement; // ele
+        //e.type;
+        //div1.AAAclick;
+        var a = e.target['AAA'+e.type];
+        //console.log(a); //[fn1,fn2,fn3,fn4,fn5]
+        if(a && a.length){
+            for(var i = 0; i < a.length; i++){
+                if(typeof a[i] == 'function'){
+                    a[i].call(e.target); //a[i] => fn1,fn2,fn3...
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+    on(div1,'click',fn1);
+    on(div1,'click',fn2);
+    on(div1,'click',fn3);
+    on(div1,'click',fn4);
+    on(div1,'click',fn5);
+    //on(div1,'mouseover',fn5); // div1.AAAmouseover = [fn5]
+
+
+
+</script>

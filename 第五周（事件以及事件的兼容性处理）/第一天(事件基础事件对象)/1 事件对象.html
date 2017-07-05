@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件基础</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <input id="input1" type="text">
+    <a id="link" target="_blank" href="http://www.baidu.com">百度</a>
+
+</body>
+</html>
+<script>
+    // 鼠标事件  MouseEvent
+    /*
+    *   MouseEvent : 鼠标事件对象 => 这个事件对象只存在于真正绑定事件的函数中
+    *       标准浏览器:
+    *           事件对象在argument[0]上
+    *           clientX : 相对于浏览器窗口的鼠标水平坐标
+    *           clientY : 相对于浏览器窗口的水平垂直坐标
+    *           pageX : 相对于整个网页的水平坐标
+    *           pageY : 相对于整个网页的垂直坐标
+    *           type: 事件类型 => 'click'
+    *           e.target : 事件源
+    *           e.preventDefault() : 阻止默认行为 => a链接的跳转  => return false
+    *           e.stopPropagation() : 阻止事件传播
+    *       ie低版本:
+    *           事件对象在window.event上
+    *           pageX,pageY : 有兼容问题 => 在clientX和clientY的基础上累加窗口的scrollLeft或者scrollTop的值
+    *           e.srcElement => e.target = e.target || e.srcElement
+    *           e.returnValue = false; 阻止默认行为  => return false
+    *           e.preventDefault ? e.preventDefault() : e.returnValue = false;
+    *           e.cancelBubble = true; 阻止事件传播
+    *           e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true
+    * */
+    var div1 = document.getElementById('div1');
+
+    div1.onclick = function (e){
+        //console.log(e);
+        //console.log(window.event);
+        e = e || window.event; // 事件对象的兼容处理
+        console.log(e.clientX); // 鼠标水平X的坐标值
+        console.log(e.clientY); // 鼠标垂直y的坐标值
+        // pageX 和 pageY 处理兼容
+        e.pageX = e.pageX || e.clientX + (document.documentElement.scrollLeft || document.body.scrollLeft);
+        e.pageY = e.pageY || e.clientY + (document.documentElement.scrollTop||document.body.scrollTop);
+
+        console.log(e.pageX);
+        console.log(e.pageY);
+        // 事件类型
+        console.log(e.type);  // 'click'
+
+
+
+    };
+
+    function fn(e){
+        console.log(e);
+    }
+
+
+
+
+
+
+
+    div1.onmouseover = function (e){
+
+    }
+    // 键盘事件
+    var input1 = document.getElementById('input1');
+    input1.onkeyup = function (e){
+        console.log(e);
+    }
+    ;
+    //
+    var link = document.getElementById('link')
+    link.onclick = function (e){
+        e = e || window.event;
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+        return false;
+
+    }
+
+
+</script>

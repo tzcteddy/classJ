@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body,div{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: lime;
+            position: absolute;
+        }
+        #div2{
+            width: 100px;
+            height: 100px;
+            background: olive;
+            position: absolute;
+            left: 150px;
+            border-radius: ;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+</body>
+</html>
+<script src="event2.js"></script>
+<script src="Emitter.js"></script>
+<script src="dragClass.js"></script>
+<script>
+    var div1 = document.getElementById('div1');
+    var div2 = document.getElementById('div2');
+
+    new Drag(div1)
+            //.on('selfdragstart',start)
+            .on('selfdragstart',yuan)
+            //.on('selfdragging',ing)
+            //.on('selfdragend',end)
+            .on('selfdragging',getSpeed)
+            .on('selfdragend',fly)
+            .on('selfdragend',drop);
+
+    function drop(){
+        var that = this;
+        this.dropTimer = window.setInterval(function (){
+            that.dropSpeed = !that.dropSpeed ? 9.8 : that.dropSpeed + 9.8;
+            that.dropSpeed *= .98;
+            if(that.flag >= 2){
+                window.clearInterval(that.dropTimer);
+                return;
+            }
+            var curTop = that.offsetTop;
+            curTop += that.dropSpeed;
+            // 最大的top值
+            var maxTop = (document.documentElement.clientHeight||document.body.clientHeight) - that.offsetHeight;
+            if(curTop >= maxTop){ // 到底
+                // 如果连续两次执行定时器都进入到这个条件，说名这个盒子已经在底部不动了，那么定时器也没用了。
+                // 如果来判断？？？
+                that.flag++; //  1 2
+                that.style.top = maxTop + 'px';
+                that.dropSpeed *= -1;
+
+            }else{ // 在下落的过程中
+                that.style.top = curTop + 'px';
+                that.flag = 0;
+            }
+            console.log('111')
+        },10);
+    }
+
+    function getSpeed(e){
+        // 鼠标移动这个事件是浏览器在单位时间内捕捉。频率大约在8ms
+        // 这个函数要被触发很多次
+         if(this.prevPosi){ // 用来保存上一次的位置
+             this.speed = this.offsetLeft - this.prevPosi; // 当前次-上一次
+             this.prevPosi = this.offsetLeft; // 不断更新上一次的位置
+         }else{ // 第一次
+             this.prevPosi = this.offsetLeft; // 保存第一次的位置
+         }
+    }
+
+
+    function fly(){
+        //console.log(this.speed); // 速度  100
+        var that = this;
+        this.timer = window.setInterval(function (){
+            that.speed *= .98; // 0.49...
+            if(Math.abs(that.speed) < 0.5){
+                window.clearInterval(that.timer);
+                return;
+            }
+            //console.log(that.speed);
+            var curLeft =  that.offsetLeft;
+            curLeft += that.speed;
+            var maxLeft = (document.documentElement.clientWidth||document.body.clientWidth) - that.offsetWidth;
+            var minLeft = 0;
+            if(curLeft >= maxLeft){
+                that.style.left = maxLeft + 'px';
+                that.speed *= -1;
+            }else if(curLeft <= minLeft){
+                that.style.left = minLeft + 'px';
+                that.speed *= -1;
+            }else{
+                that.style.left = curLeft + 'px';
+            }
+        },10);
+    }
+
+    function start(){
+        this.innerHTML = '开始';
+    }
+    function yuan(){
+        this.style.borderRadius = '50%';
+    }
+    function ing(){
+        this.innerHTML = '中';
+    }
+    function end(){
+        this.innerHTML = '结束';
+    }
+
+</script>

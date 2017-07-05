@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0}
+        .box{
+            margin: 20px auto;
+            padding: 20px;
+            width: 300px;
+            border: 1px dashed lawngreen;
+        }
+        .con{
+            width: 300px;
+        }
+        .con span{
+            display: block;
+        }
+        .submit {
+            margin: 10px auto;
+            width: 150px;
+            line-height: 30px;
+            background: green;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="con">
+        <span>name</span><input id="userName" type="text">
+        <span>age</span><input id="userAge" type="text">
+    </div>
+    <div class="submit" id="submit">提交</div>
+</div>
+</body>
+</html>
+<script src="js/ajax.js"></script>
+<script src="js/detail.js"></script>

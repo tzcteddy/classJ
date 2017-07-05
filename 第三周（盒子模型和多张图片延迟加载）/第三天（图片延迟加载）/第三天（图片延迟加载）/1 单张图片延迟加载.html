@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单张图片延迟加载</title>
+    <style>
+        html,body,div,img{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 700px;
+            height: 300px;
+            border: 10px solid #89fa27;
+            margin: 1000px auto;
+            background: url("images/kid.jpg") no-repeat center;
+        }
+        #box img{
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box"><img src="" real="images/cuizi.jpg"></div>
+</body>
+</html>
+<script src="../utils.js"></script>
+<script>
+    /*
+    *   图片延迟加载 :
+    *       1）刚开始的时刻图片的src没有值。盒子有一个默认loading图
+    *       2）当图片完全进入都可视窗口内，我们在加载这正图。 其实就是把src的属性赋值。只要src属性有值那么就会去主动加载图片资源
+    *       3） 图片的真实资源地址添加到一个自定义属性上保存  getAttribute
+    * */
+
+
+
+    var box = document.getElementById('box');
+    var img = box.getElementsByTagName('img')[0]; // [img].getAttribute
+
+    window.onscroll = function (){
+        // 在滚动的过程中不断判断图片是否完全进入窗口内
+        var screenHeight = utils.win('clientHeight'); //窗口高度
+        var screenScrollTop = utils.win('scrollTop'); // 窗口滚出去的高度
+
+        var boxHeight = /*box*/img.parentNode.offsetHeight; //盒子的高度
+        var boxOffsetTop = utils.offset(img.parentNode).top; // 盒子距离body的上偏移
+
+        if(screenHeight + screenScrollTop > boxHeight + boxOffsetTop){
+            if(img.isLoaded){ // 第一次img.isLoaded = undefined => false
+                return;
+            }
+
+            // 盒子已经完全进入窗口 => 把real存放的真实图片url赋值给src属性
+            // 如果这个资源url有问题，那么在加载的时候就是一个无效路径。在网页中体现的就是一个加载失败的碎图。
+            // 如果这个资源有问题，那么img的src就没有必要赋值了
+            // 如何判断这个资源是否有问题呢？？？  => 总要有个图片去加载这个路径并且验证这个url是否有问题。=> 页面中的img不能验证
+            // 创建一个img标签，让这个新创建的img的验证这个url
+            var tempImg = document.createElement('img');
+            tempImg.src = img.getAttribute('real'); // 把img真实图片的url赋值给临时图片的src属性。临时图片就去加载这个资源 => 只要这行代码执行资源有问题就会报404
+            tempImg.onload = function (){
+                // 这个onload事件只有加载成功之后才会触发 => 当前加载的这个路径没有问题
+                //img.src = img.getAttribute('real'); // img就可以放心用了
+                img.src = this.src; // img就可以放心用了
+                fadeIn(img); // 淡入  fadeOut
+            }
+            tempImg = null;
+            img.isLoaded = true; // 这个img对应的真实路径已经加载过了，只要曾经加载过，那么这个真实图片img的身上就会增加一个自定义属性isLoaded = true,如果没有加载过这个属性不存在，那么img.isLoaded = undefined
+        }
+    }
+
+    function fadeIn(ele){ // 淡入
+        window.clearInterval(ele.timer); // 历史遗留问题
+        ele.timer = window.setInterval(function (){
+            var val = utils.getCss(ele,'opacity');
+            if(val >= 1){
+                window.clearInterval(ele.timer);
+                return;
+            }
+            val += 0.01; //'0.010.01'
+            utils.setCss(ele,'opacity',val);
+        },20);
+
+    }
+
+
+
+
+
+
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ul id="ul1">
+        <li id="li1">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    // for   for in  while  forEach  map
+    var ary = ['a','b','c'];
+    var ary1 = ['a','b','c','d'];
+    // each(param1,function)  param1 : 你要遍历的集合 function : 遍历时刻执行的函数
+    $.each(ary,function (index,item) { // jq中的遍历第一个参数是索引，第二个参数是项
+        console.log(item); // 0 a   1  b  2 c
+        console.log(this); // this => item  a b c
+        // jquery遍历函数中的this就是每一项
+    });
+
+    // jquery中类似于这种css方法都会存在默认的遍历操作
+    var $lis = $('ul li').css({
+        width : 100,
+        height : 30,
+        background : 'pink',
+        margin : '3px'
+    });
+
+    $.each($lis,function (index,item){
+        // item => li
+        //$(item).css({ background : 'blue' });
+        $(this).css({ background : 'blue' });
+    });
+
+    for(var i = 0; i < $lis.length; i++){
+        //$lis[i].style.background = 'pink';
+    }
+    /* jq中的遍历
+            1 : $.each一般用于遍历数组等不是实例但是存在length属性的。
+            2 : $(li).each() 这个是定义在原型上的方法，服务于jq实例的
+     */
+    $('ul li').each(function (index,item){
+        console.log(item);
+    });
+
+    // 转数组
+    // $.toArray($lis)
+
+    // 判断dom对象的包含关系
+    var res = $.contains(ul1,li1);
+    console.log(res);
+
+    // $.trim(str) 去首尾空格
+
+    // ...
+
+</script>

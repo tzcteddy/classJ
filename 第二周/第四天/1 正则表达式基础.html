@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+    <div class="btn btn-submit"></div>
+</body>
+</html>
+<script>
+    /*
+    *   RegExp : 内置类
+    *       创建正则 ： 1 字面量
+    *                  2  实例
+    *          作用 : 专业处理字符串  1 验证  test  验证字符串是否符合正则制定的规则
+    *                               2 捕获   exec  把符合规则的字符串捕获
+    *
+    *          replace(reg,function (){  return...  })
+    *          match(reg)
+    *          split(reg)
+    *
+    *
+    * */
+    var reg = /a/; // 字面量
+    /a/; //只要字符串中包含一个字母a就可以，区分大小写
+    // var reg = new RegExp(); // 实例创建
+    var str = '23413324abcd';
+
+
+    var reg = /ab/; // 在字符串中出现连续ab
+    var str = "aaaaaacccabcccbbbbbbb";
+
+    /*
+    *   特殊意义的元字符:
+    *       \d : 0-9中的一个数字      %
+    *       \w : 数字，字母，下划线 中的一个   %
+    *
+    *       \s : 空格/空白 tab    %
+    *       \b : 边界     %
+    *
+    *       \n : 换行
+    *
+    *       . :  任意字符 除了换行
+    *       \ : 转义字符
+    *       \. :  "."本身  通过转义字符把.代表任意字符串变成.本身   %
+    *
+    *       \D :  除了\d
+    *       \W :  除了\w
+    *       \S :  除了\s
+    *
+    *
+    *       ^ :   以...开始   %
+    *       $ :   以...结束   %
+    *
+    *       ps :  ^\d\d$ => 要求字符串以数字开始，以数字结束。并且之中能是2位。
+    *       ps  ： \b  ^   $都不占位。
+    *
+    * */
+    // \d
+    var reg = /\d/; // 只要正则中包含一个0-9的数字就可以
+    var str = "0";
+
+    // \w
+    var reg = /\d\w/; // 数字字母
+    var str = '1a';
+
+    // \s
+    var reg = /\s/;
+    var str = ' ';
+
+    // \b 边界不一定是字符串开始和结束，空格两边 "-"也是边界 ... 自己试一试
+    var reg = /\bzf\b-\bpx\b/;
+    var str = "zf-px";
+
+    // . 任意
+    var reg = /\./;
+    var str = '.';
+
+
+
+    // ^ 以...开始   $ 以...结束
+
+    var reg = /^\d\d$/;
+    var str = '22';
+
+
+
+    var res = reg.test(str); //
+    console.log(res);
+
+
+
+
+
+
+
+</script>

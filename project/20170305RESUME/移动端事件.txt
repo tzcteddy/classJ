@@ -1,0 +1,48 @@
+移动短事件
+【PC】
+click(点击)、dblclick(双击)、mouseover(mouseenter)、mouseout(mouseleave)、mousemove mousedown mouseup mousewheel keydown keypress keyup load resize error unload(关闭)
+blur focus change select scroll canplay readystatechange timeout abort  DOMContentLoaded
+
+
+
+window.onload(页面打开，并且资源文件加载完成)
+window.onerror（页面打开，但是资源文件加载失败）
+window.onunload(页面关闭)
+window.onbeforeunload（页面关闭之前）
+===================================================================================================
+//***window.onload和JQ中的document.ready的区别？***//
+JQ：当页面的HTML结构加载完成就会触发执行，可以使用多次
+$(document).ready(function (){})
+$(function(){})=>上面的简写
+
+JS：当前页面所有资源文件（HTNL结构、文字、图片等）加载完成才会执行
+本次采用的是DOM事件，在同一个页面中只能出现一次（出现多次，豁免的会把前面的覆盖掉）
+window.onload=function (){}
+本次采用的DOM2事件，在同一个页面中可以出现多次
+window.addEventListener("load",function(){},false)
+===================================================================================================
+
+【移动端】
+click（单击->300毫秒验证时间:从第一次点击结束后开始计时，在300毫秒内如果没有出发第二次点击，则为单击，触发则为双击或多击。移动端300毫秒延迟） dblclick
+mouse系列的在移动端基本上支持，但是我们没有线管媒介触发，所以我们不用
+key系列的在移动端不支持，因为移动端的键盘是虚拟的，我们同意使用input来代替传统键盘事件
+剩下的PC事件移动端也支持。
+移动端专属事件：
+    touch事件模型（单手指操作）：touchstart、touchmove、 touchend、touchcancel
+    gesture事件模型（多手指操作）：gesturestart、gesturechange、gestureend、gesturecancel
+    手机内部硬件感应事件：GPS、陀螺仪（重力感应器）、
+    长按：750毫秒内没离开视为长按
+
+
+
+
+    移动端的事件大部分需要使用touch事件来模拟，这样比较麻烦，我们需要研究一些已经使用touch封装好的类库。
+    ->fastclick.js=>解决了移动端click300毫秒延迟问题，原来项目中使用的是click，那么引入这个js可以解决300毫秒延迟
+    ->Zepto移动端得JQ比JQ更适合移动开发
+       1、体积小=》ZP不支持IE，专门为移动端（webkit内核）开发的；ZP只实现了JQ中部分方法，JQ方法比ZP多很多。
+       2、ZP的JS动画中支持CSS3中的变形效果，JQ不支持
+       3、移动端的事件基本都是touch和gesture，JQ中没有现成使用这些封装好的方法，而ZP中有：tap(点击)、singleTap（单击）、doubleTap（双击）、               longTap（长按）、swipe（滑动）、swipeLeft、swipeRight、swipeDown、swipeUp
+           $("#box").swipeLeft(function(){})
+
+    ->百度云touch手势事件库，目前停止更新
+    ->hammer.js

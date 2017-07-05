@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+</head>
+<body>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+    $('<div></div>')
+            .appendTo($('body'))
+            .css('width',100)
+            .css({height : 100, background : 'red', borderRadius : '50%', position : 'absolute'})
+            .hide(500)
+            .show(300)
+            .toggle(300)
+            .toggle(300)
+            .slideUp('slow')
+            .slideDown('fast')
+            .slideToggle(400)
+            .slideToggle(400)
+            .fadeOut()
+            .fadeIn()
+            // animate(target,duration,effect,callback)
+            // target : 终点 , duration : 时间间隔 , effect : linear(还有其他) , callback : 回调函数
+            .stop() //清空上一次动画, 每次在使用animate方法之前先调用stop()方法一次
+            .animate({left : 300, top : 300},500,'linear',function (){
+
+            })
+</script>

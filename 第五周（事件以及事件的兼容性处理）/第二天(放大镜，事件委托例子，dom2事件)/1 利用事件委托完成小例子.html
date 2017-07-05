@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    var ul = document.createElement('ul');
+    for(var i = 0; i < 4; i++){
+        var li = document.createElement('li');
+        li.style.display = 'none';
+        li.style.width = 200 + 'px';
+        li.style.height = 80 + 'px';
+        li.style.backgroundColor = 'yellow';
+        li.style.marginBottom = 10 + 'px';
+        li.style.border = '2px solid #000';
+        li.style.position = 'relative';
+        var span = document.createElement('span');
+        span.style.display = 'block';
+        span.style.position = 'absolute';
+        span.style.right = 0;
+        span.style.top = 0;
+        span.style.width = 20 + 'px';
+        span.style.height = 20 + 'px';
+        span.style.borderRadius = '50%';
+        span.innerHTML = 'X';
+        span.style.lineHeight = 20 + 'px';
+        span.style.textAlign = 'center';
+        span.style.fontSize = 16 + 'px';
+        span.style.border = '2px solid #000';
+        span.style.backgroundColor = 'red';
+        span.style.cursor = 'pointer';
+        span.className = 'close';
+
+        li.appendChild(span);
+        ul.appendChild(li);
+    }
+    ul.style.padding = 10 + 'px';
+    ul.style.border = '3px solid #000';
+    ul.style.margin = '10px auto';
+    ul.style.width = 220 + 'px';
+    document.body.appendChild(ul);
+
+    ul.onclick = function (e){
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        console.log(e.target); // 保证这个事件源是span
+        if(e.target.nodeName == 'SPAN' && e.target.className == 'close'){
+            this.removeChild(e.target.parentNode);
+        }
+    }
+
+
+    var lis = document.getElementsByTagName('li');
+    var n = 0;
+    window.setInterval(function (){
+        lis[n].style.display = 'block';
+        n++;
+    },1000);
+
+</script>

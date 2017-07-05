@@ -1,0 +1,78 @@
+html,body,div,ul,li,img,a{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+.banner{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 5px auto;
+    box-shadow: 5px 5px 10px #000;
+    background: url("../images/default.gif") no-repeat center #ccc;
+}
+.banner .bannerInner{
+    width: 100%;
+    height: 100%;
+}
+.banner .bannerInner div{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0;
+}
+.banner .bannerInner div img{
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    border: none;
+}
+.banner .focusUl{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 0;
+    z-index: 99;
+}
+.banner .focusUl li{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 3px;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+}
+.banner .focusUl li.cur{
+    background: lightcoral;
+}
+.banner .left, .banner .right{
+    display: none;
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    background: url("../images/pre.png") no-repeat;
+    z-index: 99;
+}
+.banner .left{
+    left: 0;
+}
+.banner .right{
+    right: 0;
+    background-position: -47px 0;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>const</title>
+</head>
+<body>
+    <div>
+        <label for="username">用户名:</label><input type="text" id="username" placeholder="请输入用户名">
+    </div>
+    <div>
+        <label for="pwd">密码:</label><input type="password" id="pwd" placeholder="请输入密码">
+    </div>
+    <button type="button" id="btn">登录</button>
+<script>
+ //const 声明变量的操作符，不存在变量提升，重复声明也不会改变原来的值，主要是用来声明一些不变得值，错误信息，还有一些环境变量
+    let btn=document.getElementById('btn');
+    let userName=document.getElementById('username');
+    let  pwd=document.getElementById('pwd');
+    const ERROR_INFO= {
+        USER_ERROR: '您输入的用户名不是admin',
+        PWD_ERROR: '您输入的用户名不是admin'
+    };
+
+    btn.onclick=function () {
+        let  userNameVal=userName.value;
+        let  pwdValue=pwd.value;
+        if(!(userNameVal=='admin')){
+//            return alert('您输入的用户名不是admin')
+            return alert(ERROR_INFO.USER_ERROR);
+        }
+        if(!(pwdValue==123456)){
+            //return alert('');
+            return alert(ERROR_INFO.PWD_ERROR);
+        }
+        alert('登录成功');
+        //$.ajax({url:'',data:{userNameVal:userNameVal,pwdValue:pwdValue},success:function(res){
+        // });
+    }
+</script>
+</body>
+</html>

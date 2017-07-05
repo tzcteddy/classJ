@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   JSON就是一个数据格式
+    *   和普通对象比较： 1 属性名字用"双引号"包起来   2 属性值是字符串也用双引号
+    * */
+    // js中的普通对象
+    var person = {
+        name : 'tianxi',
+        age : 30
+    };
+
+    // JSON格式的对象
+    var person = {
+        "name" : "tianxi",
+        "age" :  30
+    };
+    console.log(window.JSON);
+
+    /*
+    *     JSON.parse() : 把JSON格式的字符串转化为JSON格式的对象 => 去引号
+    *     JSON.stringify() : 把JSON格式的对象转化为JSON格式的字符串
+    *
+    * */
+
+    var res = JSON.stringify(person);
+    console.log(res);  // "{"name":"tianxi","age":30}"
+
+    var res1 = JSON.parse(res); // 存在兼容兼容问题, eval
+    console.log(res1); // 对象
+
+
+    "JSON" in window; //
+
+
+
+
+
+
+
+
+
+
+</script>

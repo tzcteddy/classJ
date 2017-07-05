@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        body,div,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+
+            width: 300px;
+            margin: 0 auto;
+            margin-top:60px;
+        }
+        ul,li{
+            list-style: none;
+        }
+        ul{
+            height: 40px;
+
+        }
+        ul li{
+            float: left;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: #99ddaa;
+            color:#000;
+        }
+        ul li.change{
+            background-color:green;
+        }
+        ul li.blue{
+            background-color:blue;
+        }
+        .con div{
+            display: none;
+            width: 300px;
+            height: 150px;
+            line-height: 150px;
+            color: #000;
+            text-align: center;
+        }
+        .con div.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <!--<ul>-->
+        <!--<li class="change">腾讯视频</li>-->
+        <!--<li>腾讯体育</li>-->
+        <!--<li>腾讯新闻</li>-->
+    <!--</ul>-->
+    <!--<div class="con">-->
+        <!--<div class="show">腾讯视频内容</div>-->
+        <!--<div>腾讯体育内容</div>-->
+        <!--<div>腾讯新闻内容</div>-->
+    <!--</div>-->
+</div>
+<script>
+//    var  oLi=document.getElementsByTagName('li');
+//    var  oDiv=document.getElementsByClassName('con')[0].getElementsByTagName('div');
+
+    //第一种方式 : 以前怎么写就怎么写
+//     for(var i = 0;i<oLi.length;i++){
+//            oLi[i].index=i;
+//            console.log(oLi)
+//            oLi[i].onclick=function () {
+//                for(var j=0;j<oLi.length;j++){
+//                    oLi[j].className='';
+//                    oDiv[j].className='';
+//                }
+//                oLi[this['index']].className='change';
+//                oDiv[this['index']].className='show';
+//            }
+//     }
+    //第二种方式:  用let 来改写
+//    for(let  i = 0;i<oLi.length;i++){
+//        oLi[i].onclick=function () {
+//            for(var j=0;j<oLi.length;j++){
+//                oLi[j].className='';
+//                oDiv[j].className='';
+//            }
+//            oLi[i].className='change';
+//            oDiv[i].className='show';
+//        }
+//    }
+    //第三种 : 点击事件后面的函数的改成箭头函数
+//    for(let  i = 0;i<oLi.length;i++){
+//        oLi[i].onclick=()=>{
+//            for(var j=0;j<oLi.length;j++){
+//                oLi[j].className='';
+//                oDiv[j].className='';
+//            }
+//            oLi[i].className='change';
+//            oDiv[i].className='show';
+//        }
+//    }
+    var box=document.getElementById('box');
+    var data=[
+            {title:'腾讯视频',content:'腾讯视频内容'},
+            {title:'腾讯体育',content:'腾讯体育内容'},
+            {title:'腾讯新闻',content:'腾讯新闻内容'}
+        ]
+    var obj={
+        ele:box,
+        data:data,
+        //data,
+    }
+//      function  Tab(name,age) {
+//         // 创建一个空对象{}
+//          //this指向这个空对象this={}
+//          //执行里面的代码 {name:'hwb',age:18}
+//         // 隐式把这个对象返回
+//            this.name=name;
+//            this.age=age;
+//      }
+//    var obj=new Tab('hwb',18);//{name:'hwb',age:18}
+    function Tab(opts) {
+            //构造函数的三部曲
+            //第一步:初始化数据
+            //第二步:渲染dom
+            //第三部:绑定事件
+        var defaultOpts={
+            index:0,
+            cName:'change'
+        }
+
+        this.options=Object.assign({},defaultOpts,opts)//{options:obj}
+        this.init();
+        this.renderDOM()
+        this.bindHandler();
+
+    }
+    Tab.prototype={
+        createELe:function(ele){
+            return document.createElement(ele);
+        },
+        //createEle(){}
+        constructor:Tab,
+        init:function () {
+            this.len=this.options.data.length;
+        },
+        //init(){}
+        renderDOM:function () {
+
+//            var eleDiv=document.createElement('div');
+            var eleDiv=this.createELe('div')
+            eleDiv.className='con';
+            var eleUl=document.createElement('ul');
+            for(var i=0;i<this.len;i++){
+                var childDiv=document.createElement('div');
+                var eleLi=document.createElement('li');
+                if(i==this.options.index){
+                    eleLi.className=this.options.cName;
+                    childDiv.className="show";
+                }
+                eleLi.innerHTML=this.options.data[i].title;
+                eleUl.appendChild(eleLi)
+                childDiv.innerHTML=this.options.data[i].content;
+                eleDiv.appendChild(childDiv)
+            }
+            this.options.ele.appendChild(eleUl)
+            this.options.ele.appendChild(eleDiv)
+        },
+        //renderDOM(){}
+        bindHandler:function(){
+            var oLi=this.options.ele.getElementsByTagName('li');
+            var oDiv=this.options.ele.getElementsByClassName('con')[0].getElementsByTagName('div');
+            for(let i=0;i<this.len;i++){
+                oLi[i].onclick=()=>{
+                    for(let j=0;j<this.len;j++){
+                        oLi[j].className='';
+                        oDiv[j].className='';
+                    }
+                    oLi[i].className=this.options.cName;
+                    oDiv[i].className='show';
+                }
+            }
+        }
+        //bindHandler(){}
+    }
+    console.log(new Tab(obj))
+
+</script>
+</body>
+</html>

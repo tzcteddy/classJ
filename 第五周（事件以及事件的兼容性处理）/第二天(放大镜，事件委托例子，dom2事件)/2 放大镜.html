@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        html,body,div,img{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 350px;
+            height: 350px;
+            margin: 50px;
+            box-shadow: 5px 5px 10px #000;
+            position: relative;
+        }
+        .box .imgBox img{
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+        }
+        .box .mask{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 175px;
+            height: 175px;
+            background: orange;
+            opacity: 0.5;
+            cursor: move;
+        }
+        .bigBox{
+            display: none;
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            left: 500px;
+            top: 50px;
+            box-shadow: 5px 5px 10px #000;
+            overflow: hidden;
+        }
+        .bigBox div{
+            width: 700px;
+            height: 700px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .bigBox div img{
+            width: 100%;
+            height: 100%;
+            border: none;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="imgBox"><img src="images/iphone.jpg"></div>
+        <div class="mask"></div>
+    </div>
+    <!--右侧展示区域-->
+    <div class="bigBox" id="bigBox">
+        <div class="bigBoxImg"><img src="images/iphone_big.jpg"></div>
+    </div>
+
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    var mask = box.getElementsByClassName('mask')[0];
+    var bigBox = document.getElementById('bigBox');
+    var bigBoxImg = bigBox.getElementsByClassName('bigBoxImg')[0]; // 包含图片的大盒子
+
+    box.onmouseenter = function (e){ //onmouseover
+        mask.style.display = 'block';
+        bigBox.style.display = 'block';
+    };
+    box.onmousemove = function (e){
+        // 在鼠标移动的过程中不断的去计算mask的left和top的值
+        e = e || window.event;
+        var l = e.pageX - box.offsetLeft - mask.offsetWidth/2;
+        var t = e.pageY - box.offsetTop - mask.offsetHeight/2;
+        var maxLeft = box.clientWidth - mask.offsetWidth; // 最大left值
+        var maxTop = box.clientHeight - mask.offsetHeight; // 最大top值
+        var minLeft = 0, minTop = 0;
+        //边界判断
+        l = l > maxLeft ? maxLeft : l < minLeft ? minLeft : l;
+        t = t < minTop ? minTop : t > maxTop ? maxTop : t;
+        mask.style.left = l + 'px';
+        mask.style.top = t + 'px';
+        // 负责移动右侧大图的
+        bigBoxImg.style.left = -2*l+'px';
+        bigBoxImg.style.top = -2*t + 'px';
+    };
+    box.onmouseleave = function (e){ // onmouseout
+        mask.style.display = 'none';
+        bigBox.style.display = 'none';
+    }
+
+</script>

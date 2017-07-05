@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // 为什么要写闭包 : 当想要保护一个变量(num)或者函数(sum,reduce)不受外界干扰。那么我们把变量和函数放到一个函数中(把num和sum、reduce都放到fn这个函数中)。那么我们就完成了一个闭包写法。当这个函数(fn)执行的时候就形成了一个闭包。
+    /*
+     *   制造闭包: 把要保护的变量放到一个执行函数中就可以
+     *
+     * */
+    var num = 100;
+    function fn() {
+        var num = 100;
+
+        function sum() {
+
+        }
+
+        function reduce() {
+
+        }
+
+        return {sum: sum, reduce: reduce};
+    }
+    //console.log(num,sum,reduce); //
+    var res = fn(); //res => {a : sum地址, b : reduce地址}
+
+
+    //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%
+    function fn() {
+        var a = 1000;
+        function fyy() {
+        }
+    }
+    fn();
+
+    ;(function (){
+        var a = 1000;
+        function fyy() {
+        }
+    })();
+
+
+    //console.log(a);
+    //console.log(fyy);
+
+
+</script>

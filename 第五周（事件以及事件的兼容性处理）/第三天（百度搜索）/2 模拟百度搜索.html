@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟百度搜索</title>
+    <style>
+        html,body,div,img,ul,li,a{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .box{
+            width: 640px;
+            margin: 30px auto;
+        }
+        .box .logo{
+            margin: 0 auto;
+            width: 270px;
+            height: 129px;
+        }
+        .box .logo img{
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+            border: none;
+        }
+        .box .searchBox{
+
+            width: 640px;
+            height: 40px;
+            margin-top: 20px;
+        }
+        .box .searchBox input{
+            float: left;
+            width: 516px;
+            height: 36px;
+            padding: 0 10px;
+            line-height: 40px;
+            font-size: 16px;
+        }
+        .box .searchBox a{
+            display: block;
+            float: right;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: blue;
+            color: #fff;
+            font-size: 16px;
+        }
+        .box ul{
+            display: none;
+            position: relative;
+            top: -1px;
+            width: 538px;
+            border: 1px solid #ccc;
+        }
+        .box ul li{
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+        }
+        .box ul li a{
+            display: block;
+            padding: 0 10px;
+            color: #000;
+        }
+        .box ul li a:hover{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="box">
+        <div class="logo"><img src="bd_logo1.png"></div>
+        <div class="searchBox">
+            <input  type="text" value="">
+            <a href="javascript:void 0">百度一下</a>
+        </div>
+        <ul>
+            <li><a href="javascript:void 0">珠峰</a></li>
+            <li><a href="javascript:void 0">知乎</a></li>
+            <li><a href="javascript:void 0">支付宝</a></li>
+            <li><a href="javascript:void 0">直播</a></li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="event1.js"></script>
+<script>
+    /*
+    *  键盘事件: KeyboardEvent
+    *   keyCode :
+    *       Enter : 13
+    *       0-9 : 48-57
+    *       left : 37
+    *       top : 38
+    *       right : 39
+    *       bottom : 40
+    *       Backspace : 8
+    *       space : 32
+    *    type : 'keyup'
+    *    key : 'Enter'
+    *
+    * */
+    var box = document.getElementById('box');
+    var input = box.getElementsByTagName('input')[0];
+    var ul = box.getElementsByTagName('ul')[0];
+
+    on(input,'keyup',fn);
+    on(input,'focus',fn);
+
+    function fn(e){
+        var reg = /^\s*$/; // 匹配所有空
+        if(!reg.test(this.value)){
+            ul.style.display = 'block';
+        }else{
+            ul.style.display = 'none';
+        }
+    }
+    // 给列表绑定一个点击事件
+    on(ul,'click',foo);
+    function foo(e){
+        if(e.target.nodeName == 'A' || e.target.nodeName == 'LI'){
+            // 把事件源的innerText赋值给input的value属性
+            input.value = e.target.innerText;
+            this.style.display = 'none'; // 点击之后列表消失
+        }
+    }
+
+</script>

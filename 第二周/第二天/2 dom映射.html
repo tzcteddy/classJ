@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM映射</title>
+    <style>
+        html, body, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .ul {
+            width: 300px;
+            background: #ccc;
+        }
+
+        .ul li {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: red;
+            font-size: 24px;
+            margin: 3px 0;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ul" class="ul">
+        <li>1</li>
+        <li>3</li>
+        <li>2</li>
+        <li>4</li>
+    </ul>
+</body>
+</html>
+<script>
+    var ul = document.getElementById('ul');
+    var lis = ul.getElementsByTagName('li');
+    console.log(lis); //[li,li,li,li]
+    for(var i = 0; i < lis.length; i++){
+        lis[i].onmouseover = function (){
+            this.style.backgroundColor = 'blue';
+        }
+        lis[i].onmouseout = function (){
+            this.style.backgroundColor = 'yellowgreen';
+        }
+    }
+
+
+
+
+
+
+    // appendChild 动态添加 => 添加的这个动作执行了4次 ＝＞引起多次回流 => 对已经存在的元素没有什么影响
+//    for(var i = 5; i <= 8; i++){
+//        var li = document.createElement('li');
+//        li.innerHTML = i;
+//        ul.appendChild(li);
+//    }
+    console.log(lis);
+
+
+    // 使用innerHTML的方式也可以添加元素。但是会影响已经存在的li.这个添加动作只有1次 => 引起1次回流 => 但是这种方式会影响已经存在的元素
+//    var str = "";
+//    for(var i = 5; i <= 8 ; i++){
+//        str += '<li>'+ i +'</li>';
+//    }
+//    ul.innerHTML = ul.innerHTML + str;
+    //ul.innerHTML += str;
+
+
+    /*
+    *   DOM映射 ： 使用dom方法获取回来的dom对象和页面中的元素存在一种一一对应的关系。
+    *
+    *   DOM回流 ： 页面中元素的增加，删除，位置的改变都会引起回流
+    *   DOM重绘 : 元素样式的改变会引起DOM 重绘
+    *
+    *   使用动态添加appenChild的方式，会引起多次回流。使用innerHTML的方式会影响存在的元素。那么我们可以使用文档碎片(临时存储dom对象的一个容器)
+    *
+    *
+    *
+    * */
+
+    // 文档碎片
+    var frg = document.createDocumentFragment();//临时装载li的容器
+    for(var i = 5; i<= 8; i++){
+        var li = document.createElement('li');
+        li.innerHTML = i;
+        frg.appendChild(li);
+    }
+    // frg : [li,li,li,li]
+    ul.appendChild(frg);
+
+
+</script>
+
+

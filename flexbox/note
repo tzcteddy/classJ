@@ -1,0 +1,207 @@
+李梦  984877081
+http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
+http://www.w3cplus.com/css3/flexbox-basics.html
+http://www.zhangxinxu.com/wordpress/2010/12/css-box-flex%E5%B1%9E%E6%80%A7%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B/
+http://blog.csdn.net/u014641010/article/details/50968567
+http://www.cnblogs.com/coco1s/p/4444383.html
+http://www.css88.com/book/css/values/image/gradient.htm css3属性速查表
+
+
+【Flex版本演变】
+flex布局分为旧版本display: box;，过渡版本display: flexbox;，以及现在的标准版本display: flex;所以如果你只是写新版本的语法形式，是肯定存在兼容性问题的
+2009 version - display:box;  属性box-，例如box-pack
+2011 version - display:flexbox
+2012 version - display:flex/inline-flex; 属性flex-，
+2014 version 新增了对flex项z-index的规定
+
+【浏览器对最新flexbox规范的支持情况】
+Chrome 29+
+Firefox 28+
+Internet Explorer 11+
+Opera 17+
+Safari 6.1+ (prefixed with -webkit-)
+Android 4.4+
+iOS 7.1+ (prefixed with -webkit-)
+
+【Flex兼容写法】
+.box{
+  display:box             /*老版本语法：Android  4.4- */
+  display: -webkit-box;   /* 老版本语法: Safari 3.1-6, iOS 6-, Android                            browser, older WebKit browsers. */
+  display: -moz-box;      /* 老版本语法: Firefox  19-(buggy) */
+
+  display: -ms-flexbox;   /* 混合版本语法: IE 10 */
+
+  display: -webkit-flex;  /* 新版本语法: Chrome 21+ */
+  display: flex;          /* 新版本语法: Opera 12.1, Firefox 20+ */
+}
+
+【子元素-平均分栏】
+.flex1 {
+  -webkit-box-flex: 1     /* 老版本语法：iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1;       /* 老版本语法：Firefox 19- */
+  -webkit-flex: 1;        /* Chrome */
+  -ms-flex: 1             /* IE 10 */
+  flex: 1;                /* 新版本语法： Opera 12.1, Firefox 20+ */
+}
+
+【容器的属性6个】
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+
+1)flex-direction 属性决定主轴的方向(即项目的排列方向)
+row(默认值):主轴为水平方向,起点在左端
+row-reverse:主轴为水平方向,起点在右端
+coloumn:主轴为垂直方向,起点在上沿
+coloumn-reverse:主轴为垂直方向,起点在下沿
+
+2)flex-wrap属性
+属性定义,如果一条轴线排不下,如何换行;
+nowrap(默认):不换行
+wrap:换行,第一行在上方
+wrap-reverse:换行,第一行在下方
+
+3)flex-flow
+这个属性时flex-direction属性和flex-wrap属性的简写形式,默认值为row nowrap
+
+4)justify-content
+属性定义了项目在主轴上的对齐方式
+flex-start(默认值)左对齐
+flex-end右对齐
+center居中
+space-between两端对齐,项目之间的间隔都相等
+space-around:每个项目两侧的间隔相等，所以,项目之间的间隔比项目与边框的间隔大一倍
+
+5)align-items 属性定义项目在交叉轴上如何对齐
+flex-start 交叉轴的起点对齐
+flex-end 交叉轴的终点对齐
+center 交叉轴的中点对齐
+baseline 项目的第一行文字的基线对齐
+stretch(默认值):如果项目未设置高度或设为auto,将占满整个容器的高度
+
+6)align-content
+属性定义了多根轴线的对齐方式,如果项目只有一根轴线,该属性不起作用
+flex-start 与交叉轴的起点对齐
+flex-end 与交叉轴的终点对齐
+center 与交叉轴的中点对齐
+space-between 与交叉轴两端对齐，轴线之间的间隔平均分布
+space-around 每根轴线两侧的间隔都相等，所以，轴线之间的间隔比轴线与边框的间隔大一倍
+stretch(默认值)轴线占满整个交叉轴
+
+【项目的属性6个】
+1)order
+2)flex-grow
+3)flex-shrink
+4)flex-basis
+5)flex
+6)align-self
+
+【Flex布局注意点】
+float、clear、vertical-align在伸缩项目上没有效果
+
+----------------------------------------------------------------------------
+旧版本:
+【box-orient】 ['??r??nt; '?r-]
+horizontal:设置伸缩盒的子元素从左到右水平排列;
+vertical:设置伸缩盒的子元素从上到下纵向排列;
+
+【box-pack】
+start:设置伸缩盒对象的子元素从开始位置对齐;
+center:设置伸缩盒对象的子元素居中对齐;
+end:设置伸缩盒对象的子元素从结束位置对齐;
+justify:设置或伸缩盒对象的子元素两端对齐;
+
+【box-align】
+start:设置伸缩盒对象的子元素从开始位置对齐;
+center:设置伸缩盒对象的子元素居中对齐;
+end:设置伸缩盒对象的子元素结束位置对齐;
+baseline:设置伸缩盒对象的子元素基线对齐;
+stretch:设置伸缩盒对象的子元素自适应父元素尺寸;
+
+【box-flex】
+设置或检索伸缩盒对象的子元素如何分配其剩余空间
+
+【box-flex-group】
+设置或检索伸缩盒对象的子元素的所属组;
+
+【box-ordinal-group】
+设置或检索伸缩盒对象的子元素的显示顺序
+
+【box-direction】
+normal:设置伸缩盒对象的子元素按正常顺序排列;
+reverse:反转伸缩盒对象的子元素的排列顺序
+
+【box-lines】兼容性极差
+single:伸缩盒对象的子元素只在一行内显示;
+multiple:伸缩盒对象的子元素超出父元素的空间时换行显示;
+-------------------------------------------------------------------
+新版本:
+【flex  flex-grow,flex-shrink,flex-basis】
+复合属性,设置或检索弹性盒模型对象的子元素如何分配空间
+
+【flex-grow】
+设置或检索弹性盒的扩展比率,根据弹性盒子元素所设置的扩展因子作为比率来分配剩余空间;
+
+【flex-shrink】
+设置或检索弹性盒的收缩比率,根据弹性盒子元素所设置的收缩因子作为比率来收缩空间
+
+【flex-basis】
+设置或检索弹性盒伸缩基准值
+<length>:用长度值来定义宽度。不允许负值;
+<percentage>:用百分比来定义宽度。不允许负值;
+auto:无特定宽度值，取决于其它属性值;
+content:基于内容自动计算宽度;
+
+【flex-flow flex-direction,flex-wrap】
+复合属性,设置或检索弹性盒模型对象的子元素排列方式
+
+【flex-direction】
+row:主轴与行内轴方向作为默认的书写模式。即横向从左到右排列（左对齐）;
+row-reverse:对齐方式与row相反;
+column:主轴与块轴方向作为默认的书写模式。即纵向从上往下排列（顶对齐）;
+column-reverse:对齐方式与column相反;
+
+【flex-wrap】
+nowrap:flex容器为单行。该情况下flex子项可能会溢出容器;
+wrap:flex容器为多行。该情况下flex子项溢出的部分会被放置到新行，子项内部会发生断行;
+wrap-reverse:反转 wrap 排列;
+
+【align-content】
+lex-start:各行向弹性盒容器的起始位置堆叠;
+flex-end:各行向弹性盒容器的结束位置堆叠;
+center:各行向弹性盒容器的中间位置堆叠;
+space-between:各行在弹性盒容器中平均分布;
+space-around:各行在弹性盒容器中平均分布，两端保留子元素与子元素之间间距大小的一半;
+stretch:各行将会伸展以占用剩余的空间;
+
+【align-items】
+flex-start:弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界;
+flex-end:弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界;
+center:弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）;
+baseline:如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐;
+stretch:如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制。
+
+【align-self】
+auto:如果'align-self'的值为'auto'，则其计算值为元素的父元素的'align-items'值，如果其没有父元素，则计算值为'stretch';
+flex-start:弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界;
+flex-end:弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界;
+center:弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度）;
+baseline:如弹性盒子元素的行内轴与侧轴为同一条，则该值与'flex-start'等效。其它情况下，该值将参与基线对齐;
+stretch:如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制;
+
+【justify-content】
+flex-start:弹性盒子元素将向行起始位置对齐;
+flex-end:弹性盒子元素将向行结束位置对齐;
+center:弹性盒子元素将向行中间位置对齐;
+space-between:弹性盒子元素会平均地分布在行里;
+space-around:弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半;
+
+【order】
+设置或检索弹性盒模型对象的子元素出現的順序;
+
+
+
+

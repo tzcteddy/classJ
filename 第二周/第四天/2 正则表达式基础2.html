@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   量词 :
+    *       + :  1到多次
+    *       * :  0到多次
+    *       ? :   0-1次
+    *       {n} : 出现n次
+    *       {n,} : 至少出现n次
+    *       {n,m} : 至少出现n次，最多出现m次
+    *       ps: 修饰前面的元字符出现的次数
+    *
+    * */
+
+    // +    1+
+    var reg = /\d+/; //修饰+前的这个\d出现1到多次   => \d至少出现1次
+    //console.log(reg.test("123"))
+
+    // *    0+
+    var reg = /^\d*$/;
+    var str = " a  ";
+
+    // ?  0-1次
+    var reg = /-?/; // -可以出现，可以不出现
+
+    // {n}
+    var reg = /5{2,4}/; "55" ; "555" ;
+    //{n,}
+    //{n,m}
+
+    console.log(reg.test(str));
+
+
+
+    //var reg = /^1\d{10}$/;
+    //var str = '13888888888';
+
+
+    // demo
+
+    var reg = /\d+/; // 只要在字符串中出现过至少1个连续数字就ok
+
+    var str = "ab123456c";
+
+    // ...
+
+    //有效数字的验证
+    //  +5  -5  5567899.5  5.55  5.5555          +-9   ++8
+    var reg = /^-?\d+(\.\d+)?$/; // 'a5.66b'
+
+
+
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    /*
+    *   基本 :  number 5
+    *           string ""
+    *           boolean true/false
+    *           null
+    *           undefined
+    *   引用 :  {}
+    *           []
+    *           function (){}
+    *           Date
+    *           RegExp
+    *           dom对象
+    *
+    * */
+    /*
+    *   1 typeof  'number' 'boolean' 'string' 'object' 'undefined' 'function'
+    *       判断object引用数据类型不够准确  => 不能区分具体的哪个类
+    *   2 instanceof 判断一个实例是否属于一个类
+    *           [] instanceof Array   true
+    *           [] instanceof Object  true
+    *           6   instanceof Number  false
+    *           new Number(6) 实例     true
+    *           instanceof 不能判断基本数据类型属于哪个类
+    *
+    *   3 实例.constructor
+    *           通过实例的__proto__属性，可以直接查找到原型上的constructor
+    *           [].constructor = funciton Array(){}
+    *           不够准确。这个constructor属性随时都可能被更改
+    *
+    *
+    *   4 Object.prototype.toString.call([])
+    *           "[object Object/Array....]"
+    *           [object Object] 只有 {}
+    *
+    *
+    *
+    *
+    * */
+    // 是不是{}
+    function isPlanObject(obj){ // obj : [] , reg , date, {}, div1...
+        return Object.prototype.toString.call(obj) === '[object Object]';
+    }
+
+
+//    function Fn(){}
+//    Fn.prototype.toString = function (){}
+//    Fn.toString = function (){}
+
+
+
+
+
+
+
+</script>

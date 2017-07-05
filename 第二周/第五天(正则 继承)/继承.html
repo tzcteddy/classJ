@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>
+<script>
+    /*
+     *   继承 :
+     *       1 原型继承   子类的原型指向父类的实例   常用
+     *                   B.prototype = new A()
+     *                   B.prototype.constructor = B;
+     *                   父类的公有和私有相对于子类来说都是公有方法
+     *
+     *       2 CALL继承   子类构造函数中  父类.call(this)
+     *                   父类的私有属性添加到子类私有属性
+     *
+     *       3 冒充对象  在子类构造函数中遍历父类的一个实例，并且把这个父类的这个实例的私有还有公有全部添加在子类的私有上
+     *                  this[key] = e[key]      e : 父类实例
+     *
+     *                  父类的公有和私有都是子类的私有
+     *
+     *       4 混合继承   1+2  原型+call
+     *
+     *
+     *
+     *
+     *
+     * */
+    // 1
+    function A() {
+        this.x = 100;
+    }
+    A.prototype.getX = function () {
+        console.log(this.x);
+    }
+    var a = new A();
+
+
+    function B() {
+    }
+    B.prototype = new A(); //
+    B.prototype.constructor = B; //
+    var b = new B();
+    console.log(b);
+
+    // 2  CALL继承
+    function C() {
+        this.x = 100; // => d.x = 100;
+    }
+    C.prototype.getX = function () {
+        console.log(this.x);
+    }
+    var c = new C();
+
+    function D() {
+        C.call(this); // this => d => 把C中的this修改成d
+    }
+    var d = new D();
+    console.log(d);  //{ x : 100}
+
+    // 3
+    function E() {
+        this.x = 100;
+    }
+    E.prototype.getX = function () {
+        console.log(this.x);
+    }
+    function F() {
+        var e = new E(); //{x : 100, __ptoto__: getX}
+        // for in可以遍历实例，可以遍历出私有属性，还可以把原型上自定义属性遍历出来。对于constructor等默认自带属性是不能遍历不到
+        for (var key in e) {
+            // key : x, getX : ??
+            console.log(key); // x getX
+            //if(e.hasOwnProperty(key)){ }
+            this[key] = e[key];
+            // f.x = e.x = 100
+
+            // f.getX = e.getX = fun..
+        }
+    }
+    var f = new F();
+    console.log(f); // x : 100   getx : fun...
+
+    // 4
+    function G() {
+        this.x = 100;
+    }
+    G.prototype.getX = function () {
+        console.log(this.x);
+    }
+    var g = new G();
+    function H() {
+        G.call(this); // call
+    }
+    // 原型
+    H.prototype = new G();
+    H.prototype.constructor = H;
+    var h = new H();
+
+
+    // 5 中间继承  不兼容   __proto__在ie第版本中禁用
+    function M() {
+        this.x = 100;
+    }
+    M.prototype.getX = function () {
+        console.log(this.x);
+    }
+    function N() {
+    }
+    N.prototype.__proto__ = M.prototype; // 核心
+    var n = new N();
+    console.log(n);
+
+    // 6 继承   不兼容
+    function Q(){
+
+    }
+    function W(){
+
+    }
+    W.prototype = create(Q.prototype);
+    W.prototype = a.Q.prototype;
+    W.prototype = Object.create(Q.prototype); // ?
+    W.prototype.__ptoto__ = Object.create(Q.prototype); // ??
+
+    function create(obj) {
+        function Fn(){}
+        Fn.prototype = obj;
+        return new Fn();
+    }
+
+    //o.__proto__ === document.body; // true;
+
+
+</script>

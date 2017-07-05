@@ -1,0 +1,126 @@
+html, body {
+    background: #F4F4F4;
+}
+
+.article {
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 760px;
+    background: #FFF;
+}
+
+.article .header {
+    border-bottom: 1px dashed #555;
+}
+
+.article .header h1, .article .header h2 {
+    line-height: 50px;
+    text-align: center;
+}
+
+.article .header h1 {
+    font-size: 20px;
+    color: #000;
+}
+
+.article .header h2 {
+    font-size: 18px;
+    color: orange;
+}
+
+.article h3 {
+    line-height: 35px;
+    font-size: 16px;
+    color: green;
+}
+
+.article p {
+    line-height: 35px;
+    font-size: 14px;
+    text-indent: 10px;
+}
+
+.article strong {
+    color: orange;
+}
+
+.article .figure {
+    margin-right: 10px;
+    float: left;
+    width: 300px;
+}
+
+.article .figure img {
+    width: 100%;
+}
+
+.article .figure .figcaption {
+    font-size: 12px;
+    color: #AAA;
+    font-style: italic;
+    line-height: 25px;
+}
+
+.article .aside {
+    margin-left: 10px;
+    float: right;
+    width: 200px;
+}
+
+.article .aside img {
+    width: 100%;
+}
+
+/*-----------<=800PX-----------*/
+
+@media screen and (max-width: 800px) {
+    .article {
+        width: auto;
+    }
+}
+
+/*-----------<=600PX-----------*/
+@media screen and (max-width: 600px) {
+    .article .figure {
+        width: 250px;
+    }
+}
+
+/*-----------<=480PX-----------*/
+@media screen and (max-width: 480px) {
+    .article .figure {
+        width: auto;
+        margin: 10px 0;
+        float: none;
+    }
+}
+
+/*-----------<=360PX-----------*/
+@media screen and (max-width: 360px) {
+    .article {
+        padding: 0 10px;
+    }
+
+    .article .header h1, .article .header h2 {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .article .figure {
+        display: none;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .article {
+        background: lightgoldenrodyellow;
+    }
+}
+
+
+
+
+
+
+

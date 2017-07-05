@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 300%;
+        }
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 100px;
+            top: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">我是div1</div>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+
+    $('#div1').css('width',200); // 单独设置一组样式
+    $('#div1').css({width : 300,height : 300}); // 设置多组样式
+    $('#div1').width(/*400*/); // width(val)如果val存在就是设置，否则获取
+    // height() => 和width()方法雷同
+    console.log($('#div1').css('width')); // css方法如果只有一个属性参数那么是来获取这个属性值。但是包含单位的字符串
+    // scrollTop(val)  scrollLeft(val)
+    console.log($('body').scrollTop(0)); // 如果存在参数那么就是设置，否则获取
+    // innerWidth => clientWidth
+    // innerHeight => clientHeight
+
+    // offset()方法 => utils.offset()完全相同
+    $('#div1').offset(); // => {left : , top : } 返回一个对象
+
+    // position() => 相对于父元素的偏移量
+
+
+
+
+
+</script>

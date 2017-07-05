@@ -1,0 +1,231 @@
+/*rem布局  1rem = 根节点(html)的字体大小 一般情况1rem对应100px*/
+/*移动端页面设计稿PSD一般是640px 当设备宽度为640px的时候应展示的页面大小，当设备宽度为320Px的时候我们应该缩小到原来的二分之一，当设备的宽度为800px的时候我们应该放大到原来的800/640倍*/
+/*撑满整个页面*/
+html{
+    font-size: 100px;
+}
+html,body,.music-box{
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.music-box{
+    position: relative;
+}
+.music-box .music-bg{
+    position: absolute;
+    /*当元素定位之后，那么width和height就不会继承父级元素，我们需要重新指定*/
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: url("../images/poster.jpg") no-repeat;
+    background-size: cover;
+    /*模糊背景*/
+    -webkit-filter: blur(10px);
+    filter: blur(10px);
+    /*降层级*/
+    z-index: -1;
+}
+/*我们应该吧对应640设备的宽度和高度量出来，换算成rem 单位=>把对应设备修改成640宽度，然后在盒子模型把对应的px值获取*/
+.music-box .header{
+    position: relative;
+    height: 1.2rem;/*对应640高度120px*/
+    padding: .3rem;
+    background: rgba(0,0,0,.1);
+}
+.header .music-info{
+    height: 1.2rem;
+
+}
+.header .music-info .music-logo{
+    float: left;
+    width: 1.2rem;
+    height: 1.2rem;
+
+}
+.header .music-info .music-logo img{
+    width: 100%;
+    height: auto;
+    border: none;
+    vertical-align: top;
+}
+.header .music-info .music-song{
+    margin-left: 0.1rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    overflow: hidden;
+    float: left;
+}
+.header .music-info .music-song p{
+    color: #fff;
+    line-height: 0.6rem;
+    font-size: 0.36rem;
+
+}
+.header .music-btn {
+    position: absolute;
+    right: 0.3rem;
+    top: 50%;
+    margin-top: -0.45rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    border: 0.03rem solid #fff;
+    overflow: hidden;
+}
+
+.header .music-btn .play{
+    display:none;
+    width: 100%;
+    height: 100%;
+}
+.header .music-btn .play:after{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: 0.2rem solid transparent;
+    border-left-color: #fff;
+    left: 50%;
+    top: 50%;
+    margin-top: -0.2rem;
+    margin-left: -0.05rem;
+}
+.header .music-btn .pause{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.header .music-btn .pause:after{
+    position: absolute;
+    content: "| |";
+    color: #fff;
+    display: block;
+    width: 0.4rem;
+    height: 0.4rem;
+    left: 50%;
+    top: 50%;
+    margin-left: -0.2rem;
+    margin-top: -0.2rem;
+    font-size: 0.36rem;
+    line-height: 0.4rem;
+    text-align: center;
+}
+.music-box .main{
+    position: relative;
+    height: 6rem;
+    margin: .4rem .2rem;
+    overflow: hidden;
+
+}
+.main .lyric{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    /*歌词部分的top值会改变  过渡动画*/
+    -webkit-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+    /*all所有属性只要有变化就回使用这个过渡动画
+      0.3  在0.3秒内完成
+      linear  匀速
+      0  延迟
+    */
+
+}
+.main .lyric p{
+    letter-spacing: 0.04rem;
+    font-size: 0.32rem;
+    line-height: 0.84rem;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.main .lyric p.bg{
+    color: #89fa27;
+}
+.music-box .footer{
+     height: 3rem;
+    margin: 0 0.2rem;
+
+}
+.footer .collection{
+    height: .8rem;
+    position: relative;
+}
+.footer .collection a{
+    position: absolute;
+    display: block;
+    width:0.5rem ;
+    height: 0.42rem;
+    background: url("../images/sprite_play.png") no-repeat 0 0;
+    background-size: 0.8rem 7rem;
+    right: 0;
+    top: 50%;
+    margin-top: -0.21rem;
+}
+.footer .progress{
+    height: 0.8rem;
+    line-height: 0.8rem;
+
+}
+.footer .progress .currentTime,.footer .progress .totalTime{
+    width: 0.9rem;
+    text-align: center;
+    color: rgba(255,255,255,.5);
+    font-size: 0.24rem;
+    float: left;
+}
+.footer .progress .progressBar{
+    float: left;
+    position: relative;
+    width: 4.2rem;
+    height: 0.04rem;
+    margin-top: 0.38rem;
+    background: rgba(255,255,255,.5);
+
+}
+.footer .progress .progressBar span{
+    position: absolute;
+    display: block;
+   /* width: 2rem;*/
+    height: 100%;
+    background: #31c27c;
+    -webkit-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+}
+.footer .download{
+    height: 0.9rem;
+
+}
+.footer .download a{
+    position: relative;
+    display: block;
+    width: 4.4rem;
+    height: 0.9rem;
+    margin: 0 auto;
+    background: #31c27c;
+    line-height: 0.9rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.36rem;
+    border-radius: 0.45rem;
+}
+.download a:after{
+    position: absolute;
+    display: block;
+    content: "";
+    left: 0.12rem;
+    width: 0.66rem;
+    height: 0.66rem;
+    top: 50%;
+    margin-top: -0.33rem;
+    background: url("../images/sprite_play.png") no-repeat 0 -6rem;
+    background-size: 0.8rem 7rem;
+
+}

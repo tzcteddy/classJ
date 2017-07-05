@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>珠峰培训</title>
+    <meta name="keyword" content=""/>
+    <meta name="description" content=""/>
+    <link rel="icon" href="img/icon.png"/>
+    <link rel="stylesheet" href="css/build.min.css"/>
+
+    <!--REM-->
+    <script>
+        ~function () {
+            var desW = 640;
+            var winW = document.documentElement.clientWidth;
+            if (winW > 640) return;
+            document.documentElement.style.fontSize = winW / desW * 100 + 'px';
+        }();
+    </script>
+</head>
+<body>
+<main class="main">
+    <!--HEADER-->
+    <header class="header">
+        <h1 class="logo">腾讯体育</h1>
+        <a href="#">NBA</a>
+        <a href="javascript:;" id="menu"></a>
+        <a href="#">登录</a>
+    </header>
+
+    <!--NAV-->
+    <nav class="nav" id="nav">
+        <a href="#">NBA</a>
+        <a href="#">CBA</a>
+        <a href="#">英超</a>
+        <a href="#">欧冠</a>
+        <a href="#">亚冠</a>
+        <a href="#">西甲</a>
+        <a href="#">意甲</a>
+        <a href="#">德甲</a>
+        <a href="#">法甲</a>
+        <a href="#">中超</a>
+        <a href="#">NFL</a>
+        <a href="#">综合</a>
+        <a href="#">欧洲</a>
+        <a href="#">社区</a>
+        <a href="#">下载</a>
+    </nav>
+
+    <!--VIDEO-->
+    <section class="video">
+        <!--真实项目中,我们如果需要播放的功能强大的话,需要引入播放器组件或者插件来处理:videoPlayer、ckPlayer...
+          VIDEO标签不兼容,在不兼容的情况下我们需要使用FLASH
+        -->
+        <video preload="none" controls poster="img/poster.jpg" src="1.mp4"></video>
+        <!--<video>
+            <source src="1.mp4" type="audio/mp4"/>
+            <source src="1.wav" type="audio/mp4"/>
+            <source src="1.ogg" type="audio/mp4"/>
+            <embed src="" type="">&lt;!&ndash;FLASH&ndash;&gt;
+        </video>-->
+    </section>
+
+    <!--MATCH-->
+    <section class="match" id="match">
+        <!--<div class="top">
+            <div class="left">
+                <img src="" alt=""/>
+                <span>102</span>
+            </div>
+            <div class="center">03-12 18:00</div>
+            <div class="right">
+                <span>100</span>
+                <img src="" alt=""/>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="bottom">
+            <div class="left support" id="supportLeft">15698</div>
+            <div class="center">NBA常规赛</div>
+            <div class="right support" id="supportRight">98564</div>
+        </div>-->
+    </section>
+
+    <!--PLAYER-->
+    <section class="player" id="player">
+        <ul class="wrapper">
+            <!--<li><a href="#">
+                <div>
+                    <img src="" alt=""/>
+                    <span class="time">03:00</span>
+                </div>
+                <p>哈哈哈哈哈哈哈哈</p>
+            </a></li>-->
+        </ul>
+    </section>
+</main>
+
+<script src="js/zepto.min.js"></script>
+<script src="js/iscroll-5.1.3.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
